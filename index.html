@@ -61,7 +61,7 @@
       background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      padding: 0.75rem 1rem;
+      padding: 0.72rem 1rem;
     }
 
     .topbar-inner {
@@ -70,7 +70,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.65rem;
       flex-wrap: wrap;
     }
 
@@ -78,6 +78,7 @@
       display: flex;
       align-items: center;
       gap: 0.65rem;
+      min-width: 0;
     }
 
     .brand-icon {
@@ -94,7 +95,7 @@
     }
 
     .brand-text h1 {
-      font-size: 1.02rem;
+      font-size: 1rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--ink-main);
@@ -102,15 +103,16 @@
 
     .brand-text span {
       display: block;
-      font-size: 0.76rem;
+      font-size: 0.75rem;
       color: var(--ink-muted);
       font-weight: 500;
+      word-break: break-word;
     }
 
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.45rem;
       flex-wrap: wrap;
     }
 
@@ -121,11 +123,12 @@
       background: var(--primary-soft);
       color: var(--primary-hover);
       border: 1px solid #A7F3D0;
-      padding: 0.36rem 0.78rem;
+      padding: 0.34rem 0.72rem;
       border-radius: 999px;
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       font-weight: 800;
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     /* ================= BUTTONS & INPUTS ================= */
@@ -133,8 +136,8 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.38rem;
-      padding: 0.56rem 0.92rem;
+      gap: 0.36rem;
+      padding: 0.56rem 0.9rem;
       border-radius: var(--radius-sm);
       font-family: inherit;
       font-size: 0.82rem;
@@ -143,6 +146,7 @@
       cursor: pointer;
       transition: var(--transition);
       text-decoration: none;
+      white-space: nowrap;
     }
 
     .btn:focus-visible {
@@ -181,9 +185,10 @@
     .btn-wa {
       background: #16A34A;
       color: #FFFFFF;
-      padding: 0.28rem 0.56rem;
-      font-size: 0.7rem;
-      border-radius: 6px;
+      padding: 0.34rem 0.62rem;
+      font-size: 0.72rem;
+      border-radius: 7px;
+      white-space: nowrap;
     }
 
     .btn-wa:hover:not(:disabled) {
@@ -195,9 +200,10 @@
       background: #ECFDF5;
       color: #047857;
       border: 1px solid #A7F3D0;
-      padding: 0.28rem 0.56rem;
-      font-size: 0.7rem;
-      border-radius: 6px;
+      padding: 0.34rem 0.62rem;
+      font-size: 0.72rem;
+      border-radius: 7px;
+      white-space: nowrap;
     }
 
     .btn-shift-pagi:hover:not(:disabled) {
@@ -208,9 +214,10 @@
       background: #F0F9FF;
       color: #0369A1;
       border: 1px solid #BAE6FD;
-      padding: 0.28rem 0.56rem;
-      font-size: 0.7rem;
-      border-radius: 6px;
+      padding: 0.34rem 0.62rem;
+      font-size: 0.72rem;
+      border-radius: 7px;
+      white-space: nowrap;
     }
 
     .btn-shift-siang:hover:not(:disabled) {
@@ -221,9 +228,10 @@
       background: #F1F5F9;
       color: var(--ink-main);
       border: 1px solid #CBD5E1;
-      padding: 0.3rem 0.6rem;
+      padding: 0.32rem 0.62rem;
       font-size: 0.72rem;
-      border-radius: 6px;
+      border-radius: 7px;
+      white-space: nowrap;
     }
 
     .btn-edit-mini:hover:not(:disabled) {
@@ -252,8 +260,8 @@
     }
 
     .btn-sm {
-      padding: 0.4rem 0.72rem;
-      font-size: 0.77rem;
+      padding: 0.38rem 0.68rem;
+      font-size: 0.76rem;
     }
 
     .form-group {
@@ -270,7 +278,7 @@
 
     .form-control {
       width: 100%;
-      padding: 0.62rem 0.8rem;
+      padding: 0.64rem 0.82rem;
       border-radius: var(--radius-sm);
       border: 1.5px solid var(--border);
       background: #FFFFFF;
@@ -307,7 +315,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 2.1rem 1.8rem;
+      padding: 2.1rem 1.75rem;
       box-shadow: var(--shadow-md);
     }
 
@@ -362,7 +370,7 @@
     .container {
       max-width: 1280px;
       margin: 0 auto;
-      padding: 1.15rem 1rem 3rem;
+      padding: 1rem 0.9rem 3rem;
     }
 
     /* ================= ADMIN OVERVIEW STRIP ================= */
@@ -370,8 +378,8 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1rem 1.15rem;
-      margin-bottom: 1.1rem;
+      padding: 0.95rem 1.05rem;
+      margin-bottom: 1rem;
       box-shadow: var(--shadow-sm);
     }
 
@@ -385,7 +393,7 @@
     }
 
     .overview-header h3 {
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       font-weight: 800;
       display: flex;
       align-items: center;
@@ -395,7 +403,7 @@
 
     .store-chips-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(155px, 1fr));
       gap: 0.55rem;
     }
 
@@ -404,7 +412,7 @@
       background: var(--bg-subtle);
       border: 1.5px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 0.6rem 0.75rem;
+      padding: 0.6rem 0.72rem;
       cursor: pointer;
       transition: var(--transition);
       font-family: inherit;
@@ -423,7 +431,7 @@
     }
 
     .store-chip-name {
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--ink-main);
       display: block;
@@ -434,23 +442,23 @@
       flex-wrap: wrap;
       gap: 0.3rem;
       margin-top: 0.32rem;
-      font-size: 0.68rem;
+      font-size: 0.67rem;
       font-weight: 700;
     }
 
-    /* ================= FILTER & CONTROL BAR ================= */
+    /* ================= FILTER & CONTROL BAR (RESPONSIVE MOBILE GRID) ================= */
     .control-bar {
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 0.9rem 1.1rem;
-      margin-bottom: 1.1rem;
+      padding: 0.85rem 1rem;
+      margin-bottom: 1rem;
       box-shadow: var(--shadow-sm);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
+      gap: 0.65rem;
     }
 
     .control-group {
@@ -459,43 +467,79 @@
       align-items: center;
       gap: 0.55rem;
       flex: 1;
+      width: 100%;
     }
 
     .select-box {
-      padding: 0.52rem 0.75rem;
+      padding: 0.54rem 0.72rem;
       border-radius: var(--radius-sm);
       border: 1.5px solid var(--border);
       background: #FFFFFF;
       font-family: inherit;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: var(--ink-main);
       cursor: pointer;
-      min-width: 155px;
+      min-width: 150px;
     }
 
     .search-box {
-      padding: 0.52rem 0.75rem;
+      padding: 0.54rem 0.75rem;
       border-radius: var(--radius-sm);
       border: 1.5px solid var(--border);
       font-family: inherit;
-      font-size: 0.83rem;
-      min-width: 150px;
+      font-size: 0.82rem;
+      min-width: 160px;
       flex: 1;
-      max-width: 240px;
+      max-width: 260px;
     }
 
-    /* ================= METRIC GRID (2-5 COLUMNS) ================= */
+    @media (max-width: 768px) {
+      .control-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.5rem;
+      }
+
+      .control-group .select-box,
+      .control-group .search-box {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      #storeSelector,
+      #searchDateInput {
+        grid-column: 1 / -1;
+      }
+
+      #adminBulkActionWrap {
+        width: 100%;
+      }
+
+      #adminBulkActionWrap .btn {
+        width: 100%;
+      }
+    }
+
+    /* ================= METRIC GRID (2-5 COLUMNS + FULL WIDTH 5TH CARD ON MOBILE) ================= */
     .metrics-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem;
-      margin-bottom: 1.1rem;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.65rem;
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 819px) {
+      .metrics-grid .metric-card:last-child {
+        grid-column: 1 / -1;
+      }
     }
 
     @media (min-width: 820px) {
       .metrics-grid {
         grid-template-columns: repeat(5, 1fr);
+        gap: 0.75rem;
       }
     }
 
@@ -503,7 +547,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 0.85rem 0.95rem;
+      padding: 0.82rem 0.9rem;
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
     }
@@ -526,7 +570,7 @@
     }
 
     .metric-label {
-      font-size: 0.7rem;
+      font-size: 0.69rem;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.03em;
@@ -535,9 +579,9 @@
     }
 
     .metric-value {
-      font-size: clamp(0.96rem, 2.2vw, 1.24rem);
+      font-size: clamp(0.98rem, 2.3vw, 1.24rem);
       font-weight: 800;
-      margin-top: 0.22rem;
+      margin-top: 0.2rem;
       display: block;
       word-break: break-word;
     }
@@ -546,11 +590,11 @@
       display: block;
       font-size: 0.67rem;
       opacity: 0.85;
-      margin-top: 0.15rem;
+      margin-top: 0.14rem;
       font-weight: 600;
     }
 
-    /* ================= TABLE CARD & FLUID TYPOGRAPHY ================= */
+    /* ================= TABLE CARD (DESKTOP) & MOBILE DAILY CARDS ================= */
     .table-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -560,13 +604,13 @@
     }
 
     .table-card-header {
-      padding: 0.9rem 1.1rem;
+      padding: 0.9rem 1.05rem;
       border-bottom: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 0.65rem;
+      gap: 0.6rem;
       background: #FFFFFF;
     }
 
@@ -591,7 +635,7 @@
     table.kas-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: clamp(0.71rem, 1.55vw, 0.83rem);
+      font-size: 0.83rem;
     }
 
     table.kas-table th {
@@ -599,18 +643,16 @@
       color: var(--ink-main);
       font-weight: 800;
       text-align: left;
-      padding: 0.68rem 0.55rem;
+      padding: 0.68rem 0.6rem;
       border-bottom: 1.5px solid var(--border);
-      white-space: normal;
-      line-height: 1.25;
+      white-space: nowrap;
     }
 
     table.kas-table td {
-      padding: 0.65rem 0.55rem;
+      padding: 0.65rem 0.6rem;
       border-bottom: 1px solid #F1F5F9;
       vertical-align: middle;
-      white-space: normal;
-      word-break: break-word;
+      white-space: nowrap;
     }
 
     table.kas-table tbody tr {
@@ -631,33 +673,162 @@
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 0.32rem;
+      gap: 0.34rem;
     }
 
     .shift-nominal {
       font-variant-numeric: tabular-nums;
       font-weight: 800;
-      font-size: clamp(0.76rem, 1.65vw, 0.88rem);
+      font-size: 0.88rem;
       color: var(--ink-main);
+      white-space: nowrap;
     }
 
     .shift-btn-row {
       display: inline-flex;
       align-items: center;
-      gap: 0.3rem;
-      flex-wrap: wrap;
+      gap: 0.32rem;
       justify-content: flex-end;
+    }
+
+    /* ================= MOBILE CARDS FOR STORE MANAGER (<= 768px) ================= */
+    .sm-mobile-cards {
+      display: none;
+      padding: 0.75rem;
+      background: #F8FAFC;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    @media (max-width: 768px) {
+      .sm-desktop-table-wrap {
+        display: none;
+      }
+
+      .sm-mobile-cards {
+        display: flex;
+      }
+    }
+
+    .mobile-day-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem;
+      box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);
+    }
+
+    .mobile-day-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+      padding-bottom: 0.6rem;
+      margin-bottom: 0.65rem;
+      border-bottom: 1px solid #F1F5F9;
+    }
+
+    .mobile-day-date {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--ink-main);
+    }
+
+    .mobile-shift-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+      margin-bottom: 0.65rem;
+    }
+
+    .mobile-shift-box {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.42rem;
+    }
+
+    .mobile-shift-box.pagi {
+      background: #F0FDF4;
+      border-color: #BBF7D0;
+    }
+
+    .mobile-shift-box.siang {
+      background: #F0F9FF;
+      border-color: #BAE6FD;
+    }
+
+    .mobile-shift-label {
+      font-size: 0.68rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--ink-muted);
+    }
+
+    .mobile-shift-amount {
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--ink-main);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+
+    .mobile-shift-actions {
+      display: flex;
+      gap: 0.35rem;
+      margin-top: auto;
+    }
+
+    .mobile-shift-actions .btn {
+      flex: 1;
+      padding: 0.4rem 0.35rem;
+      font-size: 0.72rem;
+    }
+
+    .mobile-day-footer {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.55rem;
+      padding-top: 0.55rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.76rem;
+    }
+
+    .mobile-footer-item span.lbl {
+      display: block;
+      font-size: 0.67rem;
+      font-weight: 700;
+      color: var(--ink-light);
+      text-transform: uppercase;
+    }
+
+    .mobile-footer-item div.val {
+      font-weight: 800;
+      color: var(--ink-main);
+      margin-top: 0.12rem;
+      display: flex;
+      align-items: center;
+      gap: 0.32rem;
+      flex-wrap: wrap;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
       gap: 0.25rem;
-      padding: 0.22rem 0.5rem;
+      padding: 0.22rem 0.52rem;
       border-radius: 6px;
-      font-size: 0.67rem;
+      font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
 
     .badge-success {
@@ -719,7 +890,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 1rem;
+      padding: 0.85rem;
       overflow-y: auto;
     }
 
@@ -730,7 +901,7 @@
       overflow-y: auto;
       background: #FFFFFF;
       border-radius: 20px;
-      padding: 1.35rem;
+      padding: 1.3rem;
       box-shadow: 0 20px 45px rgba(15, 23, 42, 0.24);
       animation: popIn 0.2s ease-out;
     }
@@ -751,7 +922,7 @@
     }
 
     .modal-header h3 {
-      font-size: 1rem;
+      font-size: 0.98rem;
       font-weight: 800;
     }
 
@@ -783,6 +954,12 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.6rem;
+    }
+
+    @media (max-width: 420px) {
+      .notes-grid-2 {
+        grid-template-columns: 1fr;
+      }
     }
 
     .extra-note-row {
@@ -832,19 +1009,24 @@
 
     .toast-container {
       position: fixed;
-      bottom: 1.25rem;
-      right: 1.25rem;
+      bottom: 1.1rem;
+      right: 1rem;
+      left: 1rem;
       z-index: 80;
       display: flex;
       flex-direction: column;
+      align-items: flex-end;
       gap: 0.5rem;
-      max-width: 350px;
+      pointer-events: none;
     }
 
     .toast {
+      pointer-events: auto;
+      max-width: 360px;
+      width: 100%;
       padding: 0.8rem 1rem;
       border-radius: 12px;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       font-weight: 700;
       color: #FFFFFF;
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.22);
@@ -866,7 +1048,7 @@
 </head>
 <body>
 
-  <!-- ================= HALAMAN 1: LOGIN (BERSIH TANPA INPUT URL) ================= -->
+  <!-- ================= HALAMAN 1: LOGIN ================= -->
   <section id="loginScreen" class="login-wrapper">
     <div class="login-card">
       <div class="login-header">
@@ -1006,17 +1188,18 @@
         </div>
       </div>
 
-      <!-- 1 TABEL HARIAN TERPADU KHUSUS STORE MANAGER -->
+      <!-- 1 TABEL HARIAN TERPADU KHUSUS STORE MANAGER (TABEL DI PC, KARTU RAPI DI HP) -->
       <div id="smUnifiedTableCard" class="table-card">
         <div class="table-card-header">
           <div>
             <h3 class="table-card-title" id="smTableTitle">LAPORAN ARUS KAS STORE</h3>
-            <p class="table-card-sub">Gunakan tombol <strong>Input Pagi</strong> atau <strong>Input Siang</strong> di masing-masing kolom. Pemindahan Dana maksimal 1&times; per tanggal.</p>
+            <p class="table-card-sub">Gunakan tombol <strong>Input Pagi</strong> atau <strong>Input Siang</strong> di masing-masing bagian. Pemindahan Dana maksimal 1&times; per tanggal.</p>
           </div>
           <span class="badge badge-warn" id="smBelumTfBadge">0 Hari Belum TF</span>
         </div>
 
-        <div class="table-responsive">
+        <!-- TAMPILAN DESKTOP (> 768px) -->
+        <div class="table-responsive sm-desktop-table-wrap">
           <table class="kas-table">
             <thead>
               <tr>
@@ -1032,6 +1215,11 @@
               <tr><td colspan="6" class="loading-state">Memuat data laporan arus kas...</td></tr>
             </tbody>
           </table>
+        </div>
+
+        <!-- TAMPILAN KARTU MOBILE (<= 768px) -->
+        <div id="smMobileCards" class="sm-mobile-cards">
+          <div class="loading-state">Memuat data laporan arus kas...</div>
         </div>
       </div>
 
@@ -1440,6 +1628,7 @@
           el('adminTableBody').innerHTML = '<tr><td colspan="10" class="loading-state">Memuat data laporan arus kas...</td></tr>';
         } else {
           el('smTableBody').innerHTML = '<tr><td colspan="6" class="loading-state">Memuat data laporan arus kas...</td></tr>';
+          el('smMobileCards').innerHTML = '<div class="loading-state">Memuat data laporan arus kas...</div>';
         }
 
         callBackendApi({
@@ -1499,19 +1688,24 @@
         if (state.session && state.session.peran === 'ADMIN') {
           renderAdminTable();
         } else {
-          renderStoreManagerUnifiedTable();
+          renderStoreManagerViews();
         }
       }
 
-      // ================= RENDER 1 TABEL HARIAN STORE MANAGER =================
-      function renderStoreManagerUnifiedTable() {
+      // ================= RENDER TABEL DESKTOP & KARTU MOBILE STORE MANAGER =================
+      function renderStoreManagerViews() {
         var tbody = el('smTableBody');
+        var mobileWrap = el('smMobileCards');
+
         if (!state.rows || state.rows.length === 0) {
           tbody.innerHTML = '<tr><td colspan="6" class="loading-state">Tidak ada data pada filter ini.</td></tr>';
+          mobileWrap.innerHTML = '<div class="loading-state">Tidak ada data pada filter ini.</div>';
           return;
         }
 
-        var html = '';
+        var tableHtml = '';
+        var cardsHtml = '';
+
         for (var i = 0; i < state.rows.length; i++) {
           var row = state.rows[i];
           var isLockedAdmin = Boolean(row.validasiAdmin);
@@ -1520,53 +1714,89 @@
             ? '<span class="badge badge-success">SUDAH TF</span>'
             : '<span class="badge badge-danger">' + (row.statusTf || 'BELUM TF') + '</span>';
 
-          var tglCell = '<strong>' + row.tanggal + '</strong>';
-          if (isLockedAdmin) {
-            tglCell += '<div style="margin-top:0.22rem;"><span class="badge badge-neutral">Tervalidasi</span></div>';
-          }
+          var validatedBadge = isLockedAdmin
+            ? '<span class="badge badge-neutral">Tervalidasi</span>'
+            : '';
 
-          // Kolom Shift Pagi (Nominal + Tombol Input Pagi + Tombol Share WA)
           var pagiButtons = isLockedAdmin
             ? '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button>'
             : '<button type="button" class="btn btn-shift-pagi btn-open-shift" data-row="' + row.sheetRow + '" data-shift="PAGI">Input Pagi</button>' +
               '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button>';
 
-          var pagiCell = '<div class="shift-cell-box">' +
-            '<span class="shift-nominal">' + formatRupiah(row.tunaiPagi) + '</span>' +
-            '<div class="shift-btn-row">' + pagiButtons + '</div>' +
-            '</div>';
-
-          // Kolom Shift Siang (Nominal + Tombol Input Siang + Tombol Share WA)
           var siangButtons = isLockedAdmin
             ? '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button>'
             : '<button type="button" class="btn btn-shift-siang btn-open-shift" data-row="' + row.sheetRow + '" data-shift="SIANG">Input Siang</button>' +
               '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button>';
 
-          var siangCell = '<div class="shift-cell-box">' +
+          var tfBadgeHtml = '';
+          if (row.pemindahanBank > 0 && row.shiftPemindahan) {
+            var badgeCls = row.shiftPemindahan === 'SIANG' ? 'badge-siang' : 'badge-pagi';
+            tfBadgeHtml = '<span class="badge ' + badgeCls + '">TF ' + row.shiftPemindahan + '</span>';
+          }
+
+          // 1. Baris Tabel Desktop (> 768px)
+          var tglCellDesktop = '<strong>' + row.tanggal + '</strong>';
+          if (validatedBadge) {
+            tglCellDesktop += '<div style="margin-top:0.22rem;">' + validatedBadge + '</div>';
+          }
+
+          var pagiCellDesktop = '<div class="shift-cell-box">' +
+            '<span class="shift-nominal">' + formatRupiah(row.tunaiPagi) + '</span>' +
+            '<div class="shift-btn-row">' + pagiButtons + '</div>' +
+            '</div>';
+
+          var siangCellDesktop = '<div class="shift-cell-box">' +
             '<span class="shift-nominal">' + formatRupiah(row.tunaiSiang) + '</span>' +
             '<div class="shift-btn-row">' + siangButtons + '</div>' +
             '</div>';
 
-          // Kolom Pemindahan Dana + Keterangan Shift TF
-          var tfCell = '<div class="shift-cell-box">' +
-            '<span class="shift-nominal">' + formatRupiah(row.pemindahanBank) + '</span>';
-          if (row.pemindahanBank > 0 && row.shiftPemindahan) {
-            var badgeCls = row.shiftPemindahan === 'SIANG' ? 'badge-siang' : 'badge-pagi';
-            tfCell += '<span class="badge ' + badgeCls + '">TF ' + row.shiftPemindahan + '</span>';
-          }
-          tfCell += '</div>';
+          var tfCellDesktop = '<div class="shift-cell-box">' +
+            '<span class="shift-nominal">' + formatRupiah(row.pemindahanBank) + '</span>' +
+            tfBadgeHtml +
+            '</div>';
 
-          html += '<tr>' +
-            '<td>' + tglCell + '</td>' +
-            '<td class="num-col">' + pagiCell + '</td>' +
-            '<td class="num-col">' + siangCell + '</td>' +
-            '<td class="num-col">' + tfCell + '</td>' +
+          tableHtml += '<tr>' +
+            '<td>' + tglCellDesktop + '</td>' +
+            '<td class="num-col">' + pagiCellDesktop + '</td>' +
+            '<td class="num-col">' + siangCellDesktop + '</td>' +
+            '<td class="num-col">' + tfCellDesktop + '</td>' +
             '<td class="num-col">' + formatRupiah(row.sisaTunai) + '</td>' +
             '<td>' + statusBadge + '</td>' +
             '</tr>';
+
+          // 2. Kartu Harian Mobile (<= 768px)
+          cardsHtml += '<div class="mobile-day-card">' +
+            '<div class="mobile-day-header">' +
+              '<div class="mobile-day-date"><span>' + row.tanggal + '</span>' + validatedBadge + '</div>' +
+              '<div>' + statusBadge + '</div>' +
+            '</div>' +
+            '<div class="mobile-shift-grid">' +
+              '<div class="mobile-shift-box pagi">' +
+                '<span class="mobile-shift-label">Shift Pagi</span>' +
+                '<span class="mobile-shift-amount">' + formatRupiah(row.tunaiPagi) + '</span>' +
+                '<div class="mobile-shift-actions">' + pagiButtons + '</div>' +
+              '</div>' +
+              '<div class="mobile-shift-box siang">' +
+                '<span class="mobile-shift-label">Shift Siang</span>' +
+                '<span class="mobile-shift-amount">' + formatRupiah(row.tunaiSiang) + '</span>' +
+                '<div class="mobile-shift-actions">' + siangButtons + '</div>' +
+              '</div>' +
+            '</div>' +
+            '<div class="mobile-day-footer">' +
+              '<div class="mobile-footer-item">' +
+                '<span class="lbl">Pemindahan Dana</span>' +
+                '<div class="val"><span>' + formatRupiah(row.pemindahanBank) + '</span>' + tfBadgeHtml + '</div>' +
+              '</div>' +
+              '<div class="mobile-footer-item" style="text-align:right;">' +
+                '<span class="lbl">Sisa Tunai</span>' +
+                '<div class="val" style="justify-content:flex-end;"><span>' + formatRupiah(row.sisaTunai) + '</span></div>' +
+              '</div>' +
+            '</div>' +
+          '</div>';
         }
 
-        tbody.innerHTML = html;
+        tbody.innerHTML = tableHtml;
+        mobileWrap.innerHTML = cardsHtml;
       }
 
       // ================= RENDER TABEL LENGKAP ADMIN =================
@@ -1608,7 +1838,7 @@
         tbody.innerHTML = html;
       }
 
-      // ================= EVENT DELEGATION TABEL STORE MANAGER =================
+      // ================= EVENT DELEGATION STORE MANAGER (DESKTOP & MOBILE) =================
       function findRowBySheetRow(sheetRowNum) {
         var targetNum = parseInt(sheetRowNum, 10);
         for (var i = 0; i < state.rows.length; i++) {
@@ -1619,7 +1849,7 @@
         return null;
       }
 
-      el('smTableBody').addEventListener('click', function(e) {
+      function handleSmActionClick(e) {
         var shareBtn = e.target.closest('.btn-share-wa');
         if (shareBtn) {
           var rShare = findRowBySheetRow(shareBtn.getAttribute('data-row'));
@@ -1643,7 +1873,10 @@
 
           openShiftEntryModal(shiftType, rowObj);
         }
-      });
+      }
+
+      el('smTableBody').addEventListener('click', handleSmActionClick);
+      el('smMobileCards').addEventListener('click', handleSmActionClick);
 
       // ================= MODAL INPUT PER SHIFT =================
       function openShiftEntryModal(shiftType, rowObj) {
