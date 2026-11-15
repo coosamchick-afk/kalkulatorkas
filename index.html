@@ -1,0 +1,1489 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Arus Kas Store Terpadu — Calculator Kas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-canvas: #F3F8F6;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F8FAFC;
+      --primary: #059669;
+      --primary-hover: #047857;
+      --primary-soft: #ECFDF5;
+      --accent: #0284C7;
+      --accent-soft: #E0F2FE;
+      --ink-main: #0F172A;
+      --ink-muted: #475569;
+      --ink-light: #64748B;
+      --border: #E2E8F0;
+      --success-bg: #DCFCE7;
+      --success-ink: #15803D;
+      --danger-bg: #FEE2E2;
+      --danger-ink: #B91C1C;
+      --warn-bg: #FEF3C7;
+      --warn-ink: #B45309;
+      --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
+      --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.09);
+      --radius-lg: 16px;
+      --radius-md: 12px;
+      --radius-sm: 8px;
+      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: linear-gradient(160deg, #ECFDF5 0%, #F0F9FF 48%, #F8FAFC 100%);
+      color: var(--ink-main);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* ================= NAVBAR ================= */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+    }
+
+    .topbar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .brand-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, #059669 0%, #0284C7 100%);
+      color: #FFFFFF;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.25);
+      flex-shrink: 0;
+    }
+
+    .brand-text h1 {
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--ink-main);
+    }
+
+    .brand-text span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      font-weight: 500;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .user-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--primary-soft);
+      color: var(--primary-hover);
+      border: 1px solid #A7F3D0;
+      padding: 0.35rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+    }
+
+    /* ================= BUTTONS & INPUTS ================= */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.45rem;
+      padding: 0.6rem 1rem;
+      border-radius: var(--radius-sm);
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn:focus-visible {
+      outline: 3px solid rgba(5, 150, 105, 0.3);
+      outline-offset: 2px;
+    }
+
+    .btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none !important;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #059669 0%, #10B981 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.22);
+    }
+
+    .btn-primary:hover:not(:disabled) {
+      background: linear-gradient(135deg, #047857 0%, #059669 100%);
+      transform: translateY(-1px);
+    }
+
+    .btn-accent {
+      background: linear-gradient(135deg, #0284C7 0%, #2563EB 100%);
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(2, 132, 199, 0.22);
+    }
+
+    .btn-accent:hover:not(:disabled) {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+    }
+
+    .btn-outline {
+      background: #FFFFFF;
+      color: var(--ink-main);
+      border-color: var(--border);
+    }
+
+    .btn-outline:hover:not(:disabled) {
+      background: var(--bg-subtle);
+      border-color: #CBD5E1;
+    }
+
+    .btn-danger-soft {
+      background: #FEF2F2;
+      color: #B91C1C;
+      border-color: #FECACA;
+    }
+
+    .btn-danger-soft:hover:not(:disabled) {
+      background: #FEE2E2;
+    }
+
+    .btn-sm {
+      padding: 0.42rem 0.72rem;
+      font-size: 0.78rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--ink-main);
+      margin-bottom: 0.38rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.68rem 0.85rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.92rem;
+      color: var(--ink-main);
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.14);
+    }
+
+    /* ================= LOGIN SCREEN ================= */
+    .login-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.25rem;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 2rem 1.75rem;
+      box-shadow: var(--shadow-md);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 1.6rem;
+    }
+
+    .login-logo {
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #059669 0%, #0284C7 100%);
+      color: #FFFFFF;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.85rem;
+      box-shadow: 0 8px 20px rgba(5, 150, 105, 0.28);
+    }
+
+    .login-header h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .login-header p {
+      font-size: 0.85rem;
+      color: var(--ink-muted);
+      margin-top: 0.25rem;
+    }
+
+    .pin-input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .pin-toggle {
+      position: absolute;
+      right: 0.65rem;
+      background: none;
+      border: none;
+      color: var(--ink-light);
+      cursor: pointer;
+      padding: 0.25rem;
+      display: flex;
+    }
+
+    .api-config-bar {
+      margin-top: 1.25rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--ink-light);
+    }
+
+    /* ================= MAIN CONTAINER ================= */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 1rem 3rem;
+    }
+
+    /* ================= ADMIN OVERVIEW STRIP ================= */
+    .overview-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 1.15rem;
+      margin-bottom: 1.15rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .overview-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .overview-header h3 {
+      font-size: 0.92rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      color: var(--ink-main);
+    }
+
+    .store-chips-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(165px, 1fr));
+      gap: 0.55rem;
+    }
+
+    .store-chip {
+      text-align: left;
+      background: var(--bg-subtle);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.6rem 0.75rem;
+      cursor: pointer;
+      transition: var(--transition);
+      font-family: inherit;
+    }
+
+    .store-chip:hover {
+      border-color: var(--accent);
+      background: #F0F9FF;
+      transform: translateY(-1px);
+    }
+
+    .store-chip.active {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
+    }
+
+    .store-chip-name {
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--ink-main);
+      display: block;
+    }
+
+    .store-chip-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-top: 0.32rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+    }
+
+    /* ================= FILTER & CONTROL BAR ================= */
+    .control-bar {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 0.95rem 1.1rem;
+      margin-bottom: 1.1rem;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .control-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+      flex: 1;
+    }
+
+    .select-box {
+      padding: 0.52rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: #FFFFFF;
+      font-family: inherit;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--ink-main);
+      cursor: pointer;
+      min-width: 155px;
+    }
+
+    .search-box {
+      padding: 0.52rem 0.75rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      font-family: inherit;
+      font-size: 0.83rem;
+      min-width: 140px;
+      flex: 1;
+      max-width: 220px;
+    }
+
+    /* ================= METRIC GRID (2-3 COLUMNS) ================= */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.15rem;
+    }
+
+    @media (min-width: 768px) {
+      .metrics-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 0.85rem 0.95rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .metric-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .metric-card.highlight-emerald {
+      background: linear-gradient(135deg, #059669 0%, #0D9488 100%);
+      color: #FFFFFF;
+      border: none;
+    }
+
+    .metric-card.highlight-blue {
+      background: linear-gradient(135deg, #0284C7 0%, #2563EB 100%);
+      color: #FFFFFF;
+      border: none;
+    }
+
+    .metric-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      opacity: 0.82;
+      display: block;
+    }
+
+    .metric-value {
+      font-size: clamp(0.95rem, 2.3vw, 1.22rem);
+      font-weight: 800;
+      margin-top: 0.25rem;
+      display: block;
+      word-break: break-word;
+    }
+
+    /* ================= TABLE CARD & FLUID TYPOGRAPHY ================= */
+    .table-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+
+    .table-card-header {
+      padding: 0.95rem 1.15rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.65rem;
+      background: #FFFFFF;
+    }
+
+    .table-card-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--ink-main);
+    }
+
+    .table-card-sub {
+      font-size: 0.76rem;
+      color: var(--ink-muted);
+    }
+
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    table.kas-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: clamp(0.72rem, 1.7vw, 0.85rem);
+    }
+
+    table.kas-table th {
+      background: #F1F5F9;
+      color: var(--ink-main);
+      font-weight: 800;
+      text-align: left;
+      padding: 0.68rem 0.55rem;
+      border-bottom: 1.5px solid var(--border);
+      white-space: normal;
+      line-height: 1.25;
+    }
+
+    table.kas-table td {
+      padding: 0.65rem 0.55rem;
+      border-bottom: 1px solid #F1F5F9;
+      vertical-align: middle;
+      white-space: normal;
+      word-break: break-word;
+    }
+
+    table.kas-table tbody tr {
+      transition: background-color 0.15s ease;
+    }
+
+    table.kas-table tbody tr:hover {
+      background-color: #F8FAFC;
+    }
+
+    table.kas-table tbody tr.row-editable {
+      cursor: pointer;
+    }
+
+    table.kas-table tbody tr.row-editable:hover {
+      background-color: #ECFDF5;
+    }
+
+    .num-col {
+      text-align: right !important;
+      font-variant-numeric: tabular-nums;
+      font-weight: 600;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      padding: 0.22rem 0.5rem;
+      border-radius: 6px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .badge-success {
+      background: var(--success-bg);
+      color: var(--success-ink);
+    }
+
+    .badge-danger {
+      background: var(--danger-bg);
+      color: var(--danger-ink);
+    }
+
+    .badge-warn {
+      background: var(--warn-bg);
+      color: var(--warn-ink);
+    }
+
+    .badge-neutral {
+      background: #F1F5F9;
+      color: var(--ink-muted);
+    }
+
+    .admin-checkbox {
+      width: 19px;
+      height: 19px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* ================= MODAL & TOAST ================= */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.52);
+      backdrop-filter: blur(4px);
+      z-index: 60;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+    }
+
+    .modal-box {
+      width: 100%;
+      max-width: 440px;
+      background: #FFFFFF;
+      border-radius: 20px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
+      animation: popIn 0.2s ease-out;
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.96) translateY(8px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .modal-header h3 {
+      font-size: 1.05rem;
+      font-weight: 800;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.55rem;
+      margin-top: 1.25rem;
+    }
+
+    .toast-container {
+      position: fixed;
+      bottom: 1.25rem;
+      right: 1.25rem;
+      z-index: 80;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      max-width: 340px;
+    }
+
+    .toast {
+      padding: 0.8rem 1rem;
+      border-radius: 12px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: #FFFFFF;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+      animation: popIn 0.2s ease-out;
+    }
+
+    .toast-success { background: #059669; }
+    .toast-error { background: #DC2626; }
+    .toast-info { background: #0284C7; }
+
+    .loading-state {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: var(--ink-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== 1. HALAMAN LOGIN ==================== -->
+  <section id="loginView" class="login-wrapper">
+    <div class="login-card">
+      <div class="login-header">
+        <div class="login-logo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+            <line x1="2" y1="10" x2="22" y2="10"></line>
+            <circle cx="16" cy="14.5" r="1.5"></circle>
+          </svg>
+        </div>
+        <h2>Calculator Kas Store</h2>
+        <p>Masuk menggunakan Email &amp; PIN cabang Anda</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Terdaftar</label>
+          <input type="email" id="loginEmail" class="form-control" placeholder="nama@toko.com" required autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPin">PIN Akses (6 Digit)</label>
+          <div class="pin-input-wrap">
+            <input type="password" id="loginPin" class="form-control" placeholder="Masukkan PIN" inputmode="numeric" maxlength="12" required />
+            <button type="button" id="togglePinBtn" class="pin-toggle" aria-label="Tampilkan atau sembunyikan PIN">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; padding: 0.78rem;">
+          <span>Masuk ke Aplikasi</span>
+        </button>
+      </form>
+
+      <div class="api-config-bar">
+        <span id="apiStatusLabel">Endpoint API siap</span>
+        <button type="button" id="openApiConfigBtn" class="btn btn-outline btn-sm">Atur URL Server</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 2. HALAMAN DASHBOARD UTAMA ==================== -->
+  <section id="appView" class="hidden">
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <div class="brand-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1 id="headerTitle">Calculator Kas</h1>
+            <span id="headerSubtitle">Sistem Arus Kas Store Terpadu</span>
+          </div>
+        </div>
+
+        <div class="nav-actions">
+          <span class="user-pill" id="userBadgePill">Store Manager</span>
+          <button type="button" id="refreshDataBtn" class="btn btn-outline btn-sm" title="Sinkronkan ulang dari Spreadsheet">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+            </svg>
+            <span>Refresh</span>
+          </button>
+          <button type="button" id="logoutBtn" class="btn btn-danger-soft btn-sm">Keluar</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <!-- PANEL RINGKASAN LINTAS 14 CABANG (KHUSUS ADMIN) -->
+      <div id="adminOverviewPanel" class="overview-panel hidden">
+        <div class="overview-header">
+          <h3>
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+            <span>Pantauan Lintas Cabang (Klik cabang untuk membuka tabel)</span>
+          </h3>
+          <span class="badge badge-neutral" id="adminPeriodBadge">Periode Aktif</span>
+        </div>
+        <div id="adminStoreChips" class="store-chips-grid"></div>
+      </div>
+
+      <!-- FILTER & PEMILIH CABANG / BULAN -->
+      <div class="control-bar">
+        <div class="control-group">
+          <select id="storeSelector" class="select-box hidden" aria-label="Pilih Cabang"></select>
+          <select id="monthSelector" class="select-box" aria-label="Pilih Periode Bulan"></select>
+          <select id="statusFilterSelect" class="select-box" aria-label="Filter Status">
+            <option value="ALL">Semua Status</option>
+            <option value="BELUM_TF">Belum TF</option>
+            <option value="SUDAH_TF">Sudah TF</option>
+            <option value="BELUM_VALIDASI">Belum Validasi</option>
+            <option value="TERVALIDASI">Sudah Validasi</option>
+          </select>
+          <input type="text" id="searchDateInput" class="search-box" placeholder="Cari tanggal (misal: 14-11)..." />
+        </div>
+
+        <div id="adminBulkActionWrap" class="hidden">
+          <button type="button" id="saveValidationBtn" class="btn btn-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span>Simpan Validasi Admin</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- KARTU METRIK RINGKASAN -->
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <span class="metric-label">Modal Toko</span>
+          <span class="metric-value" id="metricModal">Rp0</span>
+        </div>
+        <div class="metric-card highlight-emerald">
+          <span class="metric-label">Total Tunai Masuk</span>
+          <span class="metric-value" id="metricTotalMasuk">Rp0</span>
+        </div>
+        <div class="metric-card highlight-blue">
+          <span class="metric-label">Total Setor Bank</span>
+          <span class="metric-value" id="metricTotalBank">Rp0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Sisa Tunai Terkini</span>
+          <span class="metric-value" id="metricSisaTunai">Rp0</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-label">Progres Validasi</span>
+          <span class="metric-value" id="metricValidasi">0 / 0 Hari</span>
+        </div>
+      </div>
+
+      <!-- TABEL ARUS KAS HARIAN -->
+      <div class="table-card">
+        <div class="table-card-header">
+          <div>
+            <div class="table-card-title" id="tableBlockTitle">LAPORAN ARUS KAS STORE</div>
+            <div class="table-card-sub" id="tableHelperHint">Ketuk baris tanggal yang belum divalidasi untuk mengisi Tunai Pagi, Siang &amp; Pemindahan Bank.</div>
+          </div>
+          <span class="badge badge-warn" id="belumTfCounterBadge">0 Hari Belum TF</span>
+        </div>
+
+        <div class="table-responsive">
+          <table class="kas-table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th class="num-col">Tunai Pagi</th>
+                <th class="num-col">Tunai Siang</th>
+                <th class="num-col">Pemindahan Bank</th>
+                <th class="num-col">Tunai Belum TF</th>
+                <th class="num-col">Sisa Tunai</th>
+                <th>Status TF</th>
+                <th id="colHeaderAksi">Validasi Admin</th>
+                <th>Tgl Validasi</th>
+              </tr>
+            </thead>
+            <tbody id="kasTableBody">
+              <tr>
+                <td colspan="9" class="loading-state">Memuat data laporan arus kas...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </section>
+
+  <!-- ==================== 3. MODAL INPUT STORE MANAGER ==================== -->
+  <div id="entryModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="entryModalTitle">Input Kas Harian</h3>
+        <button type="button" id="closeEntryModalBtn" class="btn btn-outline btn-sm">Tutup</button>
+      </div>
+
+      <form id="entryForm">
+        <input type="hidden" id="editSheetRow" />
+        <input type="hidden" id="editTanggal" />
+
+        <div class="form-group">
+          <label class="form-label" for="inputTunaiPagi">Shift Pagi — Tunai Pagi (Rp)</label>
+          <input type="number" id="inputTunaiPagi" class="form-control" min="0" step="100" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputTunaiSiang">Shift Siang — Tunai Siang (Rp)</label>
+          <input type="number" id="inputTunaiSiang" class="form-control" min="0" step="100" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="inputPemindahanBank">Pemindahan Uang Tunai ke Bank (Rp)</label>
+          <input type="number" id="inputPemindahanBank" class="form-control" min="0" step="100" required />
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="cancelEntryBtn" class="btn btn-outline">Batal</button>
+          <button type="submit" id="saveEntryBtn" class="btn btn-primary">Simpan ke Spreadsheet</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== 4. MODAL PENGATURAN URL API ==================== -->
+  <div id="apiConfigModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Konfigurasi Endpoint Google Apps Script</h3>
+        <button type="button" id="closeApiModalBtn" class="btn btn-outline btn-sm">Tutup</button>
+      </div>
+      <form id="apiConfigForm">
+        <div class="form-group">
+          <label class="form-label" for="gasUrlInput">URL Web App Google Apps Script (/exec)</label>
+          <input type="url" id="gasUrlInput" class="form-control" placeholder="https://script.google.com/macros/s/.../exec" required />
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary">Simpan URL</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="toastContainer" class="toast-container"></div>
+
+  <script>
+    // =========================================================================
+    // KONFIGURASI UTAMA: Tempel URL Web App Google Apps Script Anda di bawah ini
+    // =========================================================================
+    var DEFAULT_GAS_URL = 'PASTE_URL_WEB_APP_GOOGLE_APPS_SCRIPT_ANDA_DI_SINI';
+
+    var appState = {
+      user: null,
+      pin: '',
+      stores: [],
+      activeStore: '',
+      activeMonthId: '',
+      cache: {},
+      adminOverview: null,
+      currentRows: [],
+      pendingValidations: {}
+    };
+
+    function getApiUrl() {
+      var saved = localStorage.getItem('kas_gas_api_url');
+      if (saved && saved.indexOf('https://') === 0) return saved;
+      return DEFAULT_GAS_URL;
+    }
+
+    function showToast(message, type) {
+      var container = document.getElementById('toastContainer');
+      var el = document.createElement('div');
+      el.className = 'toast toast-' + (type || 'info');
+      el.textContent = message;
+      container.appendChild(el);
+      setTimeout(function() {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, 3600);
+    }
+
+    function formatRupiah(num) {
+      var val = Number(num) || 0;
+      return 'Rp' + val.toLocaleString('id-ID');
+    }
+
+    function escapeHtml(str) {
+      return String(str || '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    async function postToGas(payload) {
+      var url = getApiUrl();
+      if (!url || url.indexOf('https://') !== 0) {
+        throw new Error('URL Google Apps Script belum diatur. Klik "Atur URL Server" di halaman login.');
+      }
+      var res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) {
+        throw new Error('Gagal terhubung ke server (HTTP ' + res.status + ')');
+      }
+      return await res.json();
+    }
+
+    // ================= EVENT HANDLERS LOGIN & API CONFIG =================
+    document.getElementById('togglePinBtn').addEventListener('click', function() {
+      var pinEl = document.getElementById('loginPin');
+      pinEl.type = pinEl.type === 'password' ? 'text' : 'password';
+    });
+
+    document.getElementById('openApiConfigBtn').addEventListener('click', function() {
+      var currentUrl = getApiUrl();
+      document.getElementById('gasUrlInput').value = currentUrl.indexOf('https://') === 0 ? currentUrl : '';
+      document.getElementById('apiConfigModal').classList.remove('hidden');
+    });
+
+    document.getElementById('closeApiModalBtn').addEventListener('click', function() {
+      document.getElementById('apiConfigModal').classList.add('hidden');
+    });
+
+    document.getElementById('apiConfigForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      var urlVal = String(document.getElementById('gasUrlInput').value || '').trim();
+      localStorage.setItem('kas_gas_api_url', urlVal);
+      document.getElementById('apiStatusLabel').textContent = 'Endpoint API tersimpan';
+      document.getElementById('apiConfigModal').classList.add('hidden');
+      showToast('URL Server berhasil disimpan.', 'success');
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('loginSubmitBtn');
+      var email = String(document.getElementById('loginEmail').value || '').trim();
+      var pin = String(document.getElementById('loginPin').value || '').trim();
+
+      btn.disabled = true;
+      btn.textContent = 'Memverifikasi akun...';
+
+      try {
+        var result = await postToGas({ action: 'login', email: email, pin: pin });
+        if (!result.ok) {
+          showToast(result.message || 'Login gagal.', 'error');
+          return;
+        }
+
+        appState.user = result.user;
+        appState.pin = pin;
+        appState.stores = result.stores || [];
+        appState.activeStore = appState.stores.length > 0 ? appState.stores[0] : '';
+
+        sessionStorage.setItem('kas_session_user', JSON.stringify(result.user));
+        sessionStorage.setItem('kas_session_pin', pin);
+        sessionStorage.setItem('kas_session_stores', JSON.stringify(appState.stores));
+
+        initDashboard();
+        showToast('Selamat datang, ' + result.user.nama, 'success');
+      } catch (err) {
+        showToast(err.message || 'Terjadi gangguan jaringan.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Masuk ke Aplikasi';
+      }
+    });
+
+    document.getElementById('logoutBtn').addEventListener('click', function() {
+      sessionStorage.clear();
+      appState.user = null;
+      appState.pin = '';
+      appState.cache = {};
+      appState.adminOverview = null;
+      document.getElementById('appView').classList.add('hidden');
+      document.getElementById('loginView').classList.remove('hidden');
+    });
+
+    // ================= INISIALISASI DASHBOARD =================
+    function initDashboard() {
+      document.getElementById('loginView').classList.add('hidden');
+      document.getElementById('appView').classList.remove('hidden');
+
+      var isAdmin = appState.user.peran === 'ADMIN';
+      document.getElementById('headerTitle').textContent = isAdmin
+        ? 'Panel Validasi Admin'
+        : ('Cabang ' + appState.activeStore);
+      document.getElementById('headerSubtitle').textContent = appState.user.nama + ' (' + appState.user.email + ')';
+      document.getElementById('userBadgePill').textContent = isAdmin ? 'ADMIN PUSAT' : appState.activeStore;
+
+      var storeSel = document.getElementById('storeSelector');
+      var overviewPanel = document.getElementById('adminOverviewPanel');
+      var bulkWrap = document.getElementById('adminBulkActionWrap');
+      var helperHint = document.getElementById('tableHelperHint');
+
+      if (isAdmin) {
+        storeSel.classList.remove('hidden');
+        overviewPanel.classList.remove('hidden');
+        bulkWrap.classList.remove('hidden');
+        helperHint.textContent = 'Centang kotak Validasi Admin pada baris yang sesuai lalu klik "Simpan Validasi Admin".';
+
+        var optionsHtml = '';
+        for (var i = 0; i < appState.stores.length; i++) {
+          var st = appState.stores[i];
+          var selectedAttr = st === appState.activeStore ? ' selected' : '';
+          optionsHtml += '<option value="' + escapeHtml(st) + '"' + selectedAttr + '>' + escapeHtml(st) + '</option>';
+        }
+        storeSel.innerHTML = optionsHtml;
+        loadAdminOverview(false);
+      } else {
+        storeSel.classList.add('hidden');
+        overviewPanel.classList.add('hidden');
+        bulkWrap.classList.add('hidden');
+        helperHint.textContent = 'Ketuk baris tanggal yang belum divalidasi untuk mengisi Tunai Pagi, Siang & Pemindahan Bank.';
+      }
+
+      loadKasData(false);
+    }
+
+    async function loadAdminOverview(forceRefresh) {
+      if (!forceRefresh && appState.adminOverview) {
+        renderAdminOverview(appState.adminOverview);
+        return;
+      }
+      try {
+        var res = await postToGas({
+          action: 'getAdminOverview',
+          email: appState.user.email,
+          pin: appState.pin
+        });
+        if (res.ok) {
+          appState.adminOverview = res;
+          renderAdminOverview(res);
+        }
+      } catch (err) {
+        // Silent fallback pada overview
+      }
+    }
+
+    function renderAdminOverview(data) {
+      document.getElementById('adminPeriodBadge').textContent = data.currentPeriod || 'Periode Aktif';
+      var container = document.getElementById('adminStoreChips');
+      var html = '';
+      var list = data.stores || [];
+
+      for (var i = 0; i < list.length; i++) {
+        var item = list[i];
+        var isActive = item.store === appState.activeStore ? ' active' : '';
+        var tfBadge = item.belumTfCount > 0
+          ? '<span class="badge badge-danger">' + item.belumTfCount + ' Belum TF</span>'
+          : '<span class="badge badge-success">TF Aman</span>';
+        var valBadge = item.unvalidatedFilledCount > 0
+          ? '<span class="badge badge-warn">' + item.unvalidatedFilledCount + ' Perlu Val</span>'
+          : '<span class="badge badge-neutral">Tervalidasi</span>';
+
+        html += '<button type="button" class="store-chip' + isActive + '" data-store="' + escapeHtml(item.store) + '">' +
+          '<span class="store-chip-name">' + escapeHtml(item.store) + '</span>' +
+          '<div class="store-chip-meta">' + tfBadge + valBadge + '</div>' +
+        '</button>';
+      }
+      container.innerHTML = html;
+    }
+
+    document.getElementById('adminStoreChips').addEventListener('click', function(e) {
+      var chip = e.target.closest('.store-chip');
+      if (!chip) return;
+      var storeName = chip.getAttribute('data-store');
+      if (!storeName) return;
+      appState.activeStore = storeName;
+      appState.activeMonthId = '';
+      appState.pendingValidations = {};
+      document.getElementById('storeSelector').value = storeName;
+      if (appState.adminOverview) renderAdminOverview(appState.adminOverview);
+      loadKasData(false);
+    });
+
+    document.getElementById('storeSelector').addEventListener('change', function(e) {
+      appState.activeStore = e.target.value;
+      appState.activeMonthId = '';
+      appState.pendingValidations = {};
+      if (appState.adminOverview) renderAdminOverview(appState.adminOverview);
+      loadKasData(false);
+    });
+
+    document.getElementById('monthSelector').addEventListener('change', function(e) {
+      appState.activeMonthId = e.target.value;
+      appState.pendingValidations = {};
+      loadKasData(false);
+    });
+
+    document.getElementById('statusFilterSelect').addEventListener('change', function() {
+      renderFilteredTable();
+    });
+
+    document.getElementById('searchDateInput').addEventListener('input', function() {
+      renderFilteredTable();
+    });
+
+    document.getElementById('refreshDataBtn').addEventListener('click', function() {
+      appState.cache = {};
+      appState.adminOverview = null;
+      appState.pendingValidations = {};
+      if (appState.user.peran === 'ADMIN') loadAdminOverview(true);
+      loadKasData(true);
+      showToast('Menyinkronkan data terbaru dari Spreadsheet...', 'info');
+    });
+
+    async function loadKasData(forceRefresh) {
+      var cacheKey = appState.activeStore + '::' + (appState.activeMonthId || 'DEFAULT');
+      if (!forceRefresh && appState.cache[cacheKey]) {
+        applyKasPayload(appState.cache[cacheKey]);
+        return;
+      }
+
+      document.getElementById('kasTableBody').innerHTML =
+        '<tr><td colspan="9" class="loading-state">Mengambil data ' + escapeHtml(appState.activeStore) + '...</td></tr>';
+
+      try {
+        var res = await postToGas({
+          action: 'getKasData',
+          email: appState.user.email,
+          pin: appState.pin,
+          store: appState.activeStore,
+          monthId: appState.activeMonthId,
+          limit: 100,
+          offset: 0
+        });
+
+        if (!res.ok) {
+          showToast(res.message || 'Gagal memuat data kas.', 'error');
+          return;
+        }
+
+        appState.activeMonthId = res.activeMonthId;
+        var resolvedKey = appState.activeStore + '::' + res.activeMonthId;
+        appState.cache[cacheKey] = res;
+        appState.cache[resolvedKey] = res;
+
+        applyKasPayload(res);
+      } catch (err) {
+        document.getElementById('kasTableBody').innerHTML =
+          '<tr><td colspan="9" class="loading-state">' + escapeHtml(err.message) + '</td></tr>';
+      }
+    }
+
+    function applyKasPayload(res) {
+      // Render Dropdown Bulan
+      var monthSel = document.getElementById('monthSelector');
+      var months = res.availableMonths || [];
+      var mHtml = '';
+      for (var i = 0; i < months.length; i++) {
+        var m = months[i];
+        var sel = m.id === res.activeMonthId ? ' selected' : '';
+        mHtml += '<option value="' + escapeHtml(m.id) + '"' + sel + '>' + escapeHtml(m.id) + '</option>';
+      }
+      monthSel.innerHTML = mHtml;
+
+      document.getElementById('tableBlockTitle').textContent = res.title || ('LAPORAN ARUS KAS ' + res.store);
+
+      var sum = res.summary || {};
+      document.getElementById('metricModal').textContent = sum.modalDisplay || formatRupiah(sum.modalNumber);
+      document.getElementById('metricTotalMasuk').textContent = formatRupiah(sum.totalMasuk);
+      document.getElementById('metricTotalBank').textContent = formatRupiah(sum.totalBank);
+      document.getElementById('metricSisaTunai').textContent = formatRupiah(sum.latestSisaTunai);
+      document.getElementById('metricValidasi').textContent = (sum.countValidated || 0) + ' / ' + (sum.totalDays || 0) + ' Hari';
+      document.getElementById('belumTfCounterBadge').textContent = (sum.countBelumTf || 0) + ' Hari Belum TF';
+
+      appState.currentRows = res.rows || [];
+      renderFilteredTable();
+    }
+
+    function renderFilteredTable() {
+      var tbody = document.getElementById('kasTableBody');
+      var isAdmin = appState.user && appState.user.peran === 'ADMIN';
+      var search = String(document.getElementById('searchDateInput').value || '').trim().toLowerCase();
+      var statusFilter = String(document.getElementById('statusFilterSelect').value || 'ALL');
+
+      var filtered = appState.currentRows.filter(function(r) {
+        if (search && r.tanggal.toLowerCase().indexOf(search) === -1) return false;
+        if (statusFilter === 'BELUM_TF' && r.statusTf !== 'BELUM TF') return false;
+        if (statusFilter === 'SUDAH_TF' && r.statusTf !== 'SUDAH TF') return false;
+        if (statusFilter === 'BELUM_VALIDASI' && r.validasiAdmin) return false;
+        if (statusFilter === 'TERVALIDASI' && !r.validasiAdmin) return false;
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="9" class="loading-state">Tidak ada baris data yang cocok dengan filter.</td></tr>';
+        return;
+      }
+
+      var html = '';
+      for (var i = 0; i < filtered.length; i++) {
+        var row = filtered[i];
+        var isLockedForSm = !isAdmin && row.validasiAdmin;
+        var rowClass = isLockedForSm ? '' : 'row-editable';
+
+        var statusBadge = '';
+        if (row.statusTf === 'SUDAH TF') {
+          statusBadge = '<span class="badge badge-success">SUDAH TF</span>';
+        } else if (row.statusTf === 'BELUM TF') {
+          statusBadge = '<span class="badge badge-danger">BELUM TF</span>';
+        } else {
+          statusBadge = '<span class="badge badge-neutral">' + escapeHtml(row.statusTf || '-') + '</span>';
+        }
+
+        var validasiCell = '';
+        if (isAdmin) {
+          var isChecked = appState.pendingValidations.hasOwnProperty(row.sheetRow)
+            ? appState.pendingValidations[row.sheetRow].checked
+            : row.validasiAdmin;
+          var checkedAttr = isChecked ? ' checked' : '';
+          validasiCell = '<input type="checkbox" class="admin-checkbox" data-sheet-row="' + row.sheetRow + '" data-tanggal="' + escapeHtml(row.tanggal) + '"' + checkedAttr + ' />';
+        } else {
+          validasiCell = row.validasiAdmin
+            ? '<span class="badge badge-success">Terkunci</span>'
+            : '<span class="badge badge-warn">Bisa Diisi</span>';
+        }
+
+        html += '<tr class="' + rowClass + '" data-sheet-row="' + row.sheetRow + '">' +
+          '<td><strong>' + escapeHtml(row.tanggal) + '</strong></td>' +
+          '<td class="num-col">' + escapeHtml(row.tunaiPagiDisplay || formatRupiah(row.tunaiPagi)) + '</td>' +
+          '<td class="num-col">' + escapeHtml(row.tunaiSiangDisplay || formatRupiah(row.tunaiSiang)) + '</td>' +
+          '<td class="num-col">' + escapeHtml(row.pemindahanBankDisplay || formatRupiah(row.pemindahanBank)) + '</td>' +
+          '<td class="num-col">' + escapeHtml(row.tunaiBelumTfDisplay || formatRupiah(row.tunaiBelumTf)) + '</td>' +
+          '<td class="num-col"><strong>' + escapeHtml(row.sisaTunaiDisplay || formatRupiah(row.sisaTunai)) + '</strong></td>' +
+          '<td>' + statusBadge + '</td>' +
+          '<td>' + validasiCell + '</td>' +
+          '<td>' + escapeHtml(row.tanggalValidasi || '-') + '</td>' +
+        '</tr>';
+      }
+
+      tbody.innerHTML = html;
+    }
+
+    // ================= INTERAKSI KLIK BARIS & CHECKBOX ADMIN =================
+    document.getElementById('kasTableBody').addEventListener('click', function(e) {
+      var checkbox = e.target.closest('.admin-checkbox');
+      if (checkbox) {
+        var sRow = parseInt(checkbox.getAttribute('data-sheet-row'), 10);
+        var tgl = checkbox.getAttribute('data-tanggal');
+        appState.pendingValidations[sRow] = {
+          sheetRow: sRow,
+          tanggal: tgl,
+          checked: checkbox.checked
+        };
+        return;
+      }
+
+      var tr = e.target.closest('tr');
+      if (!tr) return;
+      var sheetRow = parseInt(tr.getAttribute('data-sheet-row'), 10);
+      if (!sheetRow) return;
+
+      var targetRow = null;
+      for (var i = 0; i < appState.currentRows.length; i++) {
+        if (appState.currentRows[i].sheetRow === sheetRow) {
+          targetRow = appState.currentRows[i];
+          break;
+        }
+      }
+      if (!targetRow) return;
+
+      if (appState.user.peran === 'STORE_MANAGER' && targetRow.validasiAdmin) {
+        showToast('Tanggal ' + targetRow.tanggal + ' sudah divalidasi Admin dan terkunci.', 'error');
+        return;
+      }
+
+      document.getElementById('editSheetRow').value = targetRow.sheetRow;
+      document.getElementById('editTanggal').value = targetRow.tanggal;
+      document.getElementById('entryModalTitle').textContent = 'Input Kas — ' + targetRow.tanggal;
+      document.getElementById('inputTunaiPagi').value = targetRow.tunaiPagi || 0;
+      document.getElementById('inputTunaiSiang').value = targetRow.tunaiSiang || 0;
+      document.getElementById('inputPemindahanBank').value = targetRow.pemindahanBank || 0;
+      document.getElementById('entryModal').classList.remove('hidden');
+    });
+
+    function closeEntryModal() {
+      document.getElementById('entryModal').classList.add('hidden');
+    }
+
+    document.getElementById('closeEntryModalBtn').addEventListener('click', closeEntryModal);
+    document.getElementById('cancelEntryBtn').addEventListener('click', closeEntryModal);
+
+    // ================= SIMPAN INPUT STORE MANAGER =================
+    document.getElementById('entryForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      var btn = document.getElementById('saveEntryBtn');
+      var sheetRow = parseInt(document.getElementById('editSheetRow').value, 10);
+      var tanggal = String(document.getElementById('editTanggal').value || '').trim();
+      var tunaiPagi = Number(document.getElementById('inputTunaiPagi').value || 0);
+      var tunaiSiang = Number(document.getElementById('inputTunaiSiang').value || 0);
+      var pemindahanBank = Number(document.getElementById('inputPemindahanBank').value || 0);
+
+      btn.disabled = true;
+      btn.textContent = 'Menyimpan...';
+
+      try {
+        var res = await postToGas({
+          action: 'saveStoreEntry',
+          email: appState.user.email,
+          pin: appState.pin,
+          store: appState.activeStore,
+          sheetRow: sheetRow,
+          tanggal: tanggal,
+          tunaiPagi: tunaiPagi,
+          tunaiSiang: tunaiSiang,
+          pemindahanBank: pemindahanBank
+        });
+
+        if (!res.ok) {
+          showToast(res.message || 'Gagal menyimpan data.', 'error');
+          return;
+        }
+
+        // Invalidate cache & muat ulang hasil formula terbaru dari Spreadsheet
+        appState.cache = {};
+        appState.adminOverview = null;
+        closeEntryModal();
+        showToast(res.message || 'Data tersimpan!', 'success');
+        await loadKasData(true);
+      } catch (err) {
+        showToast(err.message || 'Koneksi gagal saat menyimpan.', 'error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Simpan ke Spreadsheet';
+      }
+    });
+
+    // ================= SIMPAN VALIDASI ADMIN (BULK / SATUAN) =================
+    document.getElementById('saveValidationBtn').addEventListener('click', async function() {
+      var keys = Object.keys(appState.pendingValidations);
+      if (keys.length === 0) {
+        showToast('Belum ada perubahan centang validasi untuk disimpan.', 'info');
+        return;
+      }
+
+      var updates = [];
+      for (var i = 0; i < keys.length; i++) {
+        updates.push(appState.pendingValidations[keys[i]]);
+      }
+
+      var btn = document.getElementById('saveValidationBtn');
+      btn.disabled = true;
+
+      try {
+        var res = await postToGas({
+          action: 'validateRows',
+          email: appState.user.email,
+          pin: appState.pin,
+          store: appState.activeStore,
+          updates: updates
+        });
+
+        if (!res.ok) {
+          showToast(res.message || 'Gagal menyimpan validasi.', 'error');
+          return;
+        }
+
+        appState.pendingValidations = {};
+        appState.cache = {};
+        appState.adminOverview = null;
+        showToast(res.message || 'Validasi berhasil disimpan!', 'success');
+        await Promise.all([loadKasData(true), loadAdminOverview(true)]);
+      } catch (err) {
+        showToast(err.message || 'Terjadi kesalahan jaringan.', 'error');
+      } finally {
+        btn.disabled = false;
+      }
+    });
+
+    // ================= AUTO-RESTORE SESI LOGIN =================
+    (function boot() {
+      var url = getApiUrl();
+      if (url && url.indexOf('https://') === 0) {
+        document.getElementById('apiStatusLabel').textContent = 'Endpoint API terhubung';
+      }
+      var savedUser = sessionStorage.getItem('kas_session_user');
+      var savedPin = sessionStorage.getItem('kas_session_pin');
+      var savedStores = sessionStorage.getItem('kas_session_stores');
+      if (savedUser && savedPin) {
+        try {
+          appState.user = JSON.parse(savedUser);
+          appState.pin = savedPin;
+          appState.stores = JSON.parse(savedStores || '[]');
+          appState.activeStore = appState.stores.length > 0 ? appState.stores[0] : '';
+          initDashboard();
+        } catch (e) {
+          sessionStorage.clear();
+        }
+      }
+    })();
+  </script>
+</body>
+</html>
