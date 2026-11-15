@@ -65,7 +65,7 @@
     }
 
     .topbar-inner {
-      max-width: 1360px;
+      max-width: 1280px;
       margin: 0 auto;
       display: flex;
       align-items: center;
@@ -133,11 +133,11 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.42rem;
-      padding: 0.58rem 0.95rem;
+      gap: 0.38rem;
+      padding: 0.56rem 0.92rem;
       border-radius: var(--radius-sm);
       font-family: inherit;
-      font-size: 0.83rem;
+      font-size: 0.82rem;
       font-weight: 700;
       border: 1px solid transparent;
       cursor: pointer;
@@ -181,9 +181,9 @@
     .btn-wa {
       background: #16A34A;
       color: #FFFFFF;
-      padding: 0.32rem 0.62rem;
-      font-size: 0.73rem;
-      border-radius: 7px;
+      padding: 0.28rem 0.56rem;
+      font-size: 0.7rem;
+      border-radius: 6px;
     }
 
     .btn-wa:hover:not(:disabled) {
@@ -191,13 +191,39 @@
       transform: translateY(-1px);
     }
 
+    .btn-shift-pagi {
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+      padding: 0.28rem 0.56rem;
+      font-size: 0.7rem;
+      border-radius: 6px;
+    }
+
+    .btn-shift-pagi:hover:not(:disabled) {
+      background: #D1FAE5;
+    }
+
+    .btn-shift-siang {
+      background: #F0F9FF;
+      color: #0369A1;
+      border: 1px solid #BAE6FD;
+      padding: 0.28rem 0.56rem;
+      font-size: 0.7rem;
+      border-radius: 6px;
+    }
+
+    .btn-shift-siang:hover:not(:disabled) {
+      background: #E0F2FE;
+    }
+
     .btn-edit-mini {
       background: #F1F5F9;
       color: var(--ink-main);
       border: 1px solid #CBD5E1;
-      padding: 0.32rem 0.62rem;
-      font-size: 0.73rem;
-      border-radius: 7px;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.72rem;
+      border-radius: 6px;
     }
 
     .btn-edit-mini:hover:not(:disabled) {
@@ -226,30 +252,30 @@
     }
 
     .btn-sm {
-      padding: 0.42rem 0.74rem;
-      font-size: 0.78rem;
+      padding: 0.4rem 0.72rem;
+      font-size: 0.77rem;
     }
 
     .form-group {
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
     }
 
     .form-label {
       display: block;
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: var(--ink-main);
-      margin-bottom: 0.38rem;
+      margin-bottom: 0.34rem;
     }
 
     .form-control {
       width: 100%;
-      padding: 0.68rem 0.85rem;
+      padding: 0.62rem 0.8rem;
       border-radius: var(--radius-sm);
       border: 1.5px solid var(--border);
       background: #FFFFFF;
       font-family: inherit;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--ink-main);
       transition: var(--transition);
     }
@@ -277,17 +303,17 @@
 
     .login-card {
       width: 100%;
-      max-width: 420px;
+      max-width: 410px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 2rem 1.75rem;
+      padding: 2.1rem 1.8rem;
       box-shadow: var(--shadow-md);
     }
 
     .login-header {
       text-align: center;
-      margin-bottom: 1.6rem;
+      margin-bottom: 1.65rem;
     }
 
     .login-logo {
@@ -332,21 +358,9 @@
       display: flex;
     }
 
-    .api-config-bar {
-      margin-top: 1.25rem;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
-      color: var(--ink-light);
-      gap: 0.5rem;
-    }
-
     /* ================= MAIN CONTAINER ================= */
     .container {
-      max-width: 1360px;
+      max-width: 1280px;
       margin: 0 auto;
       padding: 1.15rem 1rem 3rem;
     }
@@ -536,54 +550,6 @@
       font-weight: 600;
     }
 
-    /* ================= SHIFT FILTER PILLS ================= */
-    .shift-filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .shift-pill-btn {
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      border: 1.5px solid var(--border);
-      background: #FFFFFF;
-      color: var(--ink-main);
-      font-family: inherit;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: var(--transition);
-    }
-
-    .shift-pill-btn:hover {
-      border-color: #94A3B8;
-      background: #F8FAFC;
-    }
-
-    .shift-pill-btn.active {
-      background: #0F172A;
-      color: #FFFFFF;
-      border-color: #0F172A;
-      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.18);
-    }
-
-    /* ================= SHIFT CARDS WRAPPER (DUAL SIDE-BY-SIDE ON DESKTOP) ================= */
-    .shift-cards-wrapper {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 1.1rem;
-      align-items: start;
-    }
-
-    @media (min-width: 1024px) {
-      .shift-cards-wrapper.dual-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-    }
-
     /* ================= TABLE CARD & FLUID TYPOGRAPHY ================= */
     .table-card {
       background: var(--bg-card);
@@ -593,58 +559,27 @@
       overflow: hidden;
     }
 
-    .table-card.card-pagi {
-      border-top: 4px solid #059669;
-    }
-
-    .table-card.card-siang {
-      border-top: 4px solid #0284C7;
-    }
-
     .table-card-header {
-      padding: 0.9rem 1.05rem;
+      padding: 0.9rem 1.1rem;
       border-bottom: 1px solid var(--border);
       display: flex;
       flex-wrap: wrap;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      gap: 0.6rem;
+      gap: 0.65rem;
       background: #FFFFFF;
     }
 
-    .shift-tag {
-      display: inline-block;
-      padding: 0.18rem 0.5rem;
-      border-radius: 6px;
-      font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.03em;
-      margin-right: 0.4rem;
-      vertical-align: middle;
-    }
-
-    .shift-tag-pagi {
-      background: #DCFCE7;
-      color: #15803D;
-    }
-
-    .shift-tag-siang {
-      background: #E0F2FE;
-      color: #0369A1;
-    }
-
     .table-card-title {
-      font-size: 0.94rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: var(--ink-main);
-      display: inline;
-      vertical-align: middle;
     }
 
     .table-card-sub {
-      font-size: 0.74rem;
+      font-size: 0.75rem;
       color: var(--ink-muted);
-      margin-top: 0.25rem;
+      margin-top: 0.2rem;
     }
 
     .table-responsive {
@@ -656,7 +591,7 @@
     table.kas-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: clamp(0.71rem, 1.5vw, 0.82rem);
+      font-size: clamp(0.71rem, 1.55vw, 0.83rem);
     }
 
     table.kas-table th {
@@ -664,14 +599,14 @@
       color: var(--ink-main);
       font-weight: 800;
       text-align: left;
-      padding: 0.65rem 0.5rem;
+      padding: 0.68rem 0.55rem;
       border-bottom: 1.5px solid var(--border);
       white-space: normal;
       line-height: 1.25;
     }
 
     table.kas-table td {
-      padding: 0.6rem 0.5rem;
+      padding: 0.65rem 0.55rem;
       border-bottom: 1px solid #F1F5F9;
       vertical-align: middle;
       white-space: normal;
@@ -686,18 +621,32 @@
       background-color: #F8FAFC;
     }
 
-    table.kas-table tbody tr.row-editable {
-      cursor: pointer;
-    }
-
-    table.kas-table tbody tr.row-editable:hover {
-      background-color: #ECFDF5;
-    }
-
     .num-col {
       text-align: right !important;
       font-variant-numeric: tabular-nums;
       font-weight: 700;
+    }
+
+    .shift-cell-box {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0.32rem;
+    }
+
+    .shift-nominal {
+      font-variant-numeric: tabular-nums;
+      font-weight: 800;
+      font-size: clamp(0.76rem, 1.65vw, 0.88rem);
+      color: var(--ink-main);
+    }
+
+    .shift-btn-row {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .badge {
@@ -731,22 +680,14 @@
       color: var(--ink-muted);
     }
 
-    .locked-tf-pill {
-      display: inline-block;
-      background: #FEF3C7;
-      color: #B45309;
-      border: 1px solid #FDE68A;
-      padding: 0.22rem 0.52rem;
-      border-radius: 6px;
-      font-size: 0.7rem;
-      font-weight: 700;
+    .badge-pagi {
+      background: #DCFCE7;
+      color: #15803D;
     }
 
-    .action-cell-group {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      flex-wrap: wrap;
+    .badge-siang {
+      background: #E0F2FE;
+      color: #0369A1;
     }
 
     .admin-checkbox {
@@ -762,32 +703,35 @@
       color: #92400E;
       border-radius: var(--radius-sm);
       padding: 0.72rem 0.85rem;
-      font-size: 0.79rem;
+      font-size: 0.78rem;
       font-weight: 600;
-      margin-bottom: 1rem;
+      margin-bottom: 0.9rem;
       line-height: 1.45;
     }
 
-    /* ================= MODAL & TOAST ================= */
+    /* ================= MODAL & WA NOTES BUILDER ================= */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.54);
+      background: rgba(15, 23, 42, 0.55);
       backdrop-filter: blur(4px);
       z-index: 60;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1rem;
+      overflow-y: auto;
     }
 
     .modal-box {
       width: 100%;
-      max-width: 450px;
+      max-width: 470px;
+      max-height: 92vh;
+      overflow-y: auto;
       background: #FFFFFF;
       border-radius: 20px;
-      padding: 1.45rem;
-      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
+      padding: 1.35rem;
+      box-shadow: 0 20px 45px rgba(15, 23, 42, 0.24);
       animation: popIn 0.2s ease-out;
     }
 
@@ -800,14 +744,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
-      padding-bottom: 0.75rem;
+      margin-bottom: 0.9rem;
+      padding-bottom: 0.7rem;
       border-bottom: 1px solid var(--border);
       gap: 0.5rem;
     }
 
     .modal-header h3 {
-      font-size: 1.02rem;
+      font-size: 1rem;
       font-weight: 800;
     }
 
@@ -815,7 +759,75 @@
       display: flex;
       justify-content: flex-end;
       gap: 0.55rem;
-      margin-top: 1.25rem;
+      margin-top: 1.15rem;
+      flex-wrap: wrap;
+    }
+
+    .wa-meta-summary {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 0.8rem;
+      margin-bottom: 0.85rem;
+      font-size: 0.78rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.35rem 0.75rem;
+    }
+
+    .wa-meta-summary div strong {
+      color: var(--ink-main);
+    }
+
+    .notes-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .extra-note-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.4rem;
+      margin-bottom: 0.45rem;
+      align-items: center;
+    }
+
+    .preset-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+      margin-top: 0.45rem;
+    }
+
+    .preset-chip-btn {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      color: var(--ink-main);
+      padding: 0.25rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .preset-chip-btn:hover {
+      background: #E2E8F0;
+    }
+
+    .wa-preview-box {
+      background: #ECFDF5;
+      border: 1px solid #A7F3D0;
+      border-radius: var(--radius-sm);
+      padding: 0.7rem 0.8rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.74rem;
+      color: #064E3B;
+      white-space: pre-wrap;
+      line-height: 1.42;
+      max-height: 170px;
+      overflow-y: auto;
     }
 
     .toast-container {
@@ -854,7 +866,7 @@
 </head>
 <body>
 
-  <!-- ================= HALAMAN 1: LOGIN ================= -->
+  <!-- ================= HALAMAN 1: LOGIN (BERSIH TANPA INPUT URL) ================= -->
   <section id="loginScreen" class="login-wrapper">
     <div class="login-card">
       <div class="login-header">
@@ -887,15 +899,10 @@
           </div>
         </div>
 
-        <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; padding: 0.78rem;">
+        <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; padding: 0.78rem; margin-top: 0.35rem;">
           <span>Masuk ke Aplikasi</span>
         </button>
       </form>
-
-      <div class="api-config-bar">
-        <span id="apiStatusLabel">Mengecek URL Server...</span>
-        <button type="button" id="openApiConfigBtn" class="btn btn-outline btn-sm">Atur URL Server</button>
-      </div>
     </div>
   </section>
 
@@ -999,73 +1006,36 @@
         </div>
       </div>
 
-      <!-- FILTER TAMPILAN SHIFT (STORE MANAGER) -->
-      <div id="shiftFilterBar" class="shift-filter-bar">
-        <button type="button" class="shift-pill-btn active" data-shift-view="ALL">Tampilkan Semua Shift (Pagi &amp; Siang)</button>
-        <button type="button" class="shift-pill-btn" data-shift-view="PAGI">Fokus Shift Pagi</button>
-        <button type="button" class="shift-pill-btn" data-shift-view="SIANG">Fokus Shift Siang</button>
-      </div>
-
-      <!-- AREA TABEL STORE MANAGER (DUAL SHIFT CARDS) -->
-      <div id="shiftCardsWrapper" class="shift-cards-wrapper dual-grid">
-        <!-- KARTU SHIFT PAGI -->
-        <div id="shiftPagiCard" class="table-card card-pagi">
-          <div class="table-card-header">
-            <div>
-              <span class="shift-tag shift-tag-pagi">SHIFT PAGI</span>
-              <h3 class="table-card-title" id="titleShiftPagi">Shift Pagi — NOVEMBER 2026</h3>
-              <p class="table-card-sub">Isi Tunai Pagi &amp; Pemindahan Dana (maksimal 1&times; per tanggal). Klik Share WA setelah simpan.</p>
-            </div>
-            <span class="badge badge-warn" id="badgeBelumTfPagi">0 Hari Belum TF</span>
+      <!-- 1 TABEL HARIAN TERPADU KHUSUS STORE MANAGER -->
+      <div id="smUnifiedTableCard" class="table-card">
+        <div class="table-card-header">
+          <div>
+            <h3 class="table-card-title" id="smTableTitle">LAPORAN ARUS KAS STORE</h3>
+            <p class="table-card-sub">Gunakan tombol <strong>Input Pagi</strong> atau <strong>Input Siang</strong> di masing-masing kolom. Pemindahan Dana maksimal 1&times; per tanggal.</p>
           </div>
-          <div class="table-responsive">
-            <table class="kas-table">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th class="num-col">Tunai Pagi</th>
-                  <th class="num-col">Pemindahan Dana</th>
-                  <th>Status TF</th>
-                  <th>Aksi &amp; Share WA</th>
-                </tr>
-              </thead>
-              <tbody id="tbodyShiftPagi">
-                <tr><td colspan="5" class="loading-state">Memuat data Shift Pagi...</td></tr>
-              </tbody>
-            </table>
-          </div>
+          <span class="badge badge-warn" id="smBelumTfBadge">0 Hari Belum TF</span>
         </div>
 
-        <!-- KARTU SHIFT SIANG -->
-        <div id="shiftSiangCard" class="table-card card-siang">
-          <div class="table-card-header">
-            <div>
-              <span class="shift-tag shift-tag-siang">SHIFT SIANG</span>
-              <h3 class="table-card-title" id="titleShiftSiang">Shift Siang — NOVEMBER 2026</h3>
-              <p class="table-card-sub">Isi Tunai Siang &amp; Pemindahan Dana (otomatis terkunci jika Pemindahan Dana sudah diisi di Shift Pagi).</p>
-            </div>
-            <span class="badge badge-neutral" id="badgeSisaTunaiSiang">Sisa Tunai: Rp0</span>
-          </div>
-          <div class="table-responsive">
-            <table class="kas-table">
-              <thead>
-                <tr>
-                  <th>Tanggal</th>
-                  <th class="num-col">Tunai Siang</th>
-                  <th class="num-col">Pemindahan Dana</th>
-                  <th>Status TF</th>
-                  <th>Aksi &amp; Share WA</th>
-                </tr>
-              </thead>
-              <tbody id="tbodyShiftSiang">
-                <tr><td colspan="5" class="loading-state">Memuat data Shift Siang...</td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="table-responsive">
+          <table class="kas-table">
+            <thead>
+              <tr>
+                <th>Tanggal</th>
+                <th class="num-col">Shift Pagi (Tunai &amp; Share WA)</th>
+                <th class="num-col">Shift Siang (Tunai &amp; Share WA)</th>
+                <th class="num-col">Pemindahan Dana</th>
+                <th class="num-col">Sisa Tunai</th>
+                <th>Status TF</th>
+              </tr>
+            </thead>
+            <tbody id="smTableBody">
+              <tr><td colspan="6" class="loading-state">Memuat data laporan arus kas...</td></tr>
+            </tbody>
+          </table>
         </div>
       </div>
 
-      <!-- AREA TABEL LENGKAP KHUSUS ADMIN -->
+      <!-- TABEL LENGKAP KHUSUS ADMIN -->
       <div id="adminFullTableCard" class="table-card hidden">
         <div class="table-card-header">
           <div>
@@ -1126,7 +1096,77 @@
 
         <div class="modal-footer">
           <button type="button" id="cancelShiftModalBtn" class="btn btn-outline">Batal</button>
-          <button type="submit" id="saveShiftEntryBtn" class="btn btn-primary">Simpan &amp; Siapkan Share WA</button>
+          <button type="submit" id="saveShiftEntryBtn" class="btn btn-primary">Simpan &amp; Lanjut Share WA</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= MODAL FORMAT SHARE WA (REPORT LAPORAN SAMCHICK) ================= -->
+  <div id="shareWaModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>Kirim Laporan WhatsApp</h3>
+        <button type="button" id="closeWaModalBtn" class="btn btn-outline btn-sm">Tutup</button>
+      </div>
+
+      <div class="wa-meta-summary">
+        <div>Tanggal: <strong id="waMetaTanggal">-</strong></div>
+        <div>Store: <strong id="waMetaStore">-</strong></div>
+        <div>Shift: <strong id="waMetaShift">-</strong></div>
+        <div>Pemindahan: <strong id="waMetaTf">Rp0</strong></div>
+      </div>
+
+      <form id="shareWaForm">
+        <div class="notes-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="waNoteOngkir">NOTES — Ongkir</label>
+            <input type="text" id="waNoteOngkir" class="form-control" placeholder="0" />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="waNoteTfBsi">NOTES — TF BSI (angka)</label>
+            <input type="number" id="waNoteTfBsi" class="form-control" min="0" step="1" placeholder="0" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="waNoteQrBsi">NOTES — QR BSI (angka)</label>
+          <input type="number" id="waNoteQrBsi" class="form-control" min="0" step="1" placeholder="0" />
+        </div>
+
+        <div class="form-group">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:0.35rem;">
+            <label class="form-label" style="margin-bottom:0;">Pilihan NOTES Lainnya (Opsional)</label>
+            <button type="button" id="addExtraNoteBtn" class="btn btn-outline btn-sm">+ Tambah Baris</button>
+          </div>
+          <div id="extraNotesContainer"></div>
+          <div class="preset-chips">
+            <button type="button" class="preset-chip-btn" data-preset="QRIS / EDC">+ QRIS / EDC</button>
+            <button type="button" class="preset-chip-btn" data-preset="Online Delivery">+ Online Delivery</button>
+            <button type="button" class="preset-chip-btn" data-preset="Pengeluaran Kas">+ Pengeluaran Kas</button>
+            <button type="button" class="preset-chip-btn" data-preset="Refund / Void">+ Refund / Void</button>
+          </div>
+        </div>
+
+        <div class="notes-grid-2">
+          <div class="form-group">
+            <label class="form-label" for="waTambahan">Tambahan</label>
+            <input type="text" id="waTambahan" class="form-control" placeholder="Keterangan tambahan..." />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="waPic">PIC</label>
+            <input type="text" id="waPic" class="form-control" placeholder="Nama PIC" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Pratinjau Pesan WhatsApp</label>
+          <div id="waPreviewText" class="wa-preview-box"></div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" id="copyWaTextBtn" class="btn btn-outline">Salin Teks</button>
+          <button type="submit" class="btn btn-primary" style="background:#16A34A;">Kirim ke WhatsApp</button>
         </div>
       </form>
     </div>
@@ -1180,46 +1220,42 @@
     </div>
   </div>
 
-  <!-- ================= MODAL KONFIGURASI URL SERVER GAS ================= -->
-  <div id="apiConfigModal" class="modal-backdrop hidden">
-    <div class="modal-box">
-      <div class="modal-header">
-        <h3>Pengaturan URL Web App Server</h3>
-        <button type="button" id="closeApiConfigBtn" class="btn btn-outline btn-sm">Tutup</button>
-      </div>
-      <form id="apiConfigForm">
-        <div class="form-group">
-          <label class="form-label" for="apiUrlInput">URL Deployment Google Apps Script (/exec)</label>
-          <input type="url" id="apiUrlInput" class="form-control" placeholder="https://script.google.com/macros/s/.../exec" required />
-        </div>
-        <div class="modal-footer">
-          <button type="button" id="cancelApiConfigBtn" class="btn btn-outline">Batal</button>
-          <button type="submit" class="btn btn-primary">Simpan URL</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
     (function() {
       'use strict';
 
-      var STORAGE_KEY_API = 'kas_store_gas_api_url';
+      // =========================================================================
+      // KONFIGURASI URL WEB APP GOOGLE APPS SCRIPT (/exec)
+      // Tempelkan URL Web App Deployment Google Apps Script Anda di bawah ini:
+      // =========================================================================
+      var SERVER_API_URL = 'https://script.google.com/macros/s/AKfycbxrNsdK87LTQOb6T6B9FVBvW_4ypDNTp-DQiaYookv4KmPRnYqrhdF9-5b8YZ2Y2MHwkg/exec';
+
       var STORAGE_KEY_SESSION = 'kas_store_user_session';
+      var LEGACY_KEY_API = 'kas_store_gas_api_url';
+
+      function getApiEndpointUrl() {
+        var configured = String(SERVER_API_URL || '').trim();
+        if (configured && configured.indexOf('GANTI_DENGAN_ID_DEPLOYMENT_ANDA') === -1) {
+          return configured;
+        }
+        return String(localStorage.getItem(LEGACY_KEY_API) || '').trim();
+      }
 
       var state = {
-        apiUrl: localStorage.getItem(STORAGE_KEY_API) || '',
         session: null,
         stores: [],
         activeStore: '',
         activeMonthId: '',
         rows: [],
         summary: null,
-        shiftView: 'ALL',
         cache: {},
-        pendingValidations: {}
+        pendingValidations: {},
+        waContext: {
+          rowObj: null,
+          shift: 'PAGI'
+        }
       };
 
       // ================= HELPER UI & FORMAT =================
@@ -1248,27 +1284,14 @@
         }, 4200);
       }
 
-      function updateApiStatusBadge() {
-        var lbl = el('apiStatusLabel');
-        if (state.apiUrl) {
-          lbl.textContent = 'Server terhubung';
-          lbl.style.color = '#059669';
-          lbl.style.fontWeight = '700';
-        } else {
-          lbl.textContent = 'URL Server belum diatur';
-          lbl.style.color = '#DC2626';
-          lbl.style.fontWeight = '700';
-        }
-      }
-
       // ================= KOMUNIKASI API BACKEND =================
       function callBackendApi(payload) {
-        if (!state.apiUrl) {
-          openApiConfigModal();
-          return Promise.reject(new Error('Silakan masukkan URL Web App Google Apps Script (/exec) terlebih dahulu.'));
+        var apiUrl = getApiEndpointUrl();
+        if (!apiUrl) {
+          return Promise.reject(new Error('URL Server Google Apps Script belum diisi pada variabel SERVER_API_URL di dalam file index.html.'));
         }
 
-        return fetch(state.apiUrl, {
+        return fetch(apiUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'text/plain;charset=utf-8'
@@ -1292,31 +1315,6 @@
           });
       }
 
-      // ================= PENGATURAN URL SERVER =================
-      function openApiConfigModal() {
-        el('apiUrlInput').value = state.apiUrl || '';
-        el('apiConfigModal').classList.remove('hidden');
-      }
-
-      function closeApiConfigModal() {
-        el('apiConfigModal').classList.add('hidden');
-      }
-
-      el('openApiConfigBtn').addEventListener('click', openApiConfigModal);
-      el('closeApiConfigBtn').addEventListener('click', closeApiConfigModal);
-      el('cancelApiConfigBtn').addEventListener('click', closeApiConfigModal);
-
-      el('apiConfigForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var urlVal = String(el('apiUrlInput').value || '').trim();
-        if (!urlVal) return;
-        state.apiUrl = urlVal;
-        localStorage.setItem(STORAGE_KEY_API, urlVal);
-        updateApiStatusBadge();
-        closeApiConfigModal();
-        showToast('URL Server berhasil disimpan.', 'success');
-      });
-
       // ================= AUTENTIKASI & SESI =================
       el('togglePinBtn').addEventListener('click', function() {
         var pinInput = el('loginPin');
@@ -1328,12 +1326,6 @@
         var email = String(el('loginEmail').value || '').trim();
         var pin = String(el('loginPin').value || '').trim();
         var btn = el('loginSubmitBtn');
-
-        if (!state.apiUrl) {
-          openApiConfigModal();
-          showToast('Atur URL Server Google Apps Script terlebih dahulu.', 'info');
-          return;
-        }
 
         btn.disabled = true;
         btn.textContent = 'Memverifikasi...';
@@ -1394,8 +1386,7 @@
           el('adminOverviewPanel').classList.remove('hidden');
           el('storeSelector').classList.remove('hidden');
           el('adminBulkActionWrap').classList.remove('hidden');
-          el('shiftFilterBar').classList.add('hidden');
-          el('shiftCardsWrapper').classList.add('hidden');
+          el('smUnifiedTableCard').classList.add('hidden');
           el('adminFullTableCard').classList.remove('hidden');
           populateStoreSelector();
           loadAdminOverview();
@@ -1403,10 +1394,8 @@
           el('adminOverviewPanel').classList.add('hidden');
           el('storeSelector').classList.add('hidden');
           el('adminBulkActionWrap').classList.add('hidden');
-          el('shiftFilterBar').classList.remove('hidden');
-          el('shiftCardsWrapper').classList.remove('hidden');
+          el('smUnifiedTableCard').classList.remove('hidden');
           el('adminFullTableCard').classList.add('hidden');
-          applyShiftViewFilter(state.shiftView);
         }
 
         loadKasData(false);
@@ -1425,48 +1414,6 @@
           sel.appendChild(opt);
         }
       }
-
-      // ================= FILTER TAMPILAN SHIFT (PAGI / SIANG / SEMUA) =================
-      function applyShiftViewFilter(viewMode) {
-        state.shiftView = viewMode;
-
-        var btns = document.querySelectorAll('.shift-pill-btn');
-        for (var i = 0; i < btns.length; i++) {
-          var btnView = btns[i].getAttribute('data-shift-view');
-          if (btnView === viewMode) {
-            btns[i].classList.add('active');
-          } else {
-            btns[i].classList.remove('active');
-          }
-        }
-
-        var wrapper = el('shiftCardsWrapper');
-        var cardPagi = el('shiftPagiCard');
-        var cardSiang = el('shiftSiangCard');
-
-        if (viewMode === 'ALL') {
-          cardPagi.classList.remove('hidden');
-          cardSiang.classList.remove('hidden');
-          wrapper.classList.add('dual-grid');
-        } else if (viewMode === 'PAGI') {
-          cardPagi.classList.remove('hidden');
-          cardSiang.classList.add('hidden');
-          wrapper.classList.remove('dual-grid');
-        } else if (viewMode === 'SIANG') {
-          cardPagi.classList.add('hidden');
-          cardSiang.classList.remove('hidden');
-          wrapper.classList.remove('dual-grid');
-        }
-      }
-
-      el('shiftFilterBar').addEventListener('click', function(e) {
-        var target = e.target.closest('.shift-pill-btn');
-        if (!target) return;
-        var mode = target.getAttribute('data-shift-view');
-        if (mode) {
-          applyShiftViewFilter(mode);
-        }
-      });
 
       // ================= MUAT DATA KAS & CACHING =================
       function getCacheKey(store, monthId, statusFilter, search) {
@@ -1492,8 +1439,7 @@
         if (user.peran === 'ADMIN') {
           el('adminTableBody').innerHTML = '<tr><td colspan="10" class="loading-state">Memuat data laporan arus kas...</td></tr>';
         } else {
-          el('tbodyShiftPagi').innerHTML = '<tr><td colspan="5" class="loading-state">Memuat data Shift Pagi...</td></tr>';
-          el('tbodyShiftSiang').innerHTML = '<tr><td colspan="5" class="loading-state">Memuat data Shift Siang...</td></tr>';
+          el('smTableBody').innerHTML = '<tr><td colspan="6" class="loading-state">Memuat data laporan arus kas...</td></tr>';
         }
 
         callBackendApi({
@@ -1522,7 +1468,6 @@
         state.summary = res.summary || null;
         state.pendingValidations = {};
 
-        // Update dropdown bulan
         var monthSel = el('monthSelector');
         var months = res.availableMonths || [];
         monthSel.innerHTML = '';
@@ -1536,7 +1481,6 @@
           monthSel.appendChild(opt);
         }
 
-        // Update Kartu Metrik
         if (state.summary) {
           el('metricModal').textContent = state.summary.modalDisplay || formatRupiah(state.summary.modalNumber);
           el('metricTotalMasuk').textContent = formatRupiah(state.summary.totalMasuk);
@@ -1544,88 +1488,85 @@
           el('metricSisaTunai').textContent = formatRupiah(state.summary.latestSisaTunai);
           el('metricValidasi').textContent = state.summary.countValidated + ' / ' + state.summary.totalDays + ' Hari';
 
-          el('badgeBelumTfPagi').textContent = state.summary.countBelumTf + ' Hari Belum TF';
-          el('badgeSisaTunaiSiang').textContent = 'Sisa Tunai: ' + formatRupiah(state.summary.latestSisaTunai);
+          el('smBelumTfBadge').textContent = state.summary.countBelumTf + ' Hari Belum TF';
           el('adminBelumTfBadge').textContent = state.summary.countBelumTf + ' Hari Belum TF';
         }
 
-        el('titleShiftPagi').textContent = 'Shift Pagi — ' + state.activeMonthId;
-        el('titleShiftSiang').textContent = 'Shift Siang — ' + state.activeMonthId;
-        el('adminTableBlockTitle').textContent = res.title || ('LAPORAN ARUS KAS STORE ' + state.activeMonthId);
+        var blockTitle = res.title || ('LAPORAN ARUS KAS STORE ' + state.activeMonthId);
+        el('smTableTitle').textContent = blockTitle;
+        el('adminTableBlockTitle').textContent = blockTitle;
 
         if (state.session && state.session.peran === 'ADMIN') {
           renderAdminTable();
         } else {
-          renderShiftTables();
+          renderStoreManagerUnifiedTable();
         }
       }
 
-      // ================= RENDER TABEL STORE MANAGER (PAGI & SIANG) =================
-      function renderShiftTables() {
-        var tbodyPagi = el('tbodyShiftPagi');
-        var tbodySiang = el('tbodyShiftSiang');
-
+      // ================= RENDER 1 TABEL HARIAN STORE MANAGER =================
+      function renderStoreManagerUnifiedTable() {
+        var tbody = el('smTableBody');
         if (!state.rows || state.rows.length === 0) {
-          tbodyPagi.innerHTML = '<tr><td colspan="5" class="loading-state">Tidak ada data pada filter ini.</td></tr>';
-          tbodySiang.innerHTML = '<tr><td colspan="5" class="loading-state">Tidak ada data pada filter ini.</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="6" class="loading-state">Tidak ada data pada filter ini.</td></tr>';
           return;
         }
 
-        var htmlPagi = '';
-        var htmlSiang = '';
-
+        var html = '';
         for (var i = 0; i < state.rows.length; i++) {
           var row = state.rows[i];
           var isLockedAdmin = Boolean(row.validasiAdmin);
-          var rowClass = isLockedAdmin ? '' : 'row-editable';
 
           var statusBadge = row.statusTf === 'SUDAH TF'
             ? '<span class="badge badge-success">SUDAH TF</span>'
             : '<span class="badge badge-danger">' + (row.statusTf || 'BELUM TF') + '</span>';
 
-          // Kolom Pemindahan Dana untuk Shift Pagi
-          var tfCellPagi = '';
-          if (row.pemindahanBank > 0 && row.shiftPemindahan === 'SIANG') {
-            tfCellPagi = '<span class="locked-tf-pill">Terkunci (TF Siang: ' + formatRupiah(row.pemindahanBank) + ')</span>';
-          } else {
-            tfCellPagi = row.pemindahanBank > 0 ? formatRupiah(row.pemindahanBank) : 'Rp0';
+          var tglCell = '<strong>' + row.tanggal + '</strong>';
+          if (isLockedAdmin) {
+            tglCell += '<div style="margin-top:0.22rem;"><span class="badge badge-neutral">Tervalidasi</span></div>';
           }
 
-          // Kolom Pemindahan Dana untuk Shift Siang
-          var tfCellSiang = '';
-          if (row.pemindahanBank > 0 && row.shiftPemindahan === 'PAGI') {
-            tfCellSiang = '<span class="locked-tf-pill">Terkunci (TF Pagi: ' + formatRupiah(row.pemindahanBank) + ')</span>';
-          } else {
-            tfCellSiang = row.pemindahanBank > 0 ? formatRupiah(row.pemindahanBank) : 'Rp0';
+          // Kolom Shift Pagi (Nominal + Tombol Input Pagi + Tombol Share WA)
+          var pagiButtons = isLockedAdmin
+            ? '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button>'
+            : '<button type="button" class="btn btn-shift-pagi btn-open-shift" data-row="' + row.sheetRow + '" data-shift="PAGI">Input Pagi</button>' +
+              '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button>';
+
+          var pagiCell = '<div class="shift-cell-box">' +
+            '<span class="shift-nominal">' + formatRupiah(row.tunaiPagi) + '</span>' +
+            '<div class="shift-btn-row">' + pagiButtons + '</div>' +
+            '</div>';
+
+          // Kolom Shift Siang (Nominal + Tombol Input Siang + Tombol Share WA)
+          var siangButtons = isLockedAdmin
+            ? '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button>'
+            : '<button type="button" class="btn btn-shift-siang btn-open-shift" data-row="' + row.sheetRow + '" data-shift="SIANG">Input Siang</button>' +
+              '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button>';
+
+          var siangCell = '<div class="shift-cell-box">' +
+            '<span class="shift-nominal">' + formatRupiah(row.tunaiSiang) + '</span>' +
+            '<div class="shift-btn-row">' + siangButtons + '</div>' +
+            '</div>';
+
+          // Kolom Pemindahan Dana + Keterangan Shift TF
+          var tfCell = '<div class="shift-cell-box">' +
+            '<span class="shift-nominal">' + formatRupiah(row.pemindahanBank) + '</span>';
+          if (row.pemindahanBank > 0 && row.shiftPemindahan) {
+            var badgeCls = row.shiftPemindahan === 'SIANG' ? 'badge-siang' : 'badge-pagi';
+            tfCell += '<span class="badge ' + badgeCls + '">TF ' + row.shiftPemindahan + '</span>';
           }
+          tfCell += '</div>';
 
-          var aksiPagiHtml = isLockedAdmin
-            ? '<div class="action-cell-group"><span class="badge badge-neutral">Tervalidasi</span><button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button></div>'
-            : '<div class="action-cell-group"><button type="button" class="btn btn-edit-mini btn-open-shift" data-row="' + row.sheetRow + '" data-shift="PAGI">Input</button><button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button></div>';
-
-          var aksiSiangHtml = isLockedAdmin
-            ? '<div class="action-cell-group"><span class="badge badge-neutral">Tervalidasi</span><button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button></div>'
-            : '<div class="action-cell-group"><button type="button" class="btn btn-edit-mini btn-open-shift" data-row="' + row.sheetRow + '" data-shift="SIANG">Input</button><button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button></div>';
-
-          htmlPagi += '<tr class="' + rowClass + '" data-row="' + row.sheetRow + '" data-shift="PAGI">' +
-            '<td><strong>' + row.tanggal + '</strong></td>' +
-            '<td class="num-col">' + formatRupiah(row.tunaiPagi) + '</td>' +
-            '<td class="num-col">' + tfCellPagi + '</td>' +
+          html += '<tr>' +
+            '<td>' + tglCell + '</td>' +
+            '<td class="num-col">' + pagiCell + '</td>' +
+            '<td class="num-col">' + siangCell + '</td>' +
+            '<td class="num-col">' + tfCell + '</td>' +
+            '<td class="num-col">' + formatRupiah(row.sisaTunai) + '</td>' +
             '<td>' + statusBadge + '</td>' +
-            '<td>' + aksiPagiHtml + '</td>' +
-            '</tr>';
-
-          htmlSiang += '<tr class="' + rowClass + '" data-row="' + row.sheetRow + '" data-shift="SIANG">' +
-            '<td><strong>' + row.tanggal + '</strong></td>' +
-            '<td class="num-col">' + formatRupiah(row.tunaiSiang) + '</td>' +
-            '<td class="num-col">' + tfCellSiang + '</td>' +
-            '<td>' + statusBadge + '</td>' +
-            '<td>' + aksiSiangHtml + '</td>' +
             '</tr>';
         }
 
-        tbodyPagi.innerHTML = htmlPagi;
-        tbodySiang.innerHTML = htmlSiang;
+        tbody.innerHTML = html;
       }
 
       // ================= RENDER TABEL LENGKAP ADMIN =================
@@ -1667,7 +1608,7 @@
         tbody.innerHTML = html;
       }
 
-      // ================= EVENT DELEGATION TABEL SHIFT =================
+      // ================= EVENT DELEGATION TABEL STORE MANAGER =================
       function findRowBySheetRow(sheetRowNum) {
         var targetNum = parseInt(sheetRowNum, 10);
         for (var i = 0; i < state.rows.length; i++) {
@@ -1678,37 +1619,33 @@
         return null;
       }
 
-      function handleShiftTableClick(e) {
+      el('smTableBody').addEventListener('click', function(e) {
         var shareBtn = e.target.closest('.btn-share-wa');
         if (shareBtn) {
-          e.stopPropagation();
           var rShare = findRowBySheetRow(shareBtn.getAttribute('data-row'));
-          var sShare = shareBtn.getAttribute('data-shift');
+          var sShare = shareBtn.getAttribute('data-shift') || 'PAGI';
           if (rShare) {
-            triggerShareWhatsApp(rShare, sShare);
+            openShareWaModal(rShare, sShare);
           }
           return;
         }
 
-        var trOrBtn = e.target.closest('[data-row]');
-        if (!trOrBtn) return;
+        var inputBtn = e.target.closest('.btn-open-shift');
+        if (inputBtn) {
+          var rowObj = findRowBySheetRow(inputBtn.getAttribute('data-row'));
+          var shiftType = inputBtn.getAttribute('data-shift') || 'PAGI';
+          if (!rowObj) return;
 
-        var rowObj = findRowBySheetRow(trOrBtn.getAttribute('data-row'));
-        var shiftType = trOrBtn.getAttribute('data-shift');
-        if (!rowObj || !shiftType) return;
+          if (rowObj.validasiAdmin) {
+            showToast('Tanggal ' + rowObj.tanggal + ' sudah divalidasi Admin dan terkunci.', 'info');
+            return;
+          }
 
-        if (rowObj.validasiAdmin) {
-          showToast('Tanggal ' + rowObj.tanggal + ' sudah divalidasi Admin dan terkunci.', 'info');
-          return;
+          openShiftEntryModal(shiftType, rowObj);
         }
+      });
 
-        openShiftEntryModal(shiftType, rowObj);
-      }
-
-      el('tbodyShiftPagi').addEventListener('click', handleShiftTableClick);
-      el('tbodyShiftSiang').addEventListener('click', handleShiftTableClick);
-
-      // ================= MODAL INPUT PER SHIFT (FIX NOTIF PILIH SHIFT) =================
+      // ================= MODAL INPUT PER SHIFT =================
       function openShiftEntryModal(shiftType, rowObj) {
         var normalizedShift = String(shiftType || '').toUpperCase();
         if (normalizedShift !== 'PAGI' && normalizedShift !== 'SIANG') {
@@ -1802,7 +1739,7 @@
             showToast(res.message || 'Data kas berhasil disimpan.', 'success');
             loadKasData(true);
             if (res.updatedRow) {
-              triggerShareWhatsApp(res.updatedRow, payload.shift);
+              openShareWaModal(res.updatedRow, payload.shift);
             }
           })
           .catch(function(err) {
@@ -1810,31 +1747,187 @@
           })
           .finally(function() {
             btn.disabled = false;
-            btn.textContent = 'Simpan & Siapkan Share WA';
+            btn.textContent = 'Simpan & Lanjut Share WA';
           });
       });
 
-      // ================= SHARE WHATSAPP =================
-      function triggerShareWhatsApp(rowObj, shiftType) {
-        var shiftLabel = shiftType === 'SIANG' ? 'SHIFT SIANG' : 'SHIFT PAGI';
-        var nominalShift = shiftType === 'SIANG' ? formatRupiah(rowObj.tunaiSiang) : formatRupiah(rowObj.tunaiPagi);
-        var labelTunai = shiftType === 'SIANG' ? 'Tunai Siang' : 'Tunai Pagi';
+      // ================= MODAL FORMAT SHARE WA (REPORT LAPORAN SAMCHICK) =================
+      function openShareWaModal(rowObj, shiftType) {
+        var normalizedShift = String(shiftType || 'PAGI').toUpperCase() === 'SIANG' ? 'SIANG' : 'PAGI';
+        state.waContext = {
+          rowObj: rowObj,
+          shift: normalizedShift
+        };
+
+        el('waMetaTanggal').textContent = rowObj.tanggal;
+        el('waMetaStore').textContent = state.activeStore;
+        el('waMetaShift').textContent = normalizedShift;
+        el('waMetaTf').textContent = getFormattedPemindahanForWa(rowObj, normalizedShift);
+
+        el('waNoteOngkir').value = '';
+        el('waNoteTfBsi').value = '';
+        el('waNoteQrBsi').value = '';
+        el('extraNotesContainer').innerHTML = '';
+        el('waTambahan').value = '';
+        el('waPic').value = (state.session && state.session.nama) ? state.session.nama : '';
+
+        updateWaPreview();
+        el('shareWaModal').classList.remove('hidden');
+      }
+
+      function closeShareWaModal() {
+        el('shareWaModal').classList.add('hidden');
+      }
+
+      el('closeWaModalBtn').addEventListener('click', closeShareWaModal);
+
+      function getFormattedPemindahanForWa(rowObj, shiftType) {
+        if (!rowObj) return 'Rp0';
+        var tfVal = Number(rowObj.pemindahanBank) || 0;
+        var baseText = formatRupiah(tfVal);
+        if (tfVal > 0 && shiftType === 'SIANG' && rowObj.shiftPemindahan === 'PAGI') {
+          return baseText + ' (Sudah TF di Shift Pagi)';
+        }
+        return baseText;
+      }
+
+      function addExtraNoteRow(presetLabel) {
+        var container = el('extraNotesContainer');
+        var rowDiv = document.createElement('div');
+        rowDiv.className = 'extra-note-row';
+
+        var keyInput = document.createElement('input');
+        keyInput.type = 'text';
+        keyInput.className = 'form-control extra-note-key';
+        keyInput.placeholder = 'Nama item (misal: QRIS)';
+        keyInput.value = presetLabel || '';
+
+        var valInput = document.createElement('input');
+        valInput.type = 'text';
+        valInput.className = 'form-control extra-note-val';
+        valInput.placeholder = 'Nominal / isi';
+
+        var delBtn = document.createElement('button');
+        delBtn.type = 'button';
+        delBtn.className = 'btn btn-danger-soft btn-sm';
+        delBtn.textContent = 'Hapus';
+        delBtn.addEventListener('click', function() {
+          if (rowDiv.parentNode) {
+            rowDiv.parentNode.removeChild(rowDiv);
+            updateWaPreview();
+          }
+        });
+
+        keyInput.addEventListener('input', updateWaPreview);
+        valInput.addEventListener('input', updateWaPreview);
+
+        rowDiv.appendChild(keyInput);
+        rowDiv.appendChild(valInput);
+        rowDiv.appendChild(delBtn);
+        container.appendChild(rowDiv);
+        updateWaPreview();
+      }
+
+      el('addExtraNoteBtn').addEventListener('click', function() {
+        addExtraNoteRow('');
+      });
+
+      var presetBtns = document.querySelectorAll('.preset-chip-btn');
+      for (var p = 0; p < presetBtns.length; p++) {
+        presetBtns[p].addEventListener('click', function() {
+          addExtraNoteRow(this.getAttribute('data-preset') || '');
+        });
+      }
+
+      function formatNumericOrTextField(rawVal) {
+        var trimmed = String(rawVal || '').trim();
+        if (!trimmed) return 'Rp0';
+        if (/^\d+$/.test(trimmed)) {
+          return formatRupiah(Number(trimmed));
+        }
+        return trimmed;
+      }
+
+      function buildSamchickWaMessage() {
+        var rowObj = state.waContext.rowObj;
+        var shiftType = state.waContext.shift || 'PAGI';
+        if (!rowObj) return '';
+
+        var ongkirVal = formatNumericOrTextField(el('waNoteOngkir').value);
+        var tfBsiRaw = String(el('waNoteTfBsi').value || '').trim();
+        var qrBsiRaw = String(el('waNoteQrBsi').value || '').trim();
+
+        var tfBsiVal = tfBsiRaw !== '' ? formatRupiah(Number(tfBsiRaw)) : 'Rp0';
+        var qrBsiVal = qrBsiRaw !== '' ? formatRupiah(Number(qrBsiRaw)) : 'Rp0';
 
         var lines = [
-          '*LAPORAN ARUS KAS STORE*',
-          'Cabang: *' + state.activeStore + '*',
-          'Tanggal: *' + rowObj.tanggal + '*',
-          'Laporan: *' + shiftLabel + '*',
-          '------------------------',
-          labelTunai + ': *' + nominalShift + '*',
-          'Pemindahan Dana Bank: *' + formatRupiah(rowObj.pemindahanBank) + '*',
-          'Sisa Tunai Akhir: *' + formatRupiah(rowObj.sisaTunai) + '*',
-          'Status TF: *' + (rowObj.statusTf || 'BELUM TF') + '*'
+          '📋 REPORT LAPORAN SAMCHICK',
+          'Tanggal : ' + rowObj.tanggal,
+          'Nama Store : ' + state.activeStore,
+          'Shift : ' + shiftType,
+          '📝 NOTES',
+          'ongkir : ' + ongkirVal,
+          'TF BSI : ' + tfBsiVal,
+          'QR BSI : ' + qrBsiVal
         ];
 
-        var textEncoded = encodeURIComponent(lines.join('\n'));
-        window.open('https://wa.me/?text=' + textEncoded, '_blank', 'noopener');
+        var extraKeys = document.querySelectorAll('.extra-note-key');
+        var extraVals = document.querySelectorAll('.extra-note-val');
+        for (var i = 0; i < extraKeys.length; i++) {
+          var k = String(extraKeys[i].value || '').trim();
+          var v = String(extraVals[i].value || '').trim();
+          if (k || v) {
+            lines.push((k || 'Lainnya') + ' : ' + formatNumericOrTextField(v));
+          }
+        }
+
+        var tambahanVal = String(el('waTambahan').value || '').trim() || '-';
+        var picVal = String(el('waPic').value || '').trim() || '-';
+
+        lines.push('');
+        lines.push('Pemindahan Dana : ' + getFormattedPemindahanForWa(rowObj, shiftType));
+        lines.push('');
+        lines.push('Tambahan : ' + tambahanVal);
+        lines.push('');
+        lines.push('👤 PIC : ' + picVal);
+        lines.push('');
+        lines.push('Terima Kasih');
+
+        return lines.join('\n');
       }
+
+      function updateWaPreview() {
+        el('waPreviewText').textContent = buildSamchickWaMessage();
+      }
+
+      el('waNoteOngkir').addEventListener('input', updateWaPreview);
+      el('waNoteTfBsi').addEventListener('input', updateWaPreview);
+      el('waNoteQrBsi').addEventListener('input', updateWaPreview);
+      el('waTambahan').addEventListener('input', updateWaPreview);
+      el('waPic').addEventListener('input', updateWaPreview);
+
+      el('copyWaTextBtn').addEventListener('click', function() {
+        var msg = buildSamchickWaMessage();
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(msg)
+            .then(function() {
+              showToast('Format laporan WA berhasil disalin.', 'success');
+            })
+            .catch(function() {
+              showToast('Gagal menyalin otomatis. Silakan tekan Kirim ke WhatsApp.', 'info');
+            });
+        } else {
+          showToast('Silakan tekan tombol Kirim ke WhatsApp.', 'info');
+        }
+      });
+
+      el('shareWaForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var msg = buildSamchickWaMessage();
+        var encoded = encodeURIComponent(msg);
+        window.open('https://wa.me/?text=' + encoded, '_blank', 'noopener');
+        closeShareWaModal();
+      });
 
       // ================= AKSI ADMIN (VALIDASI & EDIT PENUH) =================
       function loadAdminOverview() {
@@ -2031,7 +2124,6 @@
       });
 
       // ================= INISIALISASI AWAL =================
-      updateApiStatusBadge();
       var savedSessionRaw = sessionStorage.getItem(STORAGE_KEY_SESSION);
       if (savedSessionRaw) {
         try {
