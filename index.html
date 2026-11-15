@@ -2,44 +2,40 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
-  <title>Arus Kas Store Terpadu — Calculator Kas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator Kas Store — Arus Kas Terpadu</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-canvas: #F3F8F6;
-      --bg-card: #FFFFFF;
-      --bg-subtle: #F8FAFC;
       --primary: #059669;
       --primary-hover: #047857;
       --primary-soft: #ECFDF5;
       --accent: #0284C7;
-      --accent-soft: #E0F2FE;
+      --accent-soft: #F0F9FF;
+      --wa-green: #16A34A;
+      --bg-card: #FFFFFF;
+      --bg-subtle: #F8FAFC;
       --ink-main: #0F172A;
       --ink-muted: #475569;
       --ink-light: #64748B;
       --border: #E2E8F0;
       --success-bg: #DCFCE7;
-      --success-ink: #15803D;
+      --success-ink: #166534;
       --danger-bg: #FEE2E2;
-      --danger-ink: #B91C1C;
+      --danger-ink: #991B1B;
       --warn-bg: #FEF3C7;
-      --warn-ink: #B45309;
+      --warn-ink: #92400E;
+      --radius-sm: 10px;
+      --radius-md: 14px;
+      --radius-lg: 18px;
       --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.05);
-      --shadow-md: 0 10px 28px rgba(15, 23, 42, 0.09);
-      --radius-lg: 16px;
-      --radius-md: 12px;
-      --radius-sm: 8px;
-      --transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      --shadow-md: 0 12px 28px rgba(15, 23, 42, 0.09);
+      --transition: all 0.2s ease;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -50,16 +46,14 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
-    /* ================= NAVBAR ================= */
+    /* NAVBAR */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
       padding: 0.75rem 1rem;
@@ -74,11 +68,7 @@
       gap: 0.75rem;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-    }
+    .brand { display: flex; align-items: center; gap: 0.65rem; }
 
     .brand-icon {
       width: 38px;
@@ -93,30 +83,14 @@
       flex-shrink: 0;
     }
 
-    .brand-text h1 {
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--ink-main);
-    }
+    .brand-text h1 { font-size: 1rem; font-weight: 800; letter-spacing: -0.02em; }
+    .brand-text span { display: block; font-size: 0.75rem; color: var(--ink-muted); font-weight: 600; }
 
-    .brand-text span {
-      display: block;
-      font-size: 0.75rem;
-      color: var(--ink-muted);
-      font-weight: 500;
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .nav-actions { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
 
     .user-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
       background: var(--primary-soft);
       color: var(--primary-hover);
       border: 1px solid #A7F3D0;
@@ -126,16 +100,16 @@
       font-weight: 700;
     }
 
-    /* ================= BUTTONS & INPUTS ================= */
+    /* BUTTONS & FORMS */
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 0.4rem;
       padding: 0.6rem 1rem;
       border-radius: var(--radius-sm);
       font-family: inherit;
-      font-size: 0.85rem;
+      font-size: 0.84rem;
       font-weight: 700;
       border: 1px solid transparent;
       cursor: pointer;
@@ -143,23 +117,14 @@
       text-decoration: none;
     }
 
-    .btn:focus-visible {
-      outline: 3px solid rgba(5, 150, 105, 0.3);
-      outline-offset: 2px;
-    }
-
-    .btn:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-      transform: none !important;
-    }
+    .btn:focus-visible { outline: 3px solid rgba(5, 150, 105, 0.3); outline-offset: 2px; }
+    .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; }
 
     .btn-primary {
       background: linear-gradient(135deg, #059669 0%, #10B981 100%);
       color: #FFFFFF;
       box-shadow: 0 4px 12px rgba(5, 150, 105, 0.22);
     }
-
     .btn-primary:hover:not(:disabled) {
       background: linear-gradient(135deg, #047857 0%, #059669 100%);
       transform: translateY(-1px);
@@ -170,69 +135,50 @@
       color: #FFFFFF;
       box-shadow: 0 4px 12px rgba(2, 132, 199, 0.22);
     }
+    .btn-accent:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.05); }
 
-    .btn-accent:hover:not(:disabled) {
+    .btn-wa {
+      background: linear-gradient(135deg, #16A34A 0%, #22C55E 100%);
+      color: #FFFFFF;
+      box-shadow: 0 3px 10px rgba(22, 163, 74, 0.22);
+    }
+    .btn-wa:hover:not(:disabled) {
+      background: linear-gradient(135deg, #15803D 0%, #16A34A 100%);
       transform: translateY(-1px);
-      filter: brightness(1.05);
     }
 
-    .btn-outline {
-      background: #FFFFFF;
-      color: var(--ink-main);
-      border-color: var(--border);
-    }
+    .btn-outline { background: #FFFFFF; color: var(--ink-main); border-color: var(--border); }
+    .btn-outline:hover:not(:disabled) { background: var(--bg-subtle); border-color: #CBD5E1; }
 
-    .btn-outline:hover:not(:disabled) {
-      background: var(--bg-subtle);
-      border-color: #CBD5E1;
-    }
+    .btn-danger-soft { background: #FEF2F2; color: #B91C1C; border-color: #FECACA; }
+    .btn-danger-soft:hover:not(:disabled) { background: #FEE2E2; }
 
-    .btn-danger-soft {
-      background: #FEF2F2;
-      color: #B91C1C;
-      border-color: #FECACA;
-    }
+    .btn-sm { padding: 0.4rem 0.68rem; font-size: 0.76rem; }
+    .btn-xs { padding: 0.32rem 0.56rem; font-size: 0.72rem; border-radius: 8px; }
 
-    .btn-danger-soft:hover:not(:disabled) {
-      background: #FEE2E2;
-    }
-
-    .btn-sm {
-      padding: 0.42rem 0.72rem;
-      font-size: 0.78rem;
-    }
-
-    .form-group {
-      margin-bottom: 1rem;
-    }
-
-    .form-label {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--ink-main);
-      margin-bottom: 0.38rem;
-    }
+    .form-group { margin-bottom: 0.95rem; }
+    .form-label { display: block; font-size: 0.81rem; font-weight: 700; margin-bottom: 0.35rem; }
 
     .form-control {
       width: 100%;
-      padding: 0.68rem 0.85rem;
+      padding: 0.66rem 0.85rem;
       border-radius: var(--radius-sm);
       border: 1.5px solid var(--border);
       background: #FFFFFF;
       font-family: inherit;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
       color: var(--ink-main);
       transition: var(--transition);
     }
-
-    .form-control:focus {
-      outline: none;
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.14);
+    .form-control:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.14); }
+    .form-control:disabled, .form-control[readonly] {
+      background: #F1F5F9;
+      color: #64748B;
+      cursor: not-allowed;
+      border-color: #CBD5E1;
     }
 
-    /* ================= LOGIN SCREEN ================= */
+    /* LOGIN SCREEN */
     .login-wrapper {
       min-height: 100vh;
       display: flex;
@@ -243,18 +189,15 @@
 
     .login-card {
       width: 100%;
-      max-width: 420px;
+      max-width: 410px;
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 22px;
-      padding: 2rem 1.75rem;
+      padding: 2.1rem 1.8rem;
       box-shadow: var(--shadow-md);
     }
 
-    .login-header {
-      text-align: center;
-      margin-bottom: 1.6rem;
-    }
+    .login-header { text-align: center; margin-bottom: 1.65rem; }
 
     .login-logo {
       width: 54px;
@@ -269,24 +212,10 @@
       box-shadow: 0 8px 20px rgba(5, 150, 105, 0.28);
     }
 
-    .login-header h2 {
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-    }
+    .login-header h2 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.02em; }
+    .login-header p { font-size: 0.85rem; color: var(--ink-muted); margin-top: 0.25rem; }
 
-    .login-header p {
-      font-size: 0.85rem;
-      color: var(--ink-muted);
-      margin-top: 0.25rem;
-    }
-
-    .pin-input-wrap {
-      position: relative;
-      display: flex;
-      align-items: center;
-    }
-
+    .pin-input-wrap { position: relative; display: flex; align-items: center; }
     .pin-toggle {
       position: absolute;
       right: 0.65rem;
@@ -298,25 +227,9 @@
       display: flex;
     }
 
-    .api-config-bar {
-      margin-top: 1.25rem;
-      padding-top: 1rem;
-      border-top: 1px dashed var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.78rem;
-      color: var(--ink-light);
-    }
+    /* CONTAINER & PANELS */
+    .container { max-width: 1200px; margin: 0 auto; padding: 1.25rem 1rem 3.5rem; }
 
-    /* ================= MAIN CONTAINER ================= */
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 1.25rem 1rem 3rem;
-    }
-
-    /* ================= ADMIN OVERVIEW STRIP ================= */
     .overview-panel {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -334,14 +247,7 @@
       gap: 0.5rem;
     }
 
-    .overview-header h3 {
-      font-size: 0.92rem;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      color: var(--ink-main);
-    }
+    .overview-header h3 { font-size: 0.92rem; font-weight: 800; display: flex; align-items: center; gap: 0.45rem; }
 
     .store-chips-grid {
       display: grid;
@@ -359,36 +265,16 @@
       transition: var(--transition);
       font-family: inherit;
     }
-
-    .store-chip:hover {
-      border-color: var(--accent);
-      background: #F0F9FF;
-      transform: translateY(-1px);
-    }
-
+    .store-chip:hover { border-color: var(--accent); background: #F0F9FF; transform: translateY(-1px); }
     .store-chip.active {
       border-color: var(--primary);
       background: var(--primary-soft);
       box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.15);
     }
 
-    .store-chip-name {
-      font-size: 0.8rem;
-      font-weight: 800;
-      color: var(--ink-main);
-      display: block;
-    }
+    .store-chip-name { font-size: 0.8rem; font-weight: 800; display: block; }
+    .store-chip-meta { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.32rem; font-size: 0.68rem; font-weight: 700; }
 
-    .store-chip-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.3rem;
-      margin-top: 0.32rem;
-      font-size: 0.68rem;
-      font-weight: 700;
-    }
-
-    /* ================= FILTER & CONTROL BAR ================= */
     .control-bar {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -403,13 +289,7 @@
       gap: 0.75rem;
     }
 
-    .control-group {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 0.55rem;
-      flex: 1;
-    }
+    .control-group { display: flex; flex-wrap: wrap; align-items: center; gap: 0.55rem; flex: 1; }
 
     .select-box {
       padding: 0.52rem 0.75rem;
@@ -421,7 +301,7 @@
       font-weight: 700;
       color: var(--ink-main);
       cursor: pointer;
-      min-width: 155px;
+      min-width: 150px;
     }
 
     .search-box {
@@ -435,18 +315,15 @@
       max-width: 220px;
     }
 
-    /* ================= METRIC GRID (2-3 COLUMNS) ================= */
+    /* METRICS */
     .metrics-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 0.75rem;
-      margin-bottom: 1.15rem;
+      margin-bottom: 1.25rem;
     }
-
     @media (min-width: 768px) {
-      .metrics-grid {
-        grid-template-columns: repeat(5, 1fr);
-      }
+      .metrics-grid { grid-template-columns: repeat(5, 1fr); }
     }
 
     .metric-card {
@@ -457,42 +334,32 @@
       box-shadow: var(--shadow-sm);
       transition: var(--transition);
     }
+    .metric-card:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+    .metric-card.highlight-emerald { background: linear-gradient(135deg, #059669 0%, #0D9488 100%); color: #FFFFFF; border: none; }
+    .metric-card.highlight-blue { background: linear-gradient(135deg, #0284C7 0%, #2563EB 100%); color: #FFFFFF; border: none; }
 
-    .metric-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-    }
+    .metric-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; opacity: 0.85; display: block; }
+    .metric-value { font-size: clamp(0.95rem, 2.3vw, 1.22rem); font-weight: 800; margin-top: 0.25rem; display: block; word-break: break-word; }
 
-    .metric-card.highlight-emerald {
-      background: linear-gradient(135deg, #059669 0%, #0D9488 100%);
-      color: #FFFFFF;
-      border: none;
-    }
+    /* SHIFT TABS & TABLES */
+    .shift-switcher-bar { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
 
-    .metric-card.highlight-blue {
-      background: linear-gradient(135deg, #0284C7 0%, #2563EB 100%);
-      color: #FFFFFF;
-      border: none;
-    }
-
-    .metric-label {
-      font-size: 0.72rem;
+    .shift-tab-btn {
+      padding: 0.5rem 0.95rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: #FFFFFF;
+      color: var(--ink-muted);
+      font-family: inherit;
+      font-size: 0.8rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      opacity: 0.82;
-      display: block;
+      cursor: pointer;
+      transition: var(--transition);
     }
+    .shift-tab-btn.active { background: var(--ink-main); color: #FFFFFF; border-color: var(--ink-main); }
 
-    .metric-value {
-      font-size: clamp(0.95rem, 2.3vw, 1.22rem);
-      font-weight: 800;
-      margin-top: 0.25rem;
-      display: block;
-      word-break: break-word;
-    }
+    .sm-tables-stack { display: flex; flex-direction: column; gap: 1.5rem; }
 
-    /* ================= TABLE CARD & FLUID TYPOGRAPHY ================= */
     .table-card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -500,6 +367,8 @@
       box-shadow: var(--shadow-sm);
       overflow: hidden;
     }
+    .table-card.shift-pagi-card { border-top: 4px solid #059669; }
+    .table-card.shift-siang-card { border-top: 4px solid #0284C7; }
 
     .table-card-header {
       padding: 0.95rem 1.15rem;
@@ -512,127 +381,74 @@
       background: #FFFFFF;
     }
 
-    .table-card-title {
-      font-size: 0.95rem;
-      font-weight: 800;
-      color: var(--ink-main);
-    }
+    .table-card-title { font-size: 0.96rem; font-weight: 800; display: flex; align-items: center; gap: 0.5rem; }
+    .table-card-sub { font-size: 0.76rem; color: var(--ink-muted); margin-top: 0.15rem; }
 
-    .table-card-sub {
-      font-size: 0.76rem;
-      color: var(--ink-muted);
-    }
+    .table-responsive { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
 
-    .table-responsive {
-      width: 100%;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    table.kas-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: clamp(0.72rem, 1.7vw, 0.85rem);
-    }
-
+    table.kas-table { width: 100%; border-collapse: collapse; font-size: clamp(0.73rem, 1.7vw, 0.85rem); }
     table.kas-table th {
       background: #F1F5F9;
-      color: var(--ink-main);
       font-weight: 800;
       text-align: left;
-      padding: 0.68rem 0.55rem;
+      padding: 0.68rem 0.6rem;
       border-bottom: 1.5px solid var(--border);
       white-space: normal;
       line-height: 1.25;
     }
-
     table.kas-table td {
-      padding: 0.65rem 0.55rem;
+      padding: 0.65rem 0.6rem;
       border-bottom: 1px solid #F1F5F9;
       vertical-align: middle;
       white-space: normal;
       word-break: break-word;
     }
+    table.kas-table tbody tr:hover { background-color: #F8FAFC; }
+    table.kas-table tbody tr.row-editable { cursor: pointer; }
+    table.kas-table tbody tr.row-editable:hover { background-color: #ECFDF5; }
 
-    table.kas-table tbody tr {
-      transition: background-color 0.15s ease;
-    }
-
-    table.kas-table tbody tr:hover {
-      background-color: #F8FAFC;
-    }
-
-    table.kas-table tbody tr.row-editable {
-      cursor: pointer;
-    }
-
-    table.kas-table tbody tr.row-editable:hover {
-      background-color: #ECFDF5;
-    }
-
-    .num-col {
-      text-align: right !important;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
+    .num-col { text-align: right !important; font-variant-numeric: tabular-nums; font-weight: 700; }
+    .action-cell-group { display: inline-flex; align-items: center; gap: 0.38rem; flex-wrap: wrap; }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.25rem;
-      padding: 0.22rem 0.5rem;
+      padding: 0.24rem 0.52rem;
       border-radius: 6px;
       font-size: 0.68rem;
       font-weight: 800;
       letter-spacing: 0.02em;
     }
+    .badge-success { background: var(--success-bg); color: var(--success-ink); }
+    .badge-danger { background: var(--danger-bg); color: var(--danger-ink); }
+    .badge-warn { background: var(--warn-bg); color: var(--warn-ink); }
+    .badge-info { background: #E0F2FE; color: #075985; }
+    .badge-neutral { background: #F1F5F9; color: var(--ink-muted); }
 
-    .badge-success {
-      background: var(--success-bg);
-      color: var(--success-ink);
-    }
+    .admin-checkbox { width: 19px; height: 19px; accent-color: var(--primary); cursor: pointer; }
 
-    .badge-danger {
-      background: var(--danger-bg);
-      color: var(--danger-ink);
-    }
-
-    .badge-warn {
-      background: var(--warn-bg);
-      color: var(--warn-ink);
-    }
-
-    .badge-neutral {
-      background: #F1F5F9;
-      color: var(--ink-muted);
-    }
-
-    .admin-checkbox {
-      width: 19px;
-      height: 19px;
-      accent-color: var(--primary);
-      cursor: pointer;
-    }
-
-    /* ================= MODAL & TOAST ================= */
+    /* MODALS & WA SHARE */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(15, 23, 42, 0.52);
+      background: rgba(15, 23, 42, 0.54);
       backdrop-filter: blur(4px);
       z-index: 60;
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 1rem;
+      overflow-y: auto;
     }
 
     .modal-box {
       width: 100%;
-      max-width: 440px;
+      max-width: 470px;
+      max-height: 92vh;
+      overflow-y: auto;
       background: #FFFFFF;
       border-radius: 20px;
-      padding: 1.5rem;
+      padding: 1.45rem;
       box-shadow: 0 20px 45px rgba(15, 23, 42, 0.22);
       animation: popIn 0.2s ease-out;
     }
@@ -650,17 +466,71 @@
       padding-bottom: 0.75rem;
       border-bottom: 1px solid var(--border);
     }
+    .modal-header h3 { font-size: 1.02rem; font-weight: 800; }
 
-    .modal-header h3 {
-      font-size: 1.05rem;
-      font-weight: 800;
+    .modal-footer { display: flex; justify-content: flex-end; gap: 0.55rem; margin-top: 1.2rem; flex-wrap: wrap; }
+
+    .lock-notice-box {
+      background: #FEF3C7;
+      border: 1px solid #FCD34D;
+      color: #92400E;
+      padding: 0.65rem 0.8rem;
+      border-radius: 10px;
+      font-size: 0.77rem;
+      font-weight: 700;
+      margin-top: 0.45rem;
+      line-height: 1.4;
     }
 
-    .modal-footer {
-      display: flex;
-      justify-content: flex-end;
-      gap: 0.55rem;
-      margin-top: 1.25rem;
+    .wa-auto-summary {
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 12px;
+      padding: 0.75rem 0.9rem;
+      margin-bottom: 0.95rem;
+      font-size: 0.8rem;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.45rem;
+    }
+    .wa-auto-item span { display: block; font-size: 0.69rem; color: var(--ink-muted); font-weight: 600; }
+    .wa-auto-item strong { font-weight: 800; }
+
+    .notes-preset-bar { display: flex; flex-wrap: wrap; gap: 0.35rem; margin-bottom: 0.6rem; }
+
+    .preset-chip {
+      background: #F1F5F9;
+      border: 1px solid #CBD5E1;
+      color: var(--ink-main);
+      border-radius: 999px;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.71rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .preset-chip:hover { background: #E0F2FE; border-color: #7DD3FC; }
+
+    .custom-note-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 0.4rem;
+      margin-bottom: 0.45rem;
+      align-items: center;
+    }
+
+    .wa-preview-box {
+      background: #0F172A;
+      color: #F8FAFC;
+      border-radius: 12px;
+      padding: 0.85rem;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 0.76rem;
+      white-space: pre-wrap;
+      line-height: 1.45;
+      margin-top: 0.5rem;
+      max-height: 190px;
+      overflow-y: auto;
     }
 
     .toast-container {
@@ -683,31 +553,23 @@
       box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
       animation: popIn 0.2s ease-out;
     }
-
     .toast-success { background: #059669; }
     .toast-error { background: #DC2626; }
     .toast-info { background: #0284C7; }
 
-    .loading-state {
-      padding: 2.5rem 1rem;
-      text-align: center;
-      color: var(--ink-muted);
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
+    .loading-state { padding: 2.5rem 1rem; text-align: center; color: var(--ink-muted); font-weight: 600; font-size: 0.9rem; }
   </style>
 </head>
 <body>
 
-  <!-- ==================== 1. HALAMAN LOGIN ==================== -->
+  <!-- LOGIN VIEW -->
   <section id="loginView" class="login-wrapper">
     <div class="login-card">
       <div class="login-header">
         <div class="login-logo">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="5" width="20" height="14" rx="3"></rect>
             <line x1="2" y1="10" x2="22" y2="10"></line>
-            <circle cx="16" cy="14.5" r="1.5"></circle>
           </svg>
         </div>
         <h2>Calculator Kas Store</h2>
@@ -733,32 +595,27 @@
           </div>
         </div>
 
-        <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; padding: 0.78rem;">
+        <button type="submit" id="loginSubmitBtn" class="btn btn-primary" style="width: 100%; padding: 0.78rem; margin-top: 0.35rem;">
           <span>Masuk ke Aplikasi</span>
         </button>
       </form>
-
-      <div class="api-config-bar">
-        <span id="apiStatusLabel">Endpoint API siap</span>
-        <button type="button" id="openApiConfigBtn" class="btn btn-outline btn-sm">Atur URL Server</button>
-      </div>
     </div>
   </section>
 
-  <!-- ==================== 2. HALAMAN DASHBOARD UTAMA ==================== -->
+  <!-- DASHBOARD APP VIEW -->
   <section id="appView" class="hidden">
     <header class="topbar">
       <div class="topbar-inner">
         <div class="brand">
           <div class="brand-icon">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="5" width="20" height="14" rx="3"></rect>
+              <line x1="2" y1="10" x2="22" y2="10"></line>
             </svg>
           </div>
           <div class="brand-text">
-            <h1 id="headerTitle">Calculator Kas</h1>
-            <span id="headerSubtitle">Sistem Arus Kas Store Terpadu</span>
+            <h1 id="navStoreTitle">Calculator Kas Store</h1>
+            <span id="navUserSub">Memuat sesi...</span>
           </div>
         </div>
 
@@ -777,7 +634,7 @@
     </header>
 
     <main class="container">
-      <!-- PANEL RINGKASAN LINTAS 14 CABANG (KHUSUS ADMIN) -->
+      <!-- ADMIN OVERVIEW PANEL -->
       <div id="adminOverviewPanel" class="overview-panel hidden">
         <div class="overview-header">
           <h3>
@@ -794,7 +651,7 @@
         <div id="adminStoreChips" class="store-chips-grid"></div>
       </div>
 
-      <!-- FILTER & PEMILIH CABANG / BULAN -->
+      <!-- CONTROL BAR -->
       <div class="control-bar">
         <div class="control-group">
           <select id="storeSelector" class="select-box hidden" aria-label="Pilih Cabang"></select>
@@ -819,7 +676,7 @@
         </div>
       </div>
 
-      <!-- KARTU METRIK RINGKASAN -->
+      <!-- METRICS GRID -->
       <div class="metrics-grid">
         <div class="metric-card">
           <span class="metric-label">Modal Toko</span>
@@ -843,120 +700,298 @@
         </div>
       </div>
 
-      <!-- TABEL ARUS KAS HARIAN -->
-      <div class="table-card">
-        <div class="table-card-header">
-          <div>
-            <div class="table-card-title" id="tableBlockTitle">LAPORAN ARUS KAS STORE</div>
-            <div class="table-card-sub" id="tableHelperHint">Ketuk baris tanggal yang belum divalidasi untuk mengisi Tunai Pagi, Siang &amp; Pemindahan Bank.</div>
-          </div>
-          <span class="badge badge-warn" id="belumTfCounterBadge">0 Hari Belum TF</span>
+      <!-- STORE MANAGER SECTION (2 STANDALONE TABLES) -->
+      <section id="smDashboardSection" class="hidden">
+        <div class="shift-switcher-bar">
+          <button type="button" class="shift-tab-btn active" data-shift-view="ALL">Tampilkan Semua Shift (Pagi &amp; Siang)</button>
+          <button type="button" class="shift-tab-btn" data-shift-view="PAGI">Fokus Shift Pagi</button>
+          <button type="button" class="shift-tab-btn" data-shift-view="SIANG">Fokus Shift Siang</button>
         </div>
 
-        <div class="table-responsive">
-          <table class="kas-table">
-            <thead>
-              <tr>
-                <th>Tanggal</th>
-                <th class="num-col">Tunai Pagi</th>
-                <th class="num-col">Tunai Siang</th>
-                <th class="num-col">Pemindahan Bank</th>
-                <th class="num-col">Tunai Belum TF</th>
-                <th class="num-col">Sisa Tunai</th>
-                <th>Status TF</th>
-                <th id="colHeaderAksi">Validasi Admin</th>
-                <th>Tgl Validasi</th>
-              </tr>
-            </thead>
-            <tbody id="kasTableBody">
-              <tr>
-                <td colspan="9" class="loading-state">Memuat data laporan arus kas...</td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="sm-tables-stack">
+          <!-- TABEL 1: SHIFT PAGI -->
+          <div id="smPagiCard" class="table-card shift-pagi-card">
+            <div class="table-card-header">
+              <div>
+                <div class="table-card-title">
+                  <span class="badge badge-success">SHIFT PAGI</span>
+                  <span id="smPagiTitle">Tunai Pagi &amp; Pemindahan Dana</span>
+                </div>
+                <div class="table-card-sub">Isi Tunai Pagi &amp; Pemindahan Dana (maksimal 1x per tanggal). Klik Share WA setelah simpan.</div>
+              </div>
+              <span class="badge badge-warn" id="smBelumTfBadgePagi">0 Hari Belum TF</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="kas-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th class="num-col">Tunai Pagi</th>
+                    <th class="num-col">Pemindahan Dana</th>
+                    <th>Status TF</th>
+                    <th>Aksi &amp; Share WA</th>
+                  </tr>
+                </thead>
+                <tbody id="smPagiTableBody">
+                  <tr><td colspan="5" class="loading-state">Memuat data Shift Pagi...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- TABEL 2: SHIFT SIANG -->
+          <div id="smSiangCard" class="table-card shift-siang-card">
+            <div class="table-card-header">
+              <div>
+                <div class="table-card-title">
+                  <span class="badge badge-info">SHIFT SIANG</span>
+                  <span id="smSiangTitle">Tunai Siang &amp; Pemindahan Dana</span>
+                </div>
+                <div class="table-card-sub">Isi Tunai Siang &amp; Pemindahan Dana (otomatis terkunci jika Pemindahan Dana sudah diisi di Shift Pagi).</div>
+              </div>
+              <span class="badge badge-neutral" id="smSisaTunaiBadgeSiang">Sisa Tunai: Rp0</span>
+            </div>
+
+            <div class="table-responsive">
+              <table class="kas-table">
+                <thead>
+                  <tr>
+                    <th>Tanggal</th>
+                    <th class="num-col">Tunai Siang</th>
+                    <th class="num-col">Pemindahan Dana</th>
+                    <th>Status TF</th>
+                    <th>Aksi &amp; Share WA</th>
+                  </tr>
+                </thead>
+                <tbody id="smSiangTableBody">
+                  <tr><td colspan="5" class="loading-state">Memuat data Shift Siang...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
-      </div>
+      </section>
+
+      <!-- ADMIN SECTION (UNRESTRICTED ACCESS) -->
+      <section id="adminDashboardSection" class="hidden">
+        <div class="table-card">
+          <div class="table-card-header">
+            <div>
+              <div class="table-card-title" id="adminTableBlockTitle">LAPORAN ARUS KAS STORE</div>
+              <div class="table-card-sub">Akses penuh Admin: ketuk baris mana pun (termasuk yang sudah divalidasi) untuk mengedit semua kolom tanpa batasan.</div>
+            </div>
+            <span class="badge badge-warn" id="adminBelumTfBadge">0 Hari Belum TF</span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="kas-table">
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th class="num-col">Tunai Pagi</th>
+                  <th class="num-col">Tunai Siang</th>
+                  <th class="num-col">Pemindahan Dana</th>
+                  <th>Shift TF</th>
+                  <th class="num-col">Tunai Belum TF</th>
+                  <th class="num-col">Sisa Tunai</th>
+                  <th>Status TF</th>
+                  <th>Validasi Admin</th>
+                  <th>Tgl Validasi</th>
+                  <th>Edit</th>
+                </tr>
+              </thead>
+              <tbody id="adminKasTableBody">
+                <tr><td colspan="11" class="loading-state">Memuat data laporan arus kas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
     </main>
   </section>
 
-  <!-- ==================== 3. MODAL INPUT STORE MANAGER ==================== -->
-  <div id="entryModal" class="modal-backdrop hidden">
+  <!-- MODAL 1: INPUT SHIFT STORE MANAGER -->
+  <div id="smEntryModal" class="modal-backdrop hidden">
     <div class="modal-box">
       <div class="modal-header">
-        <h3 id="entryModalTitle">Input Kas Harian</h3>
-        <button type="button" id="closeEntryModalBtn" class="btn btn-outline btn-sm">Tutup</button>
+        <h3 id="smEntryModalTitle">Input Laporan Shift</h3>
+        <button type="button" id="closeSmEntryModalBtn" class="btn btn-outline btn-sm">Tutup</button>
       </div>
 
-      <form id="entryForm">
-        <input type="hidden" id="editSheetRow" />
-        <input type="hidden" id="editTanggal" />
+      <form id="smEntryForm">
+        <input type="hidden" id="smEditSheetRow" />
+        <input type="hidden" id="smEditTanggal" />
+        <input type="hidden" id="smEditMode" />
 
         <div class="form-group">
-          <label class="form-label" for="inputTunaiPagi">Shift Pagi — Tunai Pagi (Rp)</label>
-          <input type="number" id="inputTunaiPagi" class="form-control" min="0" step="100" required />
+          <label class="form-label" id="smTunaiLabel" for="smInputTunai">Tunai Shift (Rp)</label>
+          <input type="number" id="smInputTunai" class="form-control" min="0" step="100" required />
         </div>
 
         <div class="form-group">
-          <label class="form-label" for="inputTunaiSiang">Shift Siang — Tunai Siang (Rp)</label>
-          <input type="number" id="inputTunaiSiang" class="form-control" min="0" step="100" required />
-        </div>
-
-        <div class="form-group">
-          <label class="form-label" for="inputPemindahanBank">Pemindahan Uang Tunai ke Bank (Rp)</label>
-          <input type="number" id="inputPemindahanBank" class="form-control" min="0" step="100" required />
+          <label class="form-label" for="smInputPemindahan">Pemindahan Dana ke Bank (Rp)</label>
+          <input type="number" id="smInputPemindahan" class="form-control" min="0" step="100" required />
+          <div id="smPemindahanLockNotice" class="lock-notice-box hidden"></div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" id="cancelEntryBtn" class="btn btn-outline">Batal</button>
-          <button type="submit" id="saveEntryBtn" class="btn btn-primary">Simpan ke Spreadsheet</button>
+          <button type="button" id="cancelSmEntryBtn" class="btn btn-outline">Batal</button>
+          <button type="submit" id="saveSmEntryBtn" class="btn btn-primary">Simpan &amp; Siapkan Share WA</button>
         </div>
       </form>
     </div>
   </div>
 
-  <!-- ==================== 4. MODAL PENGATURAN URL API ==================== -->
-  <div id="apiConfigModal" class="modal-backdrop hidden">
+  <!-- MODAL 2: SHARE WA LAPORAN SAMCHICK -->
+  <div id="waShareModal" class="modal-backdrop hidden">
     <div class="modal-box">
       <div class="modal-header">
-        <h3>Konfigurasi Endpoint Google Apps Script</h3>
-        <button type="button" id="closeApiModalBtn" class="btn btn-outline btn-sm">Tutup</button>
+        <h3>Share WA — Report Laporan Samchick</h3>
+        <button type="button" id="closeWaModalBtn" class="btn btn-outline btn-sm">Tutup</button>
       </div>
-      <form id="apiConfigForm">
+
+      <div class="wa-auto-summary">
+        <div class="wa-auto-item"><span>Tanggal</span><strong id="waAutoTanggal">-</strong></div>
+        <div class="wa-auto-item"><span>Nama Store</span><strong id="waAutoStore">-</strong></div>
+        <div class="wa-auto-item"><span>Shift</span><strong id="waAutoShift">-</strong></div>
+        <div class="wa-auto-item"><span>Pemindahan Dana</span><strong id="waAutoPemindahan">Rp0</strong></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="waNoteOngkir">NOTES — ongkir</label>
+        <input type="text" id="waNoteOngkir" class="form-control" placeholder="Contoh: 15.000 atau 0" />
+      </div>
+
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.65rem;">
         <div class="form-group">
-          <label class="form-label" for="gasUrlInput">https://script.google.com/macros/s/AKfycbxrNsdK87LTQOb6T6B9FVBvW_4ypDNTp-DQiaYookv4KmPRnYqrhdF9-5b8YZ2Y2MHwkg/exec</label>
-          <input type="url" id="gasUrlInput" class="form-control" placeholder="https://script.google.com/macros/s/.../exec" required />
+          <label class="form-label" for="waNoteTfBsi">TF BSI (angka)</label>
+          <input type="number" id="waNoteTfBsi" class="form-control" min="0" placeholder="0" />
         </div>
+        <div class="form-group">
+          <label class="form-label" for="waNoteQrBsi">QR BSI (angka)</label>
+          <input type="number" id="waNoteQrBsi" class="form-control" min="0" placeholder="0" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pilihan NOTES Lainnya (Opsional)</label>
+        <div class="notes-preset-bar">
+          <button type="button" class="preset-chip" data-preset-label="QRIS BCA / Mandiri">+ QRIS BCA/Mandiri</button>
+          <button type="button" class="preset-chip" data-preset-label="Online Delivery">+ Online Delivery</button>
+          <button type="button" class="preset-chip" data-preset-label="Pengeluaran Kas">+ Pengeluaran Kas</button>
+          <button type="button" class="preset-chip" data-preset-label="Cash Lainnya">+ Cash Lainnya</button>
+          <button type="button" id="addCustomNoteRowBtn" class="preset-chip" style="background:#ECFDF5; border-color:#6EE7B7; color:#047857;">+ Tambah Baris</button>
+        </div>
+        <div id="waCustomNotesContainer"></div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="waTambahanInput">Tambahan (text)</label>
+        <input type="text" id="waTambahanInput" class="form-control" placeholder="Catatan tambahan jika ada..." />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="waPicInput">PIC (text)</label>
+        <input type="text" id="waPicInput" class="form-control" placeholder="Nama PIC bertugas" required />
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Pratinjau Pesan WhatsApp</label>
+        <div id="waMessagePreview" class="wa-preview-box"></div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" id="copyWaTextBtn" class="btn btn-outline">Salin Teks</button>
+        <button type="button" id="sendWaBtn" class="btn btn-wa">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+          </svg>
+          <span>Share ke WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 3: EDIT PENUH ADMIN -->
+  <div id="adminEditModal" class="modal-backdrop hidden">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3 id="adminEditModalTitle">Edit Data Kas (Akses Penuh Admin)</h3>
+        <button type="button" id="closeAdminEditModalBtn" class="btn btn-outline btn-sm">Tutup</button>
+      </div>
+
+      <form id="adminEditForm">
+        <input type="hidden" id="adminEditSheetRow" />
+        <input type="hidden" id="adminEditTanggal" />
+
+        <div class="form-group">
+          <label class="form-label" for="adminInputTunaiPagi">Shift Pagi — Tunai Pagi (Rp)</label>
+          <input type="number" id="adminInputTunaiPagi" class="form-control" min="0" step="100" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminInputTunaiSiang">Shift Siang — Tunai Siang (Rp)</label>
+          <input type="number" id="adminInputTunaiSiang" class="form-control" min="0" step="100" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminInputPemindahan">Pemindahan Dana ke Bank (Rp)</label>
+          <input type="number" id="adminInputPemindahan" class="form-control" min="0" step="100" required />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="adminInputShiftTf">Penanda Shift Pemindahan Dana</label>
+          <select id="adminInputShiftTf" class="form-control">
+            <option value="">Otomatis</option>
+            <option value="PAGI">Shift Pagi (Mengunci Shift Siang)</option>
+            <option value="SIANG">Shift Siang</option>
+          </select>
+        </div>
+
+        <div class="form-group" style="display:flex; align-items:center; gap:0.55rem; margin-top:0.5rem;">
+          <input type="checkbox" id="adminInputValidasi" class="admin-checkbox" />
+          <label for="adminInputValidasi" style="font-size:0.84rem; font-weight:700; cursor:pointer;">Tandai Sudah Divalidasi Admin</label>
+        </div>
+
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary">Simpan URL</button>
+          <button type="button" id="cancelAdminEditBtn" class="btn btn-outline">Batal</button>
+          <button type="submit" id="saveAdminEditBtn" class="btn btn-primary">Simpan Perubahan Admin</button>
         </div>
       </form>
     </div>
   </div>
 
+  <!-- TOAST CONTAINER -->
   <div id="toastContainer" class="toast-container"></div>
 
   <script>
     // =========================================================================
-    // KONFIGURASI UTAMA: Tempel URL Web App Google Apps Script Anda di bawah ini
+    // PENGATURAN URL SERVER GOOGLE APPS SCRIPT (TEMPELKAN URL DEPLOYMENT ANDA)
     // =========================================================================
-    var DEFAULT_GAS_URL = 'PASTE_URL_WEB_APP_GOOGLE_APPS_SCRIPT_ANDA_DI_SINI';
+    const SERVER_API_URL = 'https://script.google.com/macros/s/AKfycbxrNsdK87LTQOb6T6B9FVBvW_4ypDNTp-DQiaYookv4KmPRnYqrhdF9-5b8YZ2Y2MHwkg/exec';
 
-    var appState = {
+    const STATE = {
       user: null,
       pin: '',
       stores: [],
-      activeStore: '',
-      activeMonthId: '',
+      selectedStore: '',
+      selectedMonth: '',
+      statusFilter: 'ALL',
+      searchQuery: '',
+      shiftView: 'ALL',
+      kasData: null,
       cache: {},
-      adminOverview: null,
-      currentRows: [],
-      pendingValidations: {}
+      pendingValidations: {},
+      waContext: null
     };
 
-    function getApiUrl() {
-      var saved = localStorage.getItem('kas_gas_api_url');
-      if (saved && saved.indexOf('https://') === 0) return saved;
-      return DEFAULT_GAS_URL;
+    function formatRupiah(num) {
+      return 'Rp' + (Number(num) || 0).toLocaleString('id-ID');
+    }
+
+    function formatAngka(num) {
+      return (Number(num) || 0).toLocaleString('id-ID');
     }
 
     function showToast(message, type) {
@@ -970,11 +1005,6 @@
       }, 3600);
     }
 
-    function formatRupiah(num) {
-      var val = Number(num) || 0;
-      return 'Rp' + val.toLocaleString('id-ID');
-    }
-
     function escapeHtml(str) {
       return String(str || '')
         .replace(/&/g, '&amp;')
@@ -984,240 +1014,197 @@
         .replace(/'/g, '&#39;');
     }
 
-    async function postToGas(payload) {
-      var url = getApiUrl();
-      if (!url || url.indexOf('https://') !== 0) {
-        throw new Error('URL Google Apps Script belum diatur. Klik "Atur URL Server" di halaman login.');
-      }
-      var res = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) {
-        throw new Error('Gagal terhubung ke server (HTTP ' + res.status + ')');
-      }
-      return await res.json();
+    function isApiUrlConfigured() {
+      var url = String(SERVER_API_URL || '').trim();
+      return url.indexOf('https://script.google.com/') === 0 && url.indexOf('GANTI_DENGAN_ID') === -1;
     }
 
-    // ================= EVENT HANDLERS LOGIN & API CONFIG =================
-    document.getElementById('togglePinBtn').addEventListener('click', function() {
-      var pinEl = document.getElementById('loginPin');
-      pinEl.type = pinEl.type === 'password' ? 'text' : 'password';
-    });
-
-    document.getElementById('openApiConfigBtn').addEventListener('click', function() {
-      var currentUrl = getApiUrl();
-      document.getElementById('gasUrlInput').value = currentUrl.indexOf('https://') === 0 ? currentUrl : '';
-      document.getElementById('apiConfigModal').classList.remove('hidden');
-    });
-
-    document.getElementById('closeApiModalBtn').addEventListener('click', function() {
-      document.getElementById('apiConfigModal').classList.add('hidden');
-    });
-
-    document.getElementById('apiConfigForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      var urlVal = String(document.getElementById('gasUrlInput').value || '').trim();
-      localStorage.setItem('kas_gas_api_url', urlVal);
-      document.getElementById('apiStatusLabel').textContent = 'Endpoint API tersimpan';
-      document.getElementById('apiConfigModal').classList.add('hidden');
-      showToast('URL Server berhasil disimpan.', 'success');
-    });
-
-    document.getElementById('loginForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var btn = document.getElementById('loginSubmitBtn');
-      var email = String(document.getElementById('loginEmail').value || '').trim();
-      var pin = String(document.getElementById('loginPin').value || '').trim();
-
-      btn.disabled = true;
-      btn.textContent = 'Memverifikasi akun...';
-
-      try {
-        var result = await postToGas({ action: 'login', email: email, pin: pin });
-        if (!result.ok) {
-          showToast(result.message || 'Login gagal.', 'error');
-          return;
-        }
-
-        appState.user = result.user;
-        appState.pin = pin;
-        appState.stores = result.stores || [];
-        appState.activeStore = appState.stores.length > 0 ? appState.stores[0] : '';
-
-        sessionStorage.setItem('kas_session_user', JSON.stringify(result.user));
-        sessionStorage.setItem('kas_session_pin', pin);
-        sessionStorage.setItem('kas_session_stores', JSON.stringify(appState.stores));
-
-        initDashboard();
-        showToast('Selamat datang, ' + result.user.nama, 'success');
-      } catch (err) {
-        showToast(err.message || 'Terjadi gangguan jaringan.', 'error');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Masuk ke Aplikasi';
+    async function callBackendApi(payload) {
+      if (!isApiUrlConfigured()) {
+        throw new Error('URL Server belum diatur di file index.html. Silakan isi konstanta SERVER_API_URL terlebih dahulu.');
       }
-    });
 
-    document.getElementById('logoutBtn').addEventListener('click', function() {
-      sessionStorage.clear();
-      appState.user = null;
-      appState.pin = '';
-      appState.cache = {};
-      appState.adminOverview = null;
-      document.getElementById('appView').classList.add('hidden');
-      document.getElementById('loginView').classList.remove('hidden');
-    });
+      var bodyPayload = Object.assign({}, payload);
+      if (STATE.user && STATE.user.email) {
+        bodyPayload.email = STATE.user.email;
+        bodyPayload.pin = STATE.pin;
+      }
 
-    // ================= INISIALISASI DASHBOARD =================
-    function initDashboard() {
+      var response = await fetch(SERVER_API_URL.trim(), {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(bodyPayload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Gagal terhubung ke server (HTTP ' + response.status + ')');
+      }
+
+      return await response.json();
+    }
+
+    // AUTH & SESSION
+    function saveSessionToStorage() {
+      try {
+        sessionStorage.setItem('kas_session', JSON.stringify({
+          user: STATE.user,
+          pin: STATE.pin,
+          stores: STATE.stores,
+          selectedStore: STATE.selectedStore
+        }));
+      } catch (e) {}
+    }
+
+    function restoreSessionFromStorage() {
+      try {
+        var raw = sessionStorage.getItem('kas_session');
+        if (!raw) return false;
+        var parsed = JSON.parse(raw);
+        if (parsed && parsed.user && parsed.pin) {
+          STATE.user = parsed.user;
+          STATE.pin = parsed.pin;
+          STATE.stores = parsed.stores || [];
+          STATE.selectedStore = parsed.selectedStore || (STATE.stores[0] || '');
+          return true;
+        }
+      } catch (e) {}
+      return false;
+    }
+
+    function clearSession() {
+      STATE.user = null;
+      STATE.pin = '';
+      STATE.stores = [];
+      STATE.selectedStore = '';
+      STATE.kasData = null;
+      STATE.cache = {};
+      STATE.pendingValidations = {};
+      try { sessionStorage.removeItem('kas_session'); } catch (e) {}
+    }
+
+    function enterDashboard() {
       document.getElementById('loginView').classList.add('hidden');
       document.getElementById('appView').classList.remove('hidden');
 
-      var isAdmin = appState.user.peran === 'ADMIN';
-      document.getElementById('headerTitle').textContent = isAdmin
-        ? 'Panel Validasi Admin'
-        : ('Cabang ' + appState.activeStore);
-      document.getElementById('headerSubtitle').textContent = appState.user.nama + ' (' + appState.user.email + ')';
-      document.getElementById('userBadgePill').textContent = isAdmin ? 'ADMIN PUSAT' : appState.activeStore;
+      var isAdmin = STATE.user.peran === 'ADMIN';
+      document.getElementById('userBadgePill').textContent = isAdmin ? 'ADMIN PUSAT' : 'STORE MANAGER';
+      document.getElementById('navUserSub').textContent = STATE.user.nama + ' (' + STATE.user.email + ')';
 
-      var storeSel = document.getElementById('storeSelector');
-      var overviewPanel = document.getElementById('adminOverviewPanel');
-      var bulkWrap = document.getElementById('adminBulkActionWrap');
-      var helperHint = document.getElementById('tableHelperHint');
+      var storeSelect = document.getElementById('storeSelector');
+      var adminOverview = document.getElementById('adminOverviewPanel');
+      var adminBulkWrap = document.getElementById('adminBulkActionWrap');
+      var smSection = document.getElementById('smDashboardSection');
+      var adminSection = document.getElementById('adminDashboardSection');
 
       if (isAdmin) {
-        storeSel.classList.remove('hidden');
-        overviewPanel.classList.remove('hidden');
-        bulkWrap.classList.remove('hidden');
-        helperHint.textContent = 'Centang kotak Validasi Admin pada baris yang sesuai lalu klik "Simpan Validasi Admin".';
+        storeSelect.classList.remove('hidden');
+        adminOverview.classList.remove('hidden');
+        adminBulkWrap.classList.remove('hidden');
+        smSection.classList.add('hidden');
+        adminSection.classList.remove('hidden');
 
-        var optionsHtml = '';
-        for (var i = 0; i < appState.stores.length; i++) {
-          var st = appState.stores[i];
-          var selectedAttr = st === appState.activeStore ? ' selected' : '';
-          optionsHtml += '<option value="' + escapeHtml(st) + '"' + selectedAttr + '>' + escapeHtml(st) + '</option>';
-        }
-        storeSel.innerHTML = optionsHtml;
-        loadAdminOverview(false);
-      } else {
-        storeSel.classList.add('hidden');
-        overviewPanel.classList.add('hidden');
-        bulkWrap.classList.add('hidden');
-        helperHint.textContent = 'Ketuk baris tanggal yang belum divalidasi untuk mengisi Tunai Pagi, Siang & Pemindahan Bank.';
-      }
-
-      loadKasData(false);
-    }
-
-    async function loadAdminOverview(forceRefresh) {
-      if (!forceRefresh && appState.adminOverview) {
-        renderAdminOverview(appState.adminOverview);
-        return;
-      }
-      try {
-        var res = await postToGas({
-          action: 'getAdminOverview',
-          email: appState.user.email,
-          pin: appState.pin
+        storeSelect.innerHTML = '';
+        STATE.stores.forEach(function(st) {
+          var opt = document.createElement('option');
+          opt.value = st;
+          opt.textContent = st;
+          if (st === STATE.selectedStore) opt.selected = true;
+          storeSelect.appendChild(opt);
         });
-        if (res.ok) {
-          appState.adminOverview = res;
-          renderAdminOverview(res);
-        }
-      } catch (err) {
-        // Silent fallback pada overview
+
+        loadAdminOverview();
+      } else {
+        storeSelect.classList.add('hidden');
+        adminOverview.classList.add('hidden');
+        adminBulkWrap.classList.add('hidden');
+        adminSection.classList.add('hidden');
+        smSection.classList.remove('hidden');
+        STATE.selectedStore = STATE.user.cabang;
       }
+
+      document.getElementById('navStoreTitle').textContent = 'Cabang: ' + STATE.selectedStore;
+      loadKasData(false);
     }
 
-    function renderAdminOverview(data) {
-      document.getElementById('adminPeriodBadge').textContent = data.currentPeriod || 'Periode Aktif';
-      var container = document.getElementById('adminStoreChips');
-      var html = '';
-      var list = data.stores || [];
+    // ADMIN OVERVIEW
+    async function loadAdminOverview() {
+      try {
+        var res = await callBackendApi({ action: 'getAdminOverview' });
+        if (!res.ok) return;
 
-      for (var i = 0; i < list.length; i++) {
-        var item = list[i];
-        var isActive = item.store === appState.activeStore ? ' active' : '';
-        var tfBadge = item.belumTfCount > 0
-          ? '<span class="badge badge-danger">' + item.belumTfCount + ' Belum TF</span>'
-          : '<span class="badge badge-success">TF Aman</span>';
-        var valBadge = item.unvalidatedFilledCount > 0
-          ? '<span class="badge badge-warn">' + item.unvalidatedFilledCount + ' Perlu Val</span>'
-          : '<span class="badge badge-neutral">Tervalidasi</span>';
+        document.getElementById('adminPeriodBadge').textContent = res.currentPeriod || 'Periode Aktif';
+        var grid = document.getElementById('adminStoreChips');
+        grid.innerHTML = '';
 
-        html += '<button type="button" class="store-chip' + isActive + '" data-store="' + escapeHtml(item.store) + '">' +
-          '<span class="store-chip-name">' + escapeHtml(item.store) + '</span>' +
-          '<div class="store-chip-meta">' + tfBadge + valBadge + '</div>' +
-        '</button>';
-      }
-      container.innerHTML = html;
+        (res.stores || []).forEach(function(item) {
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'store-chip' + (item.store === STATE.selectedStore ? ' active' : '');
+          chip.setAttribute('data-store', item.store);
+
+          var badgeBelum = item.belumTfCount > 0
+            ? '<span class="badge badge-danger">' + item.belumTfCount + ' Belum TF</span>'
+            : '<span class="badge badge-success">TF Aman</span>';
+
+          var badgeVal = item.unvalidatedFilledCount > 0
+            ? '<span class="badge badge-warn">' + item.unvalidatedFilledCount + ' Perlu Val</span>'
+            : '';
+
+          chip.innerHTML =
+            '<span class="store-chip-name">' + escapeHtml(item.store) + '</span>' +
+            '<div class="store-chip-meta">' + badgeBelum + badgeVal + '</div>';
+
+          chip.addEventListener('click', function() {
+            STATE.selectedStore = item.store;
+            STATE.selectedMonth = '';
+            STATE.pendingValidations = {};
+            document.getElementById('storeSelector').value = item.store;
+            document.getElementById('navStoreTitle').textContent = 'Cabang: ' + item.store;
+            document.querySelectorAll('.store-chip').forEach(function(c) {
+              c.classList.toggle('active', c.getAttribute('data-store') === item.store);
+            });
+            loadKasData(false);
+          });
+
+          grid.appendChild(chip);
+        });
+      } catch (err) {}
     }
 
-    document.getElementById('adminStoreChips').addEventListener('click', function(e) {
-      var chip = e.target.closest('.store-chip');
-      if (!chip) return;
-      var storeName = chip.getAttribute('data-store');
-      if (!storeName) return;
-      appState.activeStore = storeName;
-      appState.activeMonthId = '';
-      appState.pendingValidations = {};
-      document.getElementById('storeSelector').value = storeName;
-      if (appState.adminOverview) renderAdminOverview(appState.adminOverview);
-      loadKasData(false);
-    });
-
-    document.getElementById('storeSelector').addEventListener('change', function(e) {
-      appState.activeStore = e.target.value;
-      appState.activeMonthId = '';
-      appState.pendingValidations = {};
-      if (appState.adminOverview) renderAdminOverview(appState.adminOverview);
-      loadKasData(false);
-    });
-
-    document.getElementById('monthSelector').addEventListener('change', function(e) {
-      appState.activeMonthId = e.target.value;
-      appState.pendingValidations = {};
-      loadKasData(false);
-    });
-
-    document.getElementById('statusFilterSelect').addEventListener('change', function() {
-      renderFilteredTable();
-    });
-
-    document.getElementById('searchDateInput').addEventListener('input', function() {
-      renderFilteredTable();
-    });
-
-    document.getElementById('refreshDataBtn').addEventListener('click', function() {
-      appState.cache = {};
-      appState.adminOverview = null;
-      appState.pendingValidations = {};
-      if (appState.user.peran === 'ADMIN') loadAdminOverview(true);
-      loadKasData(true);
-      showToast('Menyinkronkan data terbaru dari Spreadsheet...', 'info');
-    });
-
+    // LOAD KAS DATA
     async function loadKasData(forceRefresh) {
-      var cacheKey = appState.activeStore + '::' + (appState.activeMonthId || 'DEFAULT');
-      if (!forceRefresh && appState.cache[cacheKey]) {
-        applyKasPayload(appState.cache[cacheKey]);
+      var cacheKey = [
+        STATE.selectedStore,
+        STATE.selectedMonth || 'DEFAULT',
+        STATE.statusFilter,
+        STATE.searchQuery
+      ].join('|');
+
+      if (!forceRefresh && STATE.cache[cacheKey]) {
+        STATE.kasData = STATE.cache[cacheKey];
+        renderDashboardContent();
         return;
       }
 
-      document.getElementById('kasTableBody').innerHTML =
-        '<tr><td colspan="9" class="loading-state">Mengambil data ' + escapeHtml(appState.activeStore) + '...</td></tr>';
+      if (STATE.user.peran === 'ADMIN') {
+        document.getElementById('adminKasTableBody').innerHTML =
+          '<tr><td colspan="11" class="loading-state">Memuat data laporan arus kas...</td></tr>';
+      } else {
+        document.getElementById('smPagiTableBody').innerHTML =
+          '<tr><td colspan="5" class="loading-state">Memuat data Shift Pagi...</td></tr>';
+        document.getElementById('smSiangTableBody').innerHTML =
+          '<tr><td colspan="5" class="loading-state">Memuat data Shift Siang...</td></tr>';
+      }
 
       try {
-        var res = await postToGas({
+        var res = await callBackendApi({
           action: 'getKasData',
-          email: appState.user.email,
-          pin: appState.pin,
-          store: appState.activeStore,
-          monthId: appState.activeMonthId,
-          limit: 100,
-          offset: 0
+          store: STATE.selectedStore,
+          monthId: STATE.selectedMonth,
+          statusFilter: STATE.statusFilter,
+          search: STATE.searchQuery,
+          offset: 0,
+          limit: 60
         });
 
         if (!res.ok) {
@@ -1225,265 +1212,669 @@
           return;
         }
 
-        appState.activeMonthId = res.activeMonthId;
-        var resolvedKey = appState.activeStore + '::' + res.activeMonthId;
-        appState.cache[cacheKey] = res;
-        appState.cache[resolvedKey] = res;
-
-        applyKasPayload(res);
+        STATE.selectedMonth = res.activeMonthId || '';
+        STATE.kasData = res;
+        STATE.cache[cacheKey] = res;
+        renderDashboardContent();
       } catch (err) {
-        document.getElementById('kasTableBody').innerHTML =
-          '<tr><td colspan="9" class="loading-state">' + escapeHtml(err.message) + '</td></tr>';
+        showToast(err.message || 'Terjadi kesalahan koneksi server.', 'error');
       }
     }
 
-    function applyKasPayload(res) {
-      // Render Dropdown Bulan
-      var monthSel = document.getElementById('monthSelector');
-      var months = res.availableMonths || [];
-      var mHtml = '';
-      for (var i = 0; i < months.length; i++) {
-        var m = months[i];
-        var sel = m.id === res.activeMonthId ? ' selected' : '';
-        mHtml += '<option value="' + escapeHtml(m.id) + '"' + sel + '>' + escapeHtml(m.id) + '</option>';
-      }
-      monthSel.innerHTML = mHtml;
+    function invalidateStoreCache(storeName) {
+      Object.keys(STATE.cache).forEach(function(k) {
+        if (k.indexOf(storeName + '|') === 0) delete STATE.cache[k];
+      });
+    }
 
-      document.getElementById('tableBlockTitle').textContent = res.title || ('LAPORAN ARUS KAS ' + res.store);
+    function renderDashboardContent() {
+      var data = STATE.kasData;
+      if (!data) return;
 
-      var sum = res.summary || {};
-      document.getElementById('metricModal').textContent = sum.modalDisplay || formatRupiah(sum.modalNumber);
+      var monthSelect = document.getElementById('monthSelector');
+      monthSelect.innerHTML = '';
+      (data.availableMonths || []).forEach(function(m) {
+        var opt = document.createElement('option');
+        opt.value = m.id;
+        opt.textContent = m.id;
+        if (m.id === data.activeMonthId) opt.selected = true;
+        monthSelect.appendChild(opt);
+      });
+
+      var sum = data.summary || {
+        modalNumber: 0, totalMasuk: 0, totalBank: 0, latestSisaTunai: 0,
+        countBelumTf: 0, countValidated: 0, totalDays: 0
+      };
+
+      document.getElementById('metricModal').textContent = formatRupiah(sum.modalNumber);
       document.getElementById('metricTotalMasuk').textContent = formatRupiah(sum.totalMasuk);
       document.getElementById('metricTotalBank').textContent = formatRupiah(sum.totalBank);
       document.getElementById('metricSisaTunai').textContent = formatRupiah(sum.latestSisaTunai);
-      document.getElementById('metricValidasi').textContent = (sum.countValidated || 0) + ' / ' + (sum.totalDays || 0) + ' Hari';
-      document.getElementById('belumTfCounterBadge').textContent = (sum.countBelumTf || 0) + ' Hari Belum TF';
+      document.getElementById('metricValidasi').textContent = sum.countValidated + ' / ' + sum.totalDays + ' Hari';
 
-      appState.currentRows = res.rows || [];
-      renderFilteredTable();
+      if (STATE.user.peran === 'ADMIN') {
+        renderAdminTable(data);
+      } else {
+        renderStoreManagerTables(data);
+      }
     }
 
-    function renderFilteredTable() {
-      var tbody = document.getElementById('kasTableBody');
-      var isAdmin = appState.user && appState.user.peran === 'ADMIN';
-      var search = String(document.getElementById('searchDateInput').value || '').trim().toLowerCase();
-      var statusFilter = String(document.getElementById('statusFilterSelect').value || 'ALL');
+    // RENDER 2 STANDALONE TABLES FOR STORE MANAGER
+    function renderStoreManagerTables(data) {
+      var rows = data.rows || [];
+      var sum = data.summary || {};
 
-      var filtered = appState.currentRows.filter(function(r) {
-        if (search && r.tanggal.toLowerCase().indexOf(search) === -1) return false;
-        if (statusFilter === 'BELUM_TF' && r.statusTf !== 'BELUM TF') return false;
-        if (statusFilter === 'SUDAH_TF' && r.statusTf !== 'SUDAH TF') return false;
-        if (statusFilter === 'BELUM_VALIDASI' && r.validasiAdmin) return false;
-        if (statusFilter === 'TERVALIDASI' && !r.validasiAdmin) return false;
-        return true;
+      document.getElementById('smPagiTitle').textContent = 'Shift Pagi — ' + (data.activeMonthId || '');
+      document.getElementById('smSiangTitle').textContent = 'Shift Siang — ' + (data.activeMonthId || '');
+      document.getElementById('smBelumTfBadgePagi').textContent = (sum.countBelumTf || 0) + ' Hari Belum TF';
+      document.getElementById('smSisaTunaiBadgeSiang').textContent = 'Sisa Tunai: ' + formatRupiah(sum.latestSisaTunai || 0);
+
+      var pagiBody = document.getElementById('smPagiTableBody');
+      var siangBody = document.getElementById('smSiangTableBody');
+
+      if (rows.length === 0) {
+        pagiBody.innerHTML = '<tr><td colspan="5" class="loading-state">Tidak ada data tanggal pada filter ini.</td></tr>';
+        siangBody.innerHTML = '<tr><td colspan="5" class="loading-state">Tidak ada data tanggal pada filter ini.</td></tr>';
+        return;
+      }
+
+      var pagiHtml = '';
+      var siangHtml = '';
+
+      rows.forEach(function(row) {
+        var statusBadge = '<span class="badge badge-neutral">-</span>';
+        if (row.statusTf === 'SUDAH TF') statusBadge = '<span class="badge badge-success">SUDAH TF</span>';
+        else if (row.statusTf === 'BELUM TF') statusBadge = '<span class="badge badge-danger">BELUM TF</span>';
+
+        // TABEL SHIFT PAGI
+        var tfPagiCell = formatRupiah(0);
+        if (row.pemindahanBank > 0) {
+          tfPagiCell = row.shiftPemindahan === 'SIANG'
+            ? '<span class="badge badge-neutral">Diisi di Siang (' + formatRupiah(row.pemindahanBank) + ')</span>'
+            : formatRupiah(row.pemindahanBank);
+        }
+
+        var pagiReported = (row.tunaiPagi > 0 || (row.pemindahanBank > 0 && row.shiftPemindahan === 'PAGI'));
+        var pagiActions = '<div class="action-cell-group">';
+        pagiActions += row.validasiAdmin
+          ? '<span class="badge badge-success">Tervalidasi</span>'
+          : '<button type="button" class="btn btn-outline btn-xs" data-sm-action="edit-pagi" data-row="' + row.sheetRow + '">Input / Edit</button>';
+        if (pagiReported) {
+          pagiActions += '<button type="button" class="btn btn-wa btn-xs" data-sm-action="wa-pagi" data-row="' + row.sheetRow + '">Share WA</button>';
+        }
+        pagiActions += '</div>';
+
+        pagiHtml +=
+          '<tr>' +
+            '<td><strong>' + escapeHtml(row.tanggal) + '</strong></td>' +
+            '<td class="num-col">' + formatRupiah(row.tunaiPagi) + '</td>' +
+            '<td class="num-col">' + tfPagiCell + '</td>' +
+            '<td>' + statusBadge + '</td>' +
+            '<td>' + pagiActions + '</td>' +
+          '</tr>';
+
+        // TABEL SHIFT SIANG
+        var tfSiangCell = formatRupiah(0);
+        if (row.pemindahanBank > 0) {
+          tfSiangCell = row.shiftPemindahan === 'PAGI'
+            ? '<span class="badge badge-warn">Terkunci (TF Pagi: ' + formatRupiah(row.pemindahanBank) + ')</span>'
+            : formatRupiah(row.pemindahanBank);
+        }
+
+        var siangReported = (row.tunaiSiang > 0 || (row.pemindahanBank > 0 && row.shiftPemindahan === 'SIANG'));
+        var siangActions = '<div class="action-cell-group">';
+        siangActions += row.validasiAdmin
+          ? '<span class="badge badge-success">Tervalidasi</span>'
+          : '<button type="button" class="btn btn-outline btn-xs" data-sm-action="edit-siang" data-row="' + row.sheetRow + '">Input / Edit</button>';
+        if (siangReported) {
+          siangActions += '<button type="button" class="btn btn-wa btn-xs" data-sm-action="wa-siang" data-row="' + row.sheetRow + '">Share WA</button>';
+        }
+        siangActions += '</div>';
+
+        siangHtml +=
+          '<tr>' +
+            '<td><strong>' + escapeHtml(row.tanggal) + '</strong></td>' +
+            '<td class="num-col">' + formatRupiah(row.tunaiSiang) + '</td>' +
+            '<td class="num-col">' + tfSiangCell + '</td>' +
+            '<td>' + statusBadge + '</td>' +
+            '<td>' + siangActions + '</td>' +
+          '</tr>';
       });
 
-      if (filtered.length === 0) {
-        tbody.innerHTML = '<tr><td colspan="9" class="loading-state">Tidak ada baris data yang cocok dengan filter.</td></tr>';
+      pagiBody.innerHTML = pagiHtml;
+      siangBody.innerHTML = siangHtml;
+    }
+
+    function findRowBySheetRow(sheetRow) {
+      if (!STATE.kasData || !STATE.kasData.rows) return null;
+      for (var i = 0; i < STATE.kasData.rows.length; i++) {
+        if (STATE.kasData.rows[i].sheetRow === sheetRow) return STATE.kasData.rows[i];
+      }
+      return null;
+    }
+
+    // RENDER ADMIN TABLE (UNRESTRICTED)
+    function renderAdminTable(data) {
+      var rows = data.rows || [];
+      var sum = data.summary || {};
+
+      document.getElementById('adminTableBlockTitle').textContent = data.title || 'LAPORAN ARUS KAS STORE';
+      document.getElementById('adminBelumTfBadge').textContent = (sum.countBelumTf || 0) + ' Hari Belum TF';
+
+      var tbody = document.getElementById('adminKasTableBody');
+      if (rows.length === 0) {
+        tbody.innerHTML = '<tr><td colspan="11" class="loading-state">Tidak ada data pada filter ini.</td></tr>';
         return;
       }
 
       var html = '';
-      for (var i = 0; i < filtered.length; i++) {
-        var row = filtered[i];
-        var isLockedForSm = !isAdmin && row.validasiAdmin;
-        var rowClass = isLockedForSm ? '' : 'row-editable';
+      rows.forEach(function(row) {
+        var statusBadge = '<span class="badge badge-neutral">-</span>';
+        if (row.statusTf === 'SUDAH TF') statusBadge = '<span class="badge badge-success">SUDAH TF</span>';
+        else if (row.statusTf === 'BELUM TF') statusBadge = '<span class="badge badge-danger">BELUM TF</span>';
 
-        var statusBadge = '';
-        if (row.statusTf === 'SUDAH TF') {
-          statusBadge = '<span class="badge badge-success">SUDAH TF</span>';
-        } else if (row.statusTf === 'BELUM TF') {
-          statusBadge = '<span class="badge badge-danger">BELUM TF</span>';
-        } else {
-          statusBadge = '<span class="badge badge-neutral">' + escapeHtml(row.statusTf || '-') + '</span>';
+        var shiftBadge = '<span class="badge badge-neutral">-</span>';
+        if (row.pemindahanBank > 0) {
+          shiftBadge = row.shiftPemindahan === 'SIANG'
+            ? '<span class="badge badge-info">SIANG</span>'
+            : '<span class="badge badge-success">PAGI</span>';
         }
 
-        var validasiCell = '';
-        if (isAdmin) {
-          var isChecked = appState.pendingValidations.hasOwnProperty(row.sheetRow)
-            ? appState.pendingValidations[row.sheetRow].checked
-            : row.validasiAdmin;
-          var checkedAttr = isChecked ? ' checked' : '';
-          validasiCell = '<input type="checkbox" class="admin-checkbox" data-sheet-row="' + row.sheetRow + '" data-tanggal="' + escapeHtml(row.tanggal) + '"' + checkedAttr + ' />';
-        } else {
-          validasiCell = row.validasiAdmin
-            ? '<span class="badge badge-success">Terkunci</span>'
-            : '<span class="badge badge-warn">Bisa Diisi</span>';
-        }
+        var isChecked = STATE.pendingValidations.hasOwnProperty(row.sheetRow)
+          ? STATE.pendingValidations[row.sheetRow]
+          : row.validasiAdmin;
 
-        html += '<tr class="' + rowClass + '" data-sheet-row="' + row.sheetRow + '">' +
-          '<td><strong>' + escapeHtml(row.tanggal) + '</strong></td>' +
-          '<td class="num-col">' + escapeHtml(row.tunaiPagiDisplay || formatRupiah(row.tunaiPagi)) + '</td>' +
-          '<td class="num-col">' + escapeHtml(row.tunaiSiangDisplay || formatRupiah(row.tunaiSiang)) + '</td>' +
-          '<td class="num-col">' + escapeHtml(row.pemindahanBankDisplay || formatRupiah(row.pemindahanBank)) + '</td>' +
-          '<td class="num-col">' + escapeHtml(row.tunaiBelumTfDisplay || formatRupiah(row.tunaiBelumTf)) + '</td>' +
-          '<td class="num-col"><strong>' + escapeHtml(row.sisaTunaiDisplay || formatRupiah(row.sisaTunai)) + '</strong></td>' +
-          '<td>' + statusBadge + '</td>' +
-          '<td>' + validasiCell + '</td>' +
-          '<td>' + escapeHtml(row.tanggalValidasi || '-') + '</td>' +
-        '</tr>';
-      }
+        html +=
+          '<tr class="row-editable" data-admin-row="' + row.sheetRow + '">' +
+            '<td><strong>' + escapeHtml(row.tanggal) + '</strong></td>' +
+            '<td class="num-col">' + formatRupiah(row.tunaiPagi) + '</td>' +
+            '<td class="num-col">' + formatRupiah(row.tunaiSiang) + '</td>' +
+            '<td class="num-col">' + formatRupiah(row.pemindahanBank) + '</td>' +
+            '<td>' + shiftBadge + '</td>' +
+            '<td class="num-col">' + formatRupiah(row.tunaiBelumTf) + '</td>' +
+            '<td class="num-col">' + formatRupiah(row.sisaTunai) + '</td>' +
+            '<td>' + statusBadge + '</td>' +
+            '<td class="val-check-cell">' +
+              '<input type="checkbox" class="admin-checkbox" data-check-row="' + row.sheetRow + '" data-check-tgl="' + escapeHtml(row.tanggal) + '" ' + (isChecked ? 'checked' : '') + ' />' +
+            '</td>' +
+            '<td>' + escapeHtml(row.tanggalValidasi || '-') + '</td>' +
+            '<td><button type="button" class="btn btn-outline btn-xs" data-admin-edit="' + row.sheetRow + '">Edit</button></td>' +
+          '</tr>';
+      });
 
       tbody.innerHTML = html;
     }
 
-    // ================= INTERAKSI KLIK BARIS & CHECKBOX ADMIN =================
-    document.getElementById('kasTableBody').addEventListener('click', function(e) {
-      var checkbox = e.target.closest('.admin-checkbox');
-      if (checkbox) {
-        var sRow = parseInt(checkbox.getAttribute('data-sheet-row'), 10);
-        var tgl = checkbox.getAttribute('data-tanggal');
-        appState.pendingValidations[sRow] = {
-          sheetRow: sRow,
-          tanggal: tgl,
-          checked: checkbox.checked
-        };
+    // SM ENTRY MODAL
+    function openSmEntryModal(row, shiftType) {
+      if (!row) return;
+      if (row.validasiAdmin) {
+        showToast('Tanggal ' + row.tanggal + ' sudah divalidasi oleh Admin.', 'error');
         return;
       }
 
-      var tr = e.target.closest('tr');
-      if (!tr) return;
-      var sheetRow = parseInt(tr.getAttribute('data-sheet-row'), 10);
-      if (!sheetRow) return;
+      var isPagi = shiftType === 'PAGI';
+      document.getElementById('smEditSheetRow').value = row.sheetRow;
+      document.getElementById('smEditTanggal').value = row.tanggal;
+      document.getElementById('smEditMode').value = isPagi ? 'SHIFT_PAGI' : 'SHIFT_SIANG';
 
-      var targetRow = null;
-      for (var i = 0; i < appState.currentRows.length; i++) {
-        if (appState.currentRows[i].sheetRow === sheetRow) {
-          targetRow = appState.currentRows[i];
-          break;
+      document.getElementById('smEntryModalTitle').textContent =
+        (isPagi ? 'Input Shift Pagi — ' : 'Input Shift Siang — ') + row.tanggal;
+      document.getElementById('smTunaiLabel').textContent =
+        isPagi ? 'Tunai Pagi (Rp)' : 'Tunai Siang (Rp)';
+      document.getElementById('smInputTunai').value = isPagi ? row.tunaiPagi : row.tunaiSiang;
+
+      var tfInput = document.getElementById('smInputPemindahan');
+      var lockNotice = document.getElementById('smPemindahanLockNotice');
+      tfInput.value = row.pemindahanBank;
+
+      var lockedByOtherShift = false;
+      if (row.pemindahanBank > 0) {
+        if (!isPagi && row.shiftPemindahan === 'PAGI') {
+          lockedByOtherShift = true;
+          lockNotice.textContent = 'Kolom Pemindahan Dana terkunci karena sudah diisi sebesar ' + formatRupiah(row.pemindahanBank) + ' pada Shift Pagi (batas 1x per tanggal).';
+        } else if (isPagi && row.shiftPemindahan === 'SIANG') {
+          lockedByOtherShift = true;
+          lockNotice.textContent = 'Kolom Pemindahan Dana terkunci karena sudah diisi sebesar ' + formatRupiah(row.pemindahanBank) + ' pada Shift Siang.';
         }
       }
-      if (!targetRow) return;
 
-      if (appState.user.peran === 'STORE_MANAGER' && targetRow.validasiAdmin) {
-        showToast('Tanggal ' + targetRow.tanggal + ' sudah divalidasi Admin dan terkunci.', 'error');
-        return;
-      }
-
-      document.getElementById('editSheetRow').value = targetRow.sheetRow;
-      document.getElementById('editTanggal').value = targetRow.tanggal;
-      document.getElementById('entryModalTitle').textContent = 'Input Kas — ' + targetRow.tanggal;
-      document.getElementById('inputTunaiPagi').value = targetRow.tunaiPagi || 0;
-      document.getElementById('inputTunaiSiang').value = targetRow.tunaiSiang || 0;
-      document.getElementById('inputPemindahanBank').value = targetRow.pemindahanBank || 0;
-      document.getElementById('entryModal').classList.remove('hidden');
-    });
-
-    function closeEntryModal() {
-      document.getElementById('entryModal').classList.add('hidden');
+      tfInput.disabled = lockedByOtherShift;
+      lockNotice.classList.toggle('hidden', !lockedByOtherShift);
+      document.getElementById('smEntryModal').classList.remove('hidden');
     }
 
-    document.getElementById('closeEntryModalBtn').addEventListener('click', closeEntryModal);
-    document.getElementById('cancelEntryBtn').addEventListener('click', closeEntryModal);
+    function closeSmEntryModal() {
+      document.getElementById('smEntryModal').classList.add('hidden');
+    }
 
-    // ================= SIMPAN INPUT STORE MANAGER =================
-    document.getElementById('entryForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      var btn = document.getElementById('saveEntryBtn');
-      var sheetRow = parseInt(document.getElementById('editSheetRow').value, 10);
-      var tanggal = String(document.getElementById('editTanggal').value || '').trim();
-      var tunaiPagi = Number(document.getElementById('inputTunaiPagi').value || 0);
-      var tunaiSiang = Number(document.getElementById('inputTunaiSiang').value || 0);
-      var pemindahanBank = Number(document.getElementById('inputPemindahanBank').value || 0);
+    // SHARE WA MODAL
+    function openWaShareModal(row, shiftType) {
+      if (!row) return;
+      var isPagi = shiftType === 'PAGI';
+      var shiftLabel = isPagi ? 'Shift Pagi' : 'Shift Siang';
 
-      btn.disabled = true;
-      btn.textContent = 'Menyimpan...';
+      var pemindahanText = formatRupiah(row.pemindahanBank);
+      if (row.pemindahanBank > 0 && !isPagi && row.shiftPemindahan === 'PAGI') {
+        pemindahanText = formatRupiah(row.pemindahanBank) + ' (Sudah TF di Shift Pagi)';
+      }
 
-      try {
-        var res = await postToGas({
+      STATE.waContext = {
+        tanggal: row.tanggal,
+        store: STATE.selectedStore,
+        shiftLabel: shiftLabel,
+        pemindahanText: pemindahanText
+      };
+
+      document.getElementById('waAutoTanggal').textContent = row.tanggal;
+      document.getElementById('waAutoStore').textContent = STATE.selectedStore;
+      document.getElementById('waAutoShift').textContent = shiftLabel;
+      document.getElementById('waAutoPemindahan').textContent = pemindahanText;
+
+      document.getElementById('waNoteOngkir').value = '';
+      document.getElementById('waNoteTfBsi').value = '';
+      document.getElementById('waNoteQrBsi').value = '';
+      document.getElementById('waCustomNotesContainer').innerHTML = '';
+      document.getElementById('waTambahanInput').value = '';
+      document.getElementById('waPicInput').value = STATE.user ? STATE.user.nama : '';
+
+      updateWaMessagePreview();
+      document.getElementById('waShareModal').classList.remove('hidden');
+    }
+
+    function closeWaShareModal() {
+      document.getElementById('waShareModal').classList.add('hidden');
+    }
+
+    function addCustomNoteRow(defaultLabel) {
+      var container = document.getElementById('waCustomNotesContainer');
+      var rowDiv = document.createElement('div');
+      rowDiv.className = 'custom-note-row';
+
+      var labelInput = document.createElement('input');
+      labelInput.type = 'text';
+      labelInput.className = 'form-control custom-note-label';
+      labelInput.placeholder = 'Nama item (misal: QRIS BCA)';
+      labelInput.value = defaultLabel || '';
+      labelInput.style.padding = '0.45rem 0.65rem';
+      labelInput.style.fontSize = '0.82rem';
+
+      var valInput = document.createElement('input');
+      valInput.type = 'text';
+      valInput.className = 'form-control custom-note-val';
+      valInput.placeholder = 'Nominal / keterangan';
+      valInput.style.padding = '0.45rem 0.65rem';
+      valInput.style.fontSize = '0.82rem';
+
+      var removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.className = 'btn btn-danger-soft btn-xs';
+      removeBtn.textContent = 'Hapus';
+
+      labelInput.addEventListener('input', updateWaMessagePreview);
+      valInput.addEventListener('input', updateWaMessagePreview);
+      removeBtn.addEventListener('click', function() {
+        container.removeChild(rowDiv);
+        updateWaMessagePreview();
+      });
+
+      rowDiv.appendChild(labelInput);
+      rowDiv.appendChild(valInput);
+      rowDiv.appendChild(removeBtn);
+      container.appendChild(rowDiv);
+      updateWaMessagePreview();
+    }
+
+    function buildWaReportText() {
+      var ctx = STATE.waContext || { tanggal: '-', store: '-', shiftLabel: '-', pemindahanText: 'Rp0' };
+      var ongkir = String(document.getElementById('waNoteOngkir').value || '').trim();
+      var tfBsiRaw = document.getElementById('waNoteTfBsi').value;
+      var qrBsiRaw = document.getElementById('waNoteQrBsi').value;
+
+      var lines = [
+        '\uD83D\uDCCB REPORT LAPORAN SAMCHICK',
+        'Tanggal : ' + ctx.tanggal,
+        'Nama Store : ' + ctx.store,
+        'Shift : ' + ctx.shiftLabel,
+        '\uD83D\uDCDD NOTES',
+        'ongkir : ' + (ongkir || '0'),
+        'TF BSI : ' + (tfBsiRaw !== '' ? formatAngka(tfBsiRaw) : '0'),
+        'QR BSI : ' + (qrBsiRaw !== '' ? formatAngka(qrBsiRaw) : '0')
+      ];
+
+      document.querySelectorAll('#waCustomNotesContainer .custom-note-row').forEach(function(r) {
+        var lbl = String(r.querySelector('.custom-note-label').value || '').trim();
+        var val = String(r.querySelector('.custom-note-val').value || '').trim();
+        if (lbl || val) lines.push((lbl || 'Lainnya') + ' : ' + (val || '0'));
+      });
+
+      var tambahan = String(document.getElementById('waTambahanInput').value || '').trim();
+      var pic = String(document.getElementById('waPicInput').value || '').trim();
+
+      lines.push('');
+      lines.push('Pemindahan Dana : ' + ctx.pemindahanText);
+      lines.push('');
+      lines.push('Tambahan : ' + (tambahan || '-'));
+      lines.push('');
+      lines.push('\uD83D\uDC64 PIC : ' + (pic || '-'));
+      lines.push('');
+      lines.push('Terima Kasih');
+
+      return lines.join('\n');
+    }
+
+    function updateWaMessagePreview() {
+      document.getElementById('waMessagePreview').textContent = buildWaReportText();
+    }
+
+    // ADMIN EDIT MODAL
+    function openAdminEditModal(row) {
+      if (!row) return;
+      document.getElementById('adminEditSheetRow').value = row.sheetRow;
+      document.getElementById('adminEditTanggal').value = row.tanggal;
+      document.getElementById('adminEditModalTitle').textContent = 'Edit Kas Tanggal ' + row.tanggal + ' (Akses Penuh Admin)';
+      document.getElementById('adminInputTunaiPagi').value = row.tunaiPagi;
+      document.getElementById('adminInputTunaiSiang').value = row.tunaiSiang;
+      document.getElementById('adminInputPemindahan').value = row.pemindahanBank;
+      document.getElementById('adminInputShiftTf').value = row.shiftPemindahan || '';
+      document.getElementById('adminInputValidasi').checked = Boolean(row.validasiAdmin);
+      document.getElementById('adminEditModal').classList.remove('hidden');
+    }
+
+    function closeAdminEditModal() {
+      document.getElementById('adminEditModal').classList.add('hidden');
+    }
+
+    // INIT & EVENTS
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('togglePinBtn').addEventListener('click', function() {
+        var pinInput = document.getElementById('loginPin');
+        pinInput.type = pinInput.type === 'password' ? 'text' : 'password';
+      });
+
+      document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('loginSubmitBtn');
+        var emailVal = String(document.getElementById('loginEmail').value || '').trim();
+        var pinVal = String(document.getElementById('loginPin').value || '').trim();
+
+        btn.disabled = true;
+        btn.textContent = 'Memverifikasi...';
+
+        try {
+          var res = await callBackendApi({ action: 'login', email: emailVal, pin: pinVal });
+          if (!res.ok) {
+            showToast(res.message || 'Login gagal.', 'error');
+            return;
+          }
+
+          STATE.user = res.user;
+          STATE.pin = pinVal;
+          STATE.stores = res.stores || [];
+          STATE.selectedStore = STATE.stores[0] || '';
+          saveSessionToStorage();
+          showToast('Selamat datang, ' + STATE.user.nama + '!', 'success');
+          enterDashboard();
+        } catch (err) {
+          showToast(err.message || 'Gagal terhubung ke server.', 'error');
+        } finally {
+          btn.disabled = false;
+          btn.innerHTML = '<span>Masuk ke Aplikasi</span>';
+        }
+      });
+
+      document.getElementById('logoutBtn').addEventListener('click', function() {
+        clearSession();
+        document.getElementById('appView').classList.add('hidden');
+        document.getElementById('loginView').classList.remove('hidden');
+        document.getElementById('loginPin').value = '';
+      });
+
+      document.getElementById('refreshDataBtn').addEventListener('click', function() {
+        invalidateStoreCache(STATE.selectedStore);
+        STATE.pendingValidations = {};
+        if (STATE.user && STATE.user.peran === 'ADMIN') loadAdminOverview();
+        loadKasData(true);
+        showToast('Menyinkronkan data terbaru...', 'info');
+      });
+
+      document.getElementById('storeSelector').addEventListener('change', function(e) {
+        STATE.selectedStore = e.target.value;
+        STATE.selectedMonth = '';
+        STATE.pendingValidations = {};
+        document.getElementById('navStoreTitle').textContent = 'Cabang: ' + STATE.selectedStore;
+        document.querySelectorAll('.store-chip').forEach(function(c) {
+          c.classList.toggle('active', c.getAttribute('data-store') === STATE.selectedStore);
+        });
+        loadKasData(false);
+      });
+
+      document.getElementById('monthSelector').addEventListener('change', function(e) {
+        STATE.selectedMonth = e.target.value;
+        STATE.pendingValidations = {};
+        loadKasData(false);
+      });
+
+      document.getElementById('statusFilterSelect').addEventListener('change', function(e) {
+        STATE.statusFilter = e.target.value;
+        loadKasData(false);
+      });
+
+      var searchTimer = null;
+      document.getElementById('searchDateInput').addEventListener('input', function(e) {
+        clearTimeout(searchTimer);
+        searchTimer = setTimeout(function() {
+          STATE.searchQuery = String(e.target.value || '').trim();
+          loadKasData(false);
+        }, 300);
+      });
+
+      document.querySelectorAll('.shift-tab-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+          var mode = btn.getAttribute('data-shift-view');
+          STATE.shiftView = mode;
+          document.querySelectorAll('.shift-tab-btn').forEach(function(b) {
+            b.classList.toggle('active', b === btn);
+          });
+          document.getElementById('smPagiCard').classList.toggle('hidden', mode === 'SIANG');
+          document.getElementById('smSiangCard').classList.toggle('hidden', mode === 'PAGI');
+        });
+      });
+
+      document.getElementById('smDashboardSection').addEventListener('click', function(e) {
+        var btn = e.target.closest('button[data-sm-action]');
+        if (!btn) return;
+        var action = btn.getAttribute('data-sm-action');
+        var sheetRow = parseInt(btn.getAttribute('data-row'), 10);
+        var row = findRowBySheetRow(sheetRow);
+        if (!row) return;
+
+        if (action === 'edit-pagi') openSmEntryModal(row, 'PAGI');
+        else if (action === 'edit-siang') openSmEntryModal(row, 'SIANG');
+        else if (action === 'wa-pagi') openWaShareModal(row, 'PAGI');
+        else if (action === 'wa-siang') openWaShareModal(row, 'SIANG');
+      });
+
+      document.getElementById('smEntryForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('saveSmEntryBtn');
+        var sheetRow = parseInt(document.getElementById('smEditSheetRow').value, 10);
+        var tanggal = String(document.getElementById('smEditTanggal').value || '').trim();
+        var entryMode = String(document.getElementById('smEditMode').value || '').trim();
+        var tunaiVal = Number(document.getElementById('smInputTunai').value || 0);
+        var pemindahanVal = Number(document.getElementById('smInputPemindahan').value || 0);
+
+        var payload = {
           action: 'saveStoreEntry',
-          email: appState.user.email,
-          pin: appState.pin,
-          store: appState.activeStore,
+          store: STATE.selectedStore,
           sheetRow: sheetRow,
           tanggal: tanggal,
-          tunaiPagi: tunaiPagi,
-          tunaiSiang: tunaiSiang,
-          pemindahanBank: pemindahanBank
-        });
+          entryMode: entryMode,
+          pemindahanBank: pemindahanVal
+        };
+        if (entryMode === 'SHIFT_PAGI') payload.tunaiPagi = tunaiVal;
+        else payload.tunaiSiang = tunaiVal;
 
-        if (!res.ok) {
-          showToast(res.message || 'Gagal menyimpan data.', 'error');
-          return;
-        }
+        btn.disabled = true;
+        btn.textContent = 'Menyimpan...';
 
-        // Invalidate cache & muat ulang hasil formula terbaru dari Spreadsheet
-        appState.cache = {};
-        appState.adminOverview = null;
-        closeEntryModal();
-        showToast(res.message || 'Data tersimpan!', 'success');
-        await loadKasData(true);
-      } catch (err) {
-        showToast(err.message || 'Koneksi gagal saat menyimpan.', 'error');
-      } finally {
-        btn.disabled = false;
-        btn.textContent = 'Simpan ke Spreadsheet';
-      }
-    });
-
-    // ================= SIMPAN VALIDASI ADMIN (BULK / SATUAN) =================
-    document.getElementById('saveValidationBtn').addEventListener('click', async function() {
-      var keys = Object.keys(appState.pendingValidations);
-      if (keys.length === 0) {
-        showToast('Belum ada perubahan centang validasi untuk disimpan.', 'info');
-        return;
-      }
-
-      var updates = [];
-      for (var i = 0; i < keys.length; i++) {
-        updates.push(appState.pendingValidations[keys[i]]);
-      }
-
-      var btn = document.getElementById('saveValidationBtn');
-      btn.disabled = true;
-
-      try {
-        var res = await postToGas({
-          action: 'validateRows',
-          email: appState.user.email,
-          pin: appState.pin,
-          store: appState.activeStore,
-          updates: updates
-        });
-
-        if (!res.ok) {
-          showToast(res.message || 'Gagal menyimpan validasi.', 'error');
-          return;
-        }
-
-        appState.pendingValidations = {};
-        appState.cache = {};
-        appState.adminOverview = null;
-        showToast(res.message || 'Validasi berhasil disimpan!', 'success');
-        await Promise.all([loadKasData(true), loadAdminOverview(true)]);
-      } catch (err) {
-        showToast(err.message || 'Terjadi kesalahan jaringan.', 'error');
-      } finally {
-        btn.disabled = false;
-      }
-    });
-
-    // ================= AUTO-RESTORE SESI LOGIN =================
-    (function boot() {
-      var url = getApiUrl();
-      if (url && url.indexOf('https://') === 0) {
-        document.getElementById('apiStatusLabel').textContent = 'Endpoint API terhubung';
-      }
-      var savedUser = sessionStorage.getItem('kas_session_user');
-      var savedPin = sessionStorage.getItem('kas_session_pin');
-      var savedStores = sessionStorage.getItem('kas_session_stores');
-      if (savedUser && savedPin) {
         try {
-          appState.user = JSON.parse(savedUser);
-          appState.pin = savedPin;
-          appState.stores = JSON.parse(savedStores || '[]');
-          appState.activeStore = appState.stores.length > 0 ? appState.stores[0] : '';
-          initDashboard();
-        } catch (e) {
-          sessionStorage.clear();
+          var res = await callBackendApi(payload);
+          if (!res.ok) {
+            showToast(res.message || 'Gagal menyimpan laporan shift.', 'error');
+            return;
+          }
+
+          showToast(res.message || 'Laporan shift berhasil disimpan!', 'success');
+          invalidateStoreCache(STATE.selectedStore);
+          closeSmEntryModal();
+          await loadKasData(true);
+
+          var updatedRow = res.updatedRow || findRowBySheetRow(sheetRow);
+          var shiftType = entryMode === 'SHIFT_PAGI' ? 'PAGI' : 'SIANG';
+          if (updatedRow) openWaShareModal(updatedRow, shiftType);
+        } catch (err) {
+          showToast(err.message || 'Terjadi kesalahan saat menyimpan.', 'error');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Simpan & Siapkan Share WA';
         }
-      }
-    })();
+      });
+
+      document.getElementById('closeSmEntryModalBtn').addEventListener('click', closeSmEntryModal);
+      document.getElementById('cancelSmEntryBtn').addEventListener('click', closeSmEntryModal);
+
+      ['waNoteOngkir', 'waNoteTfBsi', 'waNoteQrBsi', 'waTambahanInput', 'waPicInput'].forEach(function(id) {
+        document.getElementById(id).addEventListener('input', updateWaMessagePreview);
+      });
+
+      document.querySelectorAll('.preset-chip[data-preset-label]').forEach(function(chip) {
+        chip.addEventListener('click', function() {
+          addCustomNoteRow(chip.getAttribute('data-preset-label'));
+        });
+      });
+
+      document.getElementById('addCustomNoteRowBtn').addEventListener('click', function() {
+        addCustomNoteRow('');
+      });
+
+      document.getElementById('copyWaTextBtn').addEventListener('click', async function() {
+        try {
+          await navigator.clipboard.writeText(buildWaReportText());
+          showToast('Teks laporan berhasil disalin ke clipboard!', 'success');
+        } catch (err) {
+          showToast('Gagal menyalin otomatis, silakan salin dari kotak pratinjau.', 'info');
+        }
+      });
+
+      document.getElementById('sendWaBtn').addEventListener('click', function() {
+        var waUrl = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(buildWaReportText());
+        window.open(waUrl, '_blank', 'noopener,noreferrer');
+      });
+
+      document.getElementById('closeWaModalBtn').addEventListener('click', closeWaShareModal);
+
+      document.getElementById('adminKasTableBody').addEventListener('change', function(e) {
+        var cb = e.target.closest('input.admin-checkbox[data-check-row]');
+        if (!cb) return;
+        STATE.pendingValidations[parseInt(cb.getAttribute('data-check-row'), 10)] = cb.checked;
+      });
+
+      document.getElementById('adminKasTableBody').addEventListener('click', function(e) {
+        if (e.target.closest('input.admin-checkbox') || e.target.closest('.val-check-cell')) return;
+        var tr = e.target.closest('tr[data-admin-row]');
+        if (!tr) return;
+        var row = findRowBySheetRow(parseInt(tr.getAttribute('data-admin-row'), 10));
+        if (row) openAdminEditModal(row);
+      });
+
+      document.getElementById('saveValidationBtn').addEventListener('click', async function() {
+        var keys = Object.keys(STATE.pendingValidations);
+        if (keys.length === 0) {
+          showToast('Belum ada perubahan centang validasi yang perlu disimpan.', 'info');
+          return;
+        }
+
+        var updates = keys.map(function(k) {
+          var rowNum = parseInt(k, 10);
+          var rowObj = findRowBySheetRow(rowNum);
+          return {
+            sheetRow: rowNum,
+            tanggal: rowObj ? rowObj.tanggal : '',
+            checked: Boolean(STATE.pendingValidations[k])
+          };
+        });
+
+        var btn = document.getElementById('saveValidationBtn');
+        btn.disabled = true;
+
+        try {
+          var res = await callBackendApi({
+            action: 'validateRows',
+            store: STATE.selectedStore,
+            updates: updates
+          });
+          if (!res.ok) {
+            showToast(res.message || 'Gagal menyimpan validasi.', 'error');
+            return;
+          }
+
+          STATE.pendingValidations = {};
+          invalidateStoreCache(STATE.selectedStore);
+          showToast(res.message || 'Validasi Admin tersimpan.', 'success');
+          loadAdminOverview();
+          await loadKasData(true);
+        } catch (err) {
+          showToast(err.message || 'Gagal menyimpan validasi.', 'error');
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
+      document.getElementById('adminEditForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var btn = document.getElementById('saveAdminEditBtn');
+        var payload = {
+          action: 'saveStoreEntry',
+          entryMode: 'ADMIN_FULL',
+          store: STATE.selectedStore,
+          sheetRow: parseInt(document.getElementById('adminEditSheetRow').value, 10),
+          tanggal: String(document.getElementById('adminEditTanggal').value || '').trim(),
+          tunaiPagi: Number(document.getElementById('adminInputTunaiPagi').value || 0),
+          tunaiSiang: Number(document.getElementById('adminInputTunaiSiang').value || 0),
+          pemindahanBank: Number(document.getElementById('adminInputPemindahan').value || 0),
+          shiftPemindahan: String(document.getElementById('adminInputShiftTf').value || '').trim(),
+          validasiAdmin: Boolean(document.getElementById('adminInputValidasi').checked)
+        };
+
+        btn.disabled = true;
+        btn.textContent = 'Menyimpan...';
+
+        try {
+          var res = await callBackendApi(payload);
+          if (!res.ok) {
+            showToast(res.message || 'Gagal menyimpan perubahan Admin.', 'error');
+            return;
+          }
+
+          showToast(res.message || 'Perubahan Admin berhasil disimpan.', 'success');
+          invalidateStoreCache(STATE.selectedStore);
+          closeAdminEditModal();
+          loadAdminOverview();
+          await loadKasData(true);
+        } catch (err) {
+          showToast(err.message || 'Terjadi kesalahan saat menyimpan.', 'error');
+        } finally {
+          btn.disabled = false;
+          btn.textContent = 'Simpan Perubahan Admin';
+        }
+      });
+
+      document.getElementById('closeAdminEditModalBtn').addEventListener('click', closeAdminEditModal);
+      document.getElementById('cancelAdminEditBtn').addEventListener('click', closeAdminEditModal);
+
+      if (restoreSessionFromStorage()) enterDashboard();
+    });
   </script>
 </body>
 </html>
