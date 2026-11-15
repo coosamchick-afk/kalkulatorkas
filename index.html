@@ -1458,6 +1458,31 @@
         var formatted = absStr.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
         return sign + 'Rp' + formatted;
       }
+      function parseTanggalToYmd(tglStr) {
+        var parts = String(tglStr || '').trim().split(/[-\/]/);
+        if (parts.length !== 3) return 0;
+        var d = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10);
+        var y = parseInt(parts[2], 10);
+        if (isNaN(d) || isNaN(m) || isNaN(y)) return 0;
+        if (y < 100) y += 2000;
+        return (y * 10000) + (m * 100) + d;
+      }
+
+      function getTodayJakartaYmd() {
+        try {
+          var jakartaDate = new Intl.DateTimeFormat('en-CA', {
+            timeZone: 'Asia/Jakarta',
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit'
+          }).format(new Date());
+          return parseInt(jakartaDate.replace(/-/g, ''), 10) || 0;
+        } catch (e) {
+          var now = new Date();
+          return (now.getFullYear() * 10000) + ((now.getMonth() + 1) * 100) + now.getDate();
+        }
+      }
 
       function showToast(msg, type) {
         var container = el('toastContainer');
@@ -1706,24 +1731,31 @@
         var tableHtml = '';
         var cardsHtml = '';
 
+        var todayYmd = getTodayJakartaYmd();
+
         for (var i = 0; i < state.rows.length; i++) {
           var row = state.rows[i];
-          var isLockedAdmin = Boolean(row.validasiAdmin);
+          var isValidated = Boolean(row.validasiAdmin);
+          var isNextDayOrLater = todayYmd > parseTanggalToYmd(row.tanggal);
+
+          // Shift Pagi terkunci setelah validasi Admin; Shift Siang baru terkunci besoknya
+          var isPagiLocked = isValidated;
+          var isSiangLocked = isValidated && isNextDayOrLater;
 
           var statusBadge = row.statusTf === 'SUDAH TF'
             ? '<span class="badge badge-success">SUDAH TF</span>'
             : '<span class="badge badge-danger">' + (row.statusTf || 'BELUM TF') + '</span>';
 
-          var validatedBadge = isLockedAdmin
+          var validatedBadge = isValidated
             ? '<span class="badge badge-neutral">Tervalidasi</span>'
             : '';
 
-          var pagiButtons = isLockedAdmin
+          var pagiButtons = isPagiLocked
             ? '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button>'
             : '<button type="button" class="btn btn-shift-pagi btn-open-shift" data-row="' + row.sheetRow + '" data-shift="PAGI">Input Pagi</button>' +
               '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="PAGI">Share WA</button>';
 
-          var siangButtons = isLockedAdmin
+          var siangButtons = isSiangLocked
             ? '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button>'
             : '<button type="button" class="btn btn-shift-siang btn-open-shift" data-row="' + row.sheetRow + '" data-shift="SIANG">Input Siang</button>' +
               '<button type="button" class="btn btn-wa btn-share-wa" data-row="' + row.sheetRow + '" data-shift="SIANG">Share WA</button>';
@@ -1863,11 +1895,15 @@
         var inputBtn = e.target.closest('.btn-open-shift');
         if (inputBtn) {
           var rowObj = findRowBySheetRow(inputBtn.getAttribute('data-row'));
-          var shiftType = inputBtn.getAttribute('data-shift') || 'PAGI';
+          var shiftType = String(inputBtn.getAttribute('data-shift') || 'PAGI').toUpperCase();
           if (!rowObj) return;
 
-          if (rowObj.validasiAdmin) {
-            showToast('Tanggal ' + rowObj.tanggal + ' sudah divalidasi Admin dan terkunci.', 'info');
+          var isValidated = Boolean(rowObj.validasiAdmin);
+          var isNextDayOrLater = getTodayJakartaYmd() > parseTanggalToYmd(rowObj.tanggal);
+          var isShiftLocked = (shiftType === 'SIANG') ? (isValidated && isNextDayOrLater) : isValidated;
+
+          if (isShiftLocked) {
+            showToast('Shift ' + shiftType + ' tanggal ' + rowObj.tanggal + ' sudah divalidasi Admin dan terkunci.', 'info');
             return;
           }
 
