@@ -556,6 +556,16 @@
       gap: 0.3rem;
     }
 
+    .store-chip.is-green {
+      background: #ECFDF5;
+      border-color: #6EE7B7;
+    }
+
+    .store-chip.is-green:hover {
+      background: #D1FAE5;
+      border-color: #10B981;
+    }
+
     /* ================= FILTER & CONTROL BAR ================= */
     .control-bar {
       background: var(--bg-card);
@@ -1714,6 +1724,18 @@
               return;
             }
             state.overviewCache = res;
+            if (Array.isArray(res.stores) && res.stores.length > 0) {
+              state.stores = res.stores.map(function (s) {
+                return s.store;
+              });
+              if (state.stores.indexOf(state.activeStore) === -1) {
+                state.activeStore = state.stores[0];
+                loadKasData(true);
+              }
+              $('headerStoreSubtitle').textContent = 'Pantauan Lintas ' + state.stores.length + ' Cabang';
+              populateStoreSelector();
+              saveSession();
+            }
             renderAdminOverviewChips(res);
             renderAdminRekapView(res);
           })
@@ -1728,7 +1750,7 @@
         $('adminPeriodBadge').textContent = 'Periode: ' + (overviewData.currentPeriod || '-');
 
         if (stores.length === 0) {
-          container.innerHTML = '<div class="loading-state" style="grid-column:1/-1;">Belum ada data cabang.</div>';
+          container.innerHTML = '<div class="loading-state" style="grid-column: 1 / -1;">Belum ada data cabang.</div>';
           return;
         }
 
@@ -1736,12 +1758,16 @@
         for (var i = 0; i < stores.length; i++) {
           var item = stores[i];
           var isActive = item.store === state.activeStore;
-          var hasWarning = item.belumTfCount > 0 || item.unvalidatedFilledCount > 0;
-          var chipClass = 'store-chip' + (hasWarning ? ' has-warning' : '') + (isActive ? ' active' : '');
+          var nominalBelumTf =
+            typeof item.belumTfNominal === 'number' ? item.belumTfNominal : Number(item.latestSisaTunai) || 0;
+
+          // Tunai Belum TF > 0 -> Kuning (has-warning), Tunai Belum TF == 0 -> Hijau (is-green)
+          var colorClass = nominalBelumTf > 0 ? ' has-warning' : ' is-green';
+          var chipClass = 'store-chip' + colorClass + (isActive ? ' active' : '');
 
           var badgesHtml = '';
-          if (item.belumTfCount > 0) {
-            badgesHtml += '<span class="badge badge-danger">' + item.belumTfCount + ' Hari Belum TF</span> ';
+          if (nominalBelumTf > 0) {
+            badgesHtml += '<span class="badge badge-warn">Belum TF</span> ';
           } else {
             badgesHtml += '<span class="badge badge-success">TF Lunas</span> ';
           }
@@ -1763,7 +1789,7 @@
             escapeHtml(item.store) +
             '</span>' +
             '<span class="store-chip-sisa">Sisa: ' +
-            formatRupiah(item.latestSisaTunai) +
+            formatRupiah(nominalBelumTf) +
             '</span>' +
             '</div>' +
             '<div class="store-chip-meta">' +
